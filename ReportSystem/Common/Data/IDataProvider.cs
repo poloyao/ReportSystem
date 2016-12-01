@@ -8,24 +8,17 @@ namespace ReportSystem.Common.Data
 {
     public interface IDataProvider
     {
-                
-    }
+        IEnumerable<TModel> GetCollection<TModel>(object filter = null);
+        IEnumerable<TModel> GetCollection<TModel>(object id,object filter = null);
 
-    public interface ICollectionDataProvider : IDataProvider
-    {
-
-        IEnumerable<TModel> GetItems<TModel, TModelID>(object id);
-
-        IEnumerable<TModel> FilterItems<TModel, TModelID>(object id, object filter);
-    }
-
-    public interface ISingleDataProvider : IDataProvider
-    {
-        TModel GetItem<TModel, TModelID>(object id);
+        //IEnumerable<TModel> FilterItems<TModel, TModelID>(object id, object filter);
+        TModel GetItem<TModel>(object id);
 
         bool UpdateItem<TModel, TModelID>(TModel item, object id);
 
         bool AddItem<TModel, TModelID>(TModel item, object id);
-
     }
+    
+
+
 }

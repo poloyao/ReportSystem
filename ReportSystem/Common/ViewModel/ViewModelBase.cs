@@ -1,19 +1,20 @@
 ﻿using ReportSystem.Common.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ReportSystem.Common.ViewModel
 {
-    public abstract class ViewModelBase<T> where T: class 
+    public abstract class ViewModelBase<TModel> where TModel :class
     {
-        protected IDataProvider DataProvider { get; private set; }
+        protected virtual IDataProvider DataProvider { get; private set; }
 
-        protected ViewModelBase()
+        public ViewModelBase()
         {
-            DataProvider = Core.GetIDataProvider();
+            this.DataProvider = Core.GetDataProvider<TModel>();
         }
 
 
@@ -31,28 +32,90 @@ namespace ReportSystem.Common.ViewModel
 
         #endregion
         
-    }
+    }    
 
     public class IsLoadingEventArgs : EventArgs
     {
         public bool IsLoading { get; set; }
     }
 
-    public class ssss : ISingleDataProvider
+    public abstract class CollectionViewModel<TModel> : ViewModelBase<TModel> where TModel : class
     {
-        public bool AddItem<TModel, TModelID>(TModel item, object id)
+        protected IList<TModel> Items { get; set; }
+        public virtual ObservableCollection<TModel> ItemSource { get; set; }
+
+        object baseId = null;
+
+        protected CollectionViewModel()
         {
-            throw new NotImplementedException();
+            Init();
         }
 
-        public TModel GetItem<TModel, TModelID>(object id)
+        private void Init(object filter = null)
         {
-            throw new NotImplementedException();
+            Items = DataProvider.GetCollection<TModel>(filter).ToList();
+            ItemSource = new ObservableCollection<TModel>(Items);
         }
 
-        public bool UpdateItem<TModel, TModelID>(TModel item, object id)
+        protected CollectionViewModel(object id)
         {
-            throw new NotImplementedException();
+            Init(id);
         }
+
+        private void Init(object id, object filter = null)
+        {
+            baseId = id;
+            Items = DataProvider.GetCollection<TModel>(id,filter).ToList();
+            ItemSource = new ObservableCollection<TModel>(Items);
+        }
+
+        protected void Refresh()
+        {
+            if (baseId == null)
+                Init();
+            else
+                Init(baseId);
+        }
+
+        protected void FilterItems(object filter)
+        {
+            if (baseId == null)
+                Init(filter);
+            else
+                Init(baseId, filter);
+        }
+
+
     }
+
+    public abstract class SingleViewModel<TModel> : ViewModelBase<TModel> where TModel : class
+    {
+        protected virtual TModel Content { get; private set; }
+
+        object baseID = null;
+
+        protected SingleViewModel() { }
+        protected SingleViewModel(object id)
+        {
+            Init(id);
+        }
+        private void Init(object id)
+        {
+            baseID = id;
+            Content = DataProvider.GetItem<TModel>(id);
+        }
+
+        protected void AddItem(TModel item)
+        { }
+
+        protected void UpdateItem(TModel item)
+        { }
+
+        protected void DeleteItem(TModel item)
+        { }
+    }
+
+
+
+
 }
