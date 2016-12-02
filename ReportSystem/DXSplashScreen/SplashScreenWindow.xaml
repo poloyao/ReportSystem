@@ -35,12 +35,12 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="Image" Source="Image.png" Stretch="None"/>
+                <Image x:Name="Image" Source="/ReportSystem;component/Images/LAFA_Logo.png" Stretch="None" />
                 <TextBlock x:Name="Info" TextWrapping="Wrap" Text="Loading..." Grid.Row="1" Margin="12,12,12,0" Foreground="#FF2D2D2D"/>
                 <ProgressBar x:Name="progressBar" Height="12" Grid.Row="2" Margin="12" />
                 <DockPanel x:Name="Footer" Grid.Row="3" Margin="12,20,12,4">
-                    <TextBlock x:Name="Footer_Text" TextWrapping="Wrap" Text="{Binding ElementName=splashWindow, Path=Copyright}" Width="150" Opacity="0.5" Foreground="#FF2D2D2D" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Image x:Name="Logotype" DockPanel.Dock="Right" Source="Logo.png" Stretch="None" HorizontalAlignment="Right"  />
+                    <TextBlock x:Name="Footer_Text" TextWrapping="Wrap" Text="{Binding ElementName=splashWindow, Path=Copyright}" Width="200" Opacity="0.5" Foreground="#FF2D2D2D" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="Logotype" DockPanel.Dock="Right" Source="/ReportSystem;component/Images/menubar_logo.png" HorizontalAlignment="Right" Height="45" Stretch="None"  />
                 </DockPanel>
             </Grid>
         </Grid>

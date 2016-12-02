@@ -15,7 +15,7 @@
     DataContext="{dxmvvm:ViewModelSource Type={x:Type viewmodel:MainWindowViewModel}}"
     x:Class="ReportSystem.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="587.736" Width="543.01">
+        Title="MainWindow" Height="705.283" Width="880.958" WindowStartupLocation="CenterScreen">
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService />
     </dxmvvm:Interaction.Behaviors>
@@ -39,8 +39,9 @@
             <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False">
                 <dxr:RibbonControl.ApplicationMenu>
                     <dxr:BackstageViewControl SelectedTabIndex="{Binding DefaultBackstatgeIndex, Mode=TwoWay}" IsOpen="{Binding IsBackstageOpen, Mode=TwoWay}" IsFullScreen="True">
+                        <dxr:BackstageTabItem  Content="导出" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
                         <dxr:BackstageTabItem  Content="打印" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
-                        <dxr:BackstageButtonItem Glyph="{dx:DXImage Image=Close_16x16.png}" Content="Exit" Command="{Binding ExitCommand}" />
+                        <!--<dxr:BackstageButtonItem Glyph="{dx:DXImage Image=Close_16x16.png}" Content="Exit" Command="{Binding ExitCommand}" />-->
                     </dxr:BackstageViewControl>
                 </dxr:RibbonControl.ApplicationMenu>
                 <dxr:RibbonDefaultPageCategory>
@@ -123,6 +124,8 @@
 
                 </dxdo:LayoutGroup>
             </dxdo:DockLayoutManager>
+            <dxr:RibbonStatusBarControl x:Name="statusBar" Grid.Row="2">
+            </dxr:RibbonStatusBarControl>
 
         </Grid>
 

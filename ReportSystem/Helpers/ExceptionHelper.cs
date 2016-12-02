@@ -37,11 +37,11 @@ namespace ReportSystem.Helpers
         static void ShowWindow()
         {
             string message = GetMessage();
-            var window = new Window() { Width = 600, Height = 400, WindowStyle = WindowStyle.ToolWindow, ShowActivated = true, Title = "Unhandled exception" };
+            var window = new Window() { Width = 600, Height = 400, WindowStyle = WindowStyle.ToolWindow, ShowActivated = true, Title = "异常情况" };
             var grid = new Grid() { Margin = new Thickness(5) };
-            var closeButton = new Button() { Content = "Close", Margin = new Thickness(3) };
+            var closeButton = new Button() { Content = "关闭", Margin = new Thickness(3) };
             closeButton.Click += button_Click;
-            var copyButton = new Button() { Content = "Copy error", Margin = new Thickness(3) };
+            var copyButton = new Button() { Content = "复制", Margin = new Thickness(3) };
             copyButton.Click += copyButton_Click;
             var stackPanel = new StackPanel() { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Center };
             Grid.SetRow(stackPanel, 1);
@@ -97,6 +97,10 @@ namespace ReportSystem.Helpers
         static void button_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(1);
+        }
+        static void WriteLog()
+        {
+            Common.Core.LOGGER.Error(GetMessage());
         }
     }
 }

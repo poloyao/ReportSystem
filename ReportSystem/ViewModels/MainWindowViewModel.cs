@@ -21,7 +21,8 @@ namespace ReportSystem.ViewModels
 
             List<ModuleInfo> modules = new List<ModuleInfo>()
             {
-                ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts")
+                ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts"),
+                 ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts")
             };
             ModuleGroups = new ModuleGroup[] {
                 new ModuleGroup("功能",modules)
@@ -34,8 +35,8 @@ namespace ReportSystem.ViewModels
 
         public virtual ModuleInfo SelectedModuleInfo { get; set; }
 
-        [Required]
-        protected virtual INavigationService NavigationService { get { return null; } }
+        //[Required]
+        //protected virtual INavigationService NavigationService { get { return null; } }
         [Required]
         protected virtual ICurrentWindowService CurrentWindowService { get { return null; } }
 

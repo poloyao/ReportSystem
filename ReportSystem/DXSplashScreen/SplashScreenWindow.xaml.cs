@@ -40,7 +40,7 @@ namespace ReportSystem
         void ISplashScreen.CloseSplashScreen()
         {
             this.board.Begin(this);
-            this.Close();
+            //this.Close();
         }
         void ISplashScreen.SetProgressState(bool isIndeterminate)
         {

@@ -44,6 +44,8 @@ namespace ReportSystem.Common.ViewModel
         protected IList<TModel> Items { get; set; }
         public virtual ObservableCollection<TModel> ItemSource { get; set; }
 
+        public virtual TModel SelectedItem { get; set; }
+
         object baseId = null;
 
         protected CollectionViewModel()
@@ -92,7 +94,7 @@ namespace ReportSystem.Common.ViewModel
     {
         protected virtual TModel Content { get; private set; }
 
-        object baseID = null;
+        object ModelID = null;
 
         protected SingleViewModel() { }
         protected SingleViewModel(object id)
@@ -101,18 +103,25 @@ namespace ReportSystem.Common.ViewModel
         }
         private void Init(object id)
         {
-            baseID = id;
+            ModelID = id;
             Content = DataProvider.GetItem<TModel>(id);
         }
 
-        protected void AddItem(TModel item)
-        { }
+        protected bool AddItem(TModel item)
+        {
+            //DataProvider.AddItem<>
+            return true;
+        }
 
-        protected void UpdateItem(TModel item)
-        { }
+        protected bool UpdateItem(TModel item)
+        {
+            return true;
+        }
 
-        protected void DeleteItem(TModel item)
-        { }
+        protected bool DeleteItem(TModel item)
+        {
+            return true;
+        }
     }
 
 

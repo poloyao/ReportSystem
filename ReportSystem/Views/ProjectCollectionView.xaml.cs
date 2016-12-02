@@ -23,5 +23,14 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void tableView_RowDoubleClick(object sender, DevExpress.Xpf.Grid.RowDoubleClickEventArgs e)
+        {
+            //if (grid.SelectedItem == null)
+            //    return;
+            //var frame = DevExpress.Xpf.Core.Native.LayoutHelper.FindParentObject<DevExpress.Xpf.WindowsUI.NavigationFrame>(this);
+            //ProjectSingleView view = new ProjectSingleView();
+            //frame.Navigate(view);
+        }
     }
 }

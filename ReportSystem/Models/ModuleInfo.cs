@@ -33,6 +33,12 @@ namespace ReportSystem.Models
             return this;
         }
 
+        public void ClearNavigation()
+        {
+            INavigationService navigationService = parent.ServiceContainer.GetRequiredService<INavigationService>();
+            navigationService.ClearNavigationHistory();
+        }
+
         public void Show(object parameter = null)
         {
             INavigationService navigationService = parent.ServiceContainer.GetRequiredService<INavigationService>();

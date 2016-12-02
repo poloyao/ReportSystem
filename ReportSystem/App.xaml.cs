@@ -21,5 +21,11 @@ namespace ReportSystem
             DevExpress.Images.ImagesAssemblyLoader.Load();
             ThemeManager.ApplicationThemeName = Theme.Office2013Name;
         }
+
+        private void OnAppStartup_UpdateThemeName(object sender, StartupEventArgs e)
+        {
+
+            DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
+        }
     }
 }
