@@ -82,8 +82,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Core.cs" />
+    <Compile Include="Common\Data\Demo\DemoData.cs" />
     <Compile Include="Common\Data\IDataProvider.cs" />
-    <Compile Include="Common\Data\ProjectItemDataProvider.cs" />
+    <Compile Include="Common\Data\Demo\ProjectItemDataProvider.cs" />
     <Compile Include="Common\ViewModel\ViewModelBase.cs" />
     <Compile Include="DXSplashScreen\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>

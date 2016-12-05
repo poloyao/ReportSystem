@@ -1,5 +1,6 @@
 ﻿using NLog;
 using ReportSystem.Common.Data;
+using ReportSystem.Common.Data.Demo;
 using ReportSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,10 @@ namespace ReportSystem.Common
         /// </summary>
         public static Logger LOGGER = LogManager.GetCurrentClassLogger();
 
-        public static IDataProvider GetDataProvider<TModel>() where TModel : class
+        public static IDataProvider<TModel> GetDataProvider<TModel>() where TModel : class
         {
             if (IsDerivedFrom<TModel, ProjectItemModel>())
-                return new ProjectItemDataProvider();
+                return (IDataProvider<TModel>)(new ProjectItemDataProvider());
             return null;
         }
 

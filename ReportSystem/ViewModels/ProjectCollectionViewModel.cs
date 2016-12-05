@@ -19,7 +19,7 @@ namespace ReportSystem.ViewModels
         }
 
         [Command(true)]
-        public void asdas(object obj)
+        public void Nav(object obj)
         {
             //NavigationService.Navigate(new ProjectSingleViewModel(), null, this);
             // var frame = DevExpress.Xpf.Core.Native.LayoutHelper.FindParentObject<DevExpress.Xpf.WindowsUI.NavigationFrame>((System.Windows.DependencyObject)obj);
@@ -28,7 +28,7 @@ namespace ReportSystem.ViewModels
             //navigationService.Navigate("ProjectSingleView", null, this);
             //NavigationService.Navigate("ProjectSingleView", obj, this);
             //NavigationService.Navigate("ProjectSingleView", new ProjectSingleViewModel(), obj, this,true);
-            NavigationService.Navigate("ProjectSingleView", obj, this, true);
+            NavigationService.Navigate("ProjectSingleView", obj, this);
         }
     }
 }

@@ -94,7 +94,7 @@
                                                       
                                                        AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
                                             <dxmvvm:Interaction.Behaviors>
-                                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding asdasCommand}" CommandParameter="{DynamicResource view}" />
+                                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
                                             </dxmvvm:Interaction.Behaviors>
                                             <dxg:TableView.UseLightweightTemplates>
                                                 <dxg:UseLightweightTemplates>None</dxg:UseLightweightTemplates>

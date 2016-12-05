@@ -2,22 +2,34 @@
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
+using ReportSystem.Common.ViewModel;
+using ReportSystem.Models;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class ProjectSingleViewModel
+    public class ProjectSingleViewModel : SingleViewModel<ProjectItemModel>
     {
-        private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
-        public ProjectSingleViewModel()
+        
+        public virtual ProjectItemModel Content { get; set; }
+
+        protected ProjectSingleViewModel()
         {
-            var ssss = NavigationService.GetParentViewModel<ProjectCollectionViewModel>();
-            var dddd = ssss.SelectedItem;
+            //this.Content = base.ContentBase;
         }
 
-        public ProjectSingleViewModel(object ds)
+        public static ProjectSingleViewModel Create()
         {
-
+            return ViewModelSource.Create(() => new ProjectSingleViewModel());
         }
+
+        protected override void OnParameterChanged(object parameter)
+        {
+            base.OnParameterChanged(parameter);
+            this.Content = base.ContentBase;
+        }
+
+
+
     }
 }

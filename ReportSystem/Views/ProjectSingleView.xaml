@@ -8,6 +8,6 @@
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:ProjectSingleViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>s33333333333333333</TextBlock>
+        <TextBlock Text="{Binding Content.Amount}" />
     </Grid>
 </UserControl>

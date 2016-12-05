@@ -5,12 +5,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.Mvvm.POCO;
+using DevExpress.Mvvm;
 
 namespace ReportSystem.Common.ViewModel
 {
-    public abstract class ViewModelBase<TModel> where TModel :class
+    public abstract class ViewModelBase<TModel> : ViewModelBase where TModel :class
     {
-        protected virtual IDataProvider DataProvider { get; private set; }
+        protected virtual IDataProvider<TModel> DataProvider { get; private set; }
 
         public ViewModelBase()
         {
@@ -55,7 +57,7 @@ namespace ReportSystem.Common.ViewModel
 
         private void Init(object filter = null)
         {
-            Items = DataProvider.GetCollection<TModel>(filter).ToList();
+            Items = DataProvider.GetCollection(filter).ToList();
             ItemSource = new ObservableCollection<TModel>(Items);
         }
 
@@ -67,7 +69,7 @@ namespace ReportSystem.Common.ViewModel
         private void Init(object id, object filter = null)
         {
             baseId = id;
-            Items = DataProvider.GetCollection<TModel>(id,filter).ToList();
+            Items = DataProvider.GetCollection(id,filter).ToList();
             ItemSource = new ObservableCollection<TModel>(Items);
         }
 
@@ -92,19 +94,15 @@ namespace ReportSystem.Common.ViewModel
 
     public abstract class SingleViewModel<TModel> : ViewModelBase<TModel> where TModel : class
     {
-        protected virtual TModel Content { get; private set; }
+        protected virtual TModel ContentBase { get; private set; }
 
-        object ModelID = null;
+        object ModelID = null;        
 
         protected SingleViewModel() { }
-        protected SingleViewModel(object id)
-        {
-            Init(id);
-        }
         private void Init(object id)
         {
             ModelID = id;
-            Content = DataProvider.GetItem<TModel>(id);
+            ContentBase = DataProvider.GetItem(id);
         }
 
         protected bool AddItem(TModel item)
@@ -122,6 +120,14 @@ namespace ReportSystem.Common.ViewModel
         {
             return true;
         }
+
+        protected override void OnParameterChanged(object parameter)
+        {
+            base.OnParameterChanged(parameter);
+            if(parameter != null)
+                Init(parameter);
+        }
+
     }
 
 
