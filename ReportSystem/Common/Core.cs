@@ -21,6 +21,8 @@ namespace ReportSystem.Common
         {
             if (IsDerivedFrom<TModel, ProjectItemModel>())
                 return (IDataProvider<TModel>)(new ProjectItemDataProvider());
+            if (IsDerivedFrom<TModel, ContractItemModel>())
+                return (IDataProvider<TModel>)(new ContractItemDataProvider());
             return null;
         }
 

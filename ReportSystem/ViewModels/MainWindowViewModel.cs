@@ -22,7 +22,7 @@ namespace ReportSystem.ViewModels
             List<ModuleInfo> modules = new List<ModuleInfo>()
             {
                 ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts"),
-                 ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts")
+                 ViewModelSource.Create(()=>new ModuleInfo("ContractCollectionView",this,"合同列表")).SetIcon("GridContacts")
             };
             ModuleGroups = new ModuleGroup[] {
                 new ModuleGroup("功能",modules)

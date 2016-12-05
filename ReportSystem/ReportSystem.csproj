@@ -47,10 +47,14 @@
     <Reference Include="DevExpress.Xpf.Grid.v15.2, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Grid.v15.2.Core, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Layout.v15.2.Core, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v15.2, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.NavBar.v15.2, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Ribbon.v15.2, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Themes.Office2013.v15.2, Version=15.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.3.11\lib\net45\NLog.dll</HintPath>
@@ -60,6 +64,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +91,7 @@
     <Compile Include="Common\Data\Demo\DemoData.cs" />
     <Compile Include="Common\Data\IDataProvider.cs" />
     <Compile Include="Common\Data\Demo\ProjectItemDataProvider.cs" />
+    <Compile Include="Common\Data\SingleTypeCode.cs" />
     <Compile Include="Common\ViewModel\ViewModelBase.cs" />
     <Compile Include="DXSplashScreen\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -93,11 +100,26 @@
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Models\ContractItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
-    <Compile Include="ViewModels\ProjectCollectionViewModel.cs" />
-    <Compile Include="ViewModels\ProjectSingleViewModel.cs" />
+    <Compile Include="Models\WarranteeItemModel.cs" />
+    <Compile Include="Service References\CommonSer\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Contract\ContractCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Contract\ContractViewModel.cs" />
+    <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
+    <Compile Include="Views\Contract\ContractCollectionView.xaml.cs">
+      <DependentUpon>ContractCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Contract\ContractView.xaml.cs">
+      <DependentUpon>ContractView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectCollectionView.xaml.cs">
       <DependentUpon>ProjectCollectionView.xaml</DependentUpon>
     </Compile>
@@ -124,6 +146,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Contract\ContractCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Contract\ContractView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProjectCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,11 +178,40 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\CommonSer\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CommonSer\configuration.svcinfo" />
+    <None Include="Service References\CommonSer\configuration91.svcinfo" />
+    <None Include="Service References\CommonSer\CommonService.disco" />
     <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Service References\CommonSer\CommonService.wsdl" />
+    <None Include="Service References\CommonSer\CommonService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\CommonService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\CommonService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\CommonService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\CommonService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\CommonService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonSer\ReportSystem.CommonSer.CommonCodeDataObjectList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <Resource Include="Images\LAFA_Logo.png" />
     <Resource Include="Images\menubar_logo.png" />
     <Content Include="NLog.config">
@@ -161,7 +220,9 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -171,7 +232,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="DXSplashScreen\Image.png" />
     <Resource Include="DXSplashScreen\Logo.png" />
@@ -181,6 +244,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\GridContacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CommonSer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,7 +11,6 @@ namespace ReportSystem.Common.Data
         IEnumerable<TModel> GetCollection(object filter = null);
         IEnumerable<TModel> GetCollection(object id, object filter = null);
 
-        //IEnumerable<TModel> FilterItems<TModel, TModelID>(object id, object filter);
         TModel GetItem(object id);
 
         bool UpdateItem<TModelID>(TModel item, object id);
@@ -23,13 +22,13 @@ namespace ReportSystem.Common.Data
     {
 
         IList<TModel> projectItems;
-        IEnumerable<TModel> GetProjectItems(object filter) { return projectItems ?? (projectItems = FillProjectItems(filter)); }
+        IEnumerable<TModel> GeItems(object filter) { return projectItems ?? (projectItems = FillItems(filter)); }
 
-        protected abstract IList<TModel> FillProjectItems(object filter);
+        protected abstract IList<TModel> FillItems(object filter);
 
-        IEnumerable<TModel> GetProjectItems(object id, object filter) { return projectItems ?? (projectItems = FillProjectItems(id, filter)); }
+        IEnumerable<TModel> GetItems(object id, object filter) { return projectItems ?? (projectItems = FillItems(id, filter)); }
 
-        protected abstract IList<TModel> FillProjectItems(object id, object filter);
+        protected abstract IList<TModel> FillItems(object id, object filter);
 
         protected abstract TModel GetItem(object id);
 
@@ -40,12 +39,12 @@ namespace ReportSystem.Common.Data
 
         public IEnumerable<TModel> GetCollection(object filter = null)
         {
-            return GetProjectItems(filter).Cast<TModel>();
+            return GeItems(filter).Cast<TModel>();
         }
 
         public IEnumerable<TModel> GetCollection(object id, object filter = null)
         {
-            return GetProjectItems(id, filter).Cast<TModel>();
+            return GetItems(id, filter).Cast<TModel>();
         }
 
         TModel IDataProvider<TModel>.GetItem(object id)

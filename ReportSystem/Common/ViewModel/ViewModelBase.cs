@@ -57,6 +57,11 @@ namespace ReportSystem.Common.ViewModel
 
         private void Init(object filter = null)
         {
+            if (DataProvider == null)
+            {
+                Core.LOGGER.Error(string.Format(" {0} 模块的DataProvider异常", typeof(TModel)));
+                return;
+            }
             Items = DataProvider.GetCollection(filter).ToList();
             ItemSource = new ObservableCollection<TModel>(Items);
         }
@@ -88,6 +93,7 @@ namespace ReportSystem.Common.ViewModel
             else
                 Init(baseId, filter);
         }
+        
 
 
     }
@@ -95,6 +101,7 @@ namespace ReportSystem.Common.ViewModel
     public abstract class SingleViewModel<TModel> : ViewModelBase<TModel> where TModel : class
     {
         protected virtual TModel ContentBase { get; private set; }
+        
 
         object ModelID = null;        
 
@@ -107,7 +114,6 @@ namespace ReportSystem.Common.ViewModel
 
         protected bool AddItem(TModel item)
         {
-            //DataProvider.AddItem<>
             return true;
         }
 
@@ -124,7 +130,7 @@ namespace ReportSystem.Common.ViewModel
         protected override void OnParameterChanged(object parameter)
         {
             base.OnParameterChanged(parameter);
-            if(parameter != null)
+            if (parameter != null)
                 Init(parameter);
         }
 
