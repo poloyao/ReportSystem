@@ -13,9 +13,9 @@ namespace ReportSystem.Common.Data
 
         TModel GetItem(object id);
 
-        bool UpdateItem<TModelID>(TModel item, object id);
+        TModel UpdateItem(TModel item, bool IsDelete = false);
 
-        bool AddItem<TModelID>(TModel item, object id);
+        TModel AddItem(TModel item);
     }
 
     public abstract class DataProviderBase<TModel> : IDataProvider<TModel> where TModel : class
@@ -32,17 +32,19 @@ namespace ReportSystem.Common.Data
 
         protected abstract TModel GetItem(object id);
 
+        protected abstract TModel AddItem(TModel item);
 
-        #region IDataProvider
+        protected abstract TModel UpdateItem(TModel item, bool IsDelete);
 
 
+        #region IDataProvider       
 
-        public IEnumerable<TModel> GetCollection(object filter = null)
+        IEnumerable<TModel> IDataProvider<TModel>.GetCollection(object filter)
         {
             return GeItems(filter).Cast<TModel>();
         }
 
-        public IEnumerable<TModel> GetCollection(object id, object filter = null)
+        IEnumerable<TModel> IDataProvider<TModel>.GetCollection(object id, object filter)
         {
             return GetItems(id, filter).Cast<TModel>();
         }
@@ -52,17 +54,17 @@ namespace ReportSystem.Common.Data
             return GetItem(id);
         }
 
-        public bool UpdateItem<TModelID>(TModel item, object id)
+        TModel IDataProvider<TModel>.UpdateItem(TModel item, bool IsDelete)
         {
-            throw new NotImplementedException();
+            return UpdateItem(item, IsDelete);
         }
 
-        public bool AddItem<TModelID>(TModel item, object id)
+        TModel IDataProvider<TModel>.AddItem(TModel item)
         {
-            throw new NotImplementedException();
+            return AddItem(item);
         }
-
         #endregion
+
     }
 
 

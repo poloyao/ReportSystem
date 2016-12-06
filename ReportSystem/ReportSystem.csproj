@@ -102,6 +102,7 @@
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Models\ContractItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
+    <Compile Include="Models\ParentModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
@@ -113,6 +114,7 @@
     <Compile Include="ViewModels\Contract\ContractViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
+    <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
     <Compile Include="Views\Contract\ContractCollectionView.xaml.cs">
       <DependentUpon>ContractCollectionView.xaml</DependentUpon>
@@ -125,6 +127,9 @@
     </Compile>
     <Compile Include="Views\ProjectSingleView.xaml.cs">
       <DependentUpon>ProjectSingleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Contract\WarranteeView.xaml.cs">
+      <DependentUpon>WarranteeView.xaml</DependentUpon>
     </Compile>
     <Page Include="DXSplashScreen\ProgressWindow.xaml">
       <SubType>Designer</SubType>
@@ -159,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProjectSingleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Contract\WarranteeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

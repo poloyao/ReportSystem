@@ -22,6 +22,8 @@ namespace ReportSystem.ViewModels
 
         private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
 
+        protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
+
 
         public virtual bool IsReadOnly { get; set; } = false;
 
@@ -47,10 +49,7 @@ namespace ReportSystem.ViewModels
             }
         }
 
-        public void SelectRow(object id)
-        {
-
-        }
+        
 
         public void GoBack()
         {
@@ -58,5 +57,63 @@ namespace ReportSystem.ViewModels
                 NavigationService.GoBack();
         }
 
+        public void SelectRow(object id)
+        {
+            var vm = WarranteeViewModel.Create();
+            IDocument doc = documentManagerService.FindDocument(vm);
+            if (doc == null)
+            {
+                doc = documentManagerService.CreateDocument("WarranteeView", id, vm);
+                doc.Id = documentManagerService.Documents.Count();
+                doc.Title = "新增被担保人信息";
+            }
+            //((WarranteeViewModel)doc.Content).IsRead = true;
+            doc.Show();
+            var docVM = (WarranteeViewModel)doc.Content;
+            if (docVM.IsChange)
+            {
+                var query = Content.WarranteeItems.Single(x => x.ID == docVM.Content.ID);
+                query = docVM.Content;
+                var querySource = ItemSource.Single(x => x.ID == docVM.Content.ID);
+                ItemSource.Remove(querySource);
+                ItemSource.Add(docVM.Content);
+            }
+        }
+
+        public void AddItem()
+        {
+            var vm = WarranteeViewModel.Create();
+            IDocument doc = documentManagerService.FindDocument(vm);
+            
+            if (doc == null)
+            {
+                doc = documentManagerService.CreateDocument("WarranteeView", null, vm);
+                doc.Id = documentManagerService.Documents.Count();
+                doc.Title = "新增被担保人信息";
+            }
+            doc.Show();
+            var docVM = (WarranteeViewModel)doc.Content;
+            if (docVM.IsChange)
+            {
+                Content.WarranteeItems.Add(docVM.Content);
+                ItemSource.Add(docVM.Content);
+            }
+        }
+
+
+        public void Save()
+        {
+            if (Content.ID == null || Content.ID == Guid.Empty)
+            {
+                base.AddItem(Content);
+            }
+            else
+            {
+                base.UpdateItem(Content);
+            }
+
+
+        }
+        
     }
 }

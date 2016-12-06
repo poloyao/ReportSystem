@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ReportSystem.Views.WarranteeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:WarranteeViewModel}"
+             d:DesignHeight="220" d:DesignWidth="450">
+    <UserControl.Resources>
+        <cvs:CommonTypeConverter x:Key="ctc" />
+        <Style x:Key="LayoutItemLightStyle" TargetType="dxlc:LayoutItem">
+            <Setter Property="AddColonToLabel" Value="True" />
+            <Setter Property="LabelStyle">
+                <Setter.Value>
+                    <Style TargetType="dxlc:LayoutItemLabel">
+                        <Setter Property="Foreground" Value="#FF707070" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical" Height="150">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="被担保人类型" >
+                        <dxe:ListBoxEdit ShowBorder="False"  IsReadOnly="{Binding IsRead}"
+                                         ItemsSource="{DynamicResource AllWarranteeType}" 
+                                         SelectedItem="{Binding Content.WarranteeType, Converter={StaticResource ctc}}"
+                                         DisplayMember="Name" ValueMember="ID" 
+                                         Background="{x:Null}" SelectedIndex="0"  Margin="0,0,0,5">
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings />
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="被担保人名称" LabelPosition="Top">
+                        <dxe:TextEdit   IsReadOnly="{Binding IsRead}" MinWidth="200" EditValue="{Binding Content.Name}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="证 件   类  型" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit  IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" SelectedItem="{Binding Content.CardType, Converter={StaticResource ctc}}" ValueMember="ID" DisplayMember="Name"  MinWidth="100" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup ItemLabelsAlignment="Local">
+                        <dxlc:LayoutItem Label="证件号码" >
+                            <dxe:TextEdit  IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.CardID}"  />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="是否为主被担保人">
+                        <dxe:CheckEdit  IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.IsMain}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="占位" Visibility="Hidden">
+                        <dxe:CheckEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

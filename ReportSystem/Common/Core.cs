@@ -17,12 +17,19 @@ namespace ReportSystem.Common
         /// </summary>
         public static Logger LOGGER = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// DataProvider分离
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <returns></returns>
         public static IDataProvider<TModel> GetDataProvider<TModel>() where TModel : class
         {
             if (IsDerivedFrom<TModel, ProjectItemModel>())
                 return (IDataProvider<TModel>)(new ProjectItemDataProvider());
             if (IsDerivedFrom<TModel, ContractItemModel>())
                 return (IDataProvider<TModel>)(new ContractItemDataProvider());
+            if (IsDerivedFrom<TModel, WarranteeItemModel>())
+                return (IDataProvider<TModel>)(new WarranteeItemDataProvider());
             return null;
         }
 

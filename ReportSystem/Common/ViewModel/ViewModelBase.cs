@@ -14,6 +14,8 @@ namespace ReportSystem.Common.ViewModel
     {
         protected virtual IDataProvider<TModel> DataProvider { get; private set; }
 
+        //protected Type ParentType = typeof(TModel);
+
         public ViewModelBase()
         {
             this.DataProvider = Core.GetDataProvider<TModel>();
@@ -102,29 +104,36 @@ namespace ReportSystem.Common.ViewModel
     {
         protected virtual TModel ContentBase { get; private set; }
         
+        protected ParentModel Parent { get; set; }
 
         object ModelID = null;        
 
-        protected SingleViewModel() { }
+        protected SingleViewModel()
+        {
+            
+        }
         private void Init(object id)
         {
+            //Parent = (ParentModel)id;
+            //if (Parent.ChildID != null)
+            //    ContentBase = DataProvider.GetItem(Parent.ChildID);
             ModelID = id;
             ContentBase = DataProvider.GetItem(id);
         }
 
-        protected bool AddItem(TModel item)
+        protected TModel AddItem(TModel item)
         {
-            return true;
+            return DataProvider.AddItem(item);          
         }
 
-        protected bool UpdateItem(TModel item)
+        protected TModel UpdateItem(TModel item)
         {
-            return true;
+            return DataProvider.UpdateItem(item);
         }
 
-        protected bool DeleteItem(TModel item)
+        protected TModel DeleteItem(TModel item)
         {
-            return true;
+            return DataProvider.UpdateItem(item,true);
         }
 
         protected override void OnParameterChanged(object parameter)
@@ -136,7 +145,14 @@ namespace ReportSystem.Common.ViewModel
 
     }
 
+    public class ParentModel
+    {
+        public Type ParentType { get; set; }
+        public Object ParentID { get; set; } = null;
 
+        public object ChildID { get; set; } = null;
+
+    }
 
 
 }

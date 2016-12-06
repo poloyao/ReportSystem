@@ -11,6 +11,10 @@ namespace ReportSystem.Common.Data.Demo
 
     public class ProjectItemDataProvider : DataProviderBase<ProjectItemModel>
     {
+        protected override ProjectItemModel AddItem(ProjectItemModel item)
+        {
+            throw new NotImplementedException();
+        }
 
         protected override IList<ProjectItemModel> FillItems(object filter)
         {
@@ -30,12 +34,22 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ProjectItemModel GetItem(object id)
         {
-            return ProjectItemModel.Create(x => { x.ID = Guid.NewGuid();x.Amount = 100000m; });
+            return ProjectItemModel.Create(x => { x.ID = Guid.NewGuid(); x.Amount = 100000m; });
+        }
+
+        protected override ProjectItemModel UpdateItem(ProjectItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
         }
     }
 
     public class ContractItemDataProvider : DataProviderBase<ContractItemModel>
     {
+        protected override ContractItemModel AddItem(ContractItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override IList<ContractItemModel> FillItems(object filter)
         {
             return new List<ContractItemModel>()
@@ -61,36 +75,80 @@ namespace ReportSystem.Common.Data.Demo
                 x.ID = Guid.NewGuid();
                 x.ProjectNo = "XM" + number.ToString("000");
                 x.ContractrNo = "HT" + number.ToString("000");
-                x.BusinessType = Guid.Parse(GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BusinessType)).ID);
-                x.GuaranteeType = Guid.Parse(GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GuaranteeType)).ID);
+                x.BusinessType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BusinessType)).ID);
+                x.GuaranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GuaranteeType)).ID);
                 x.Amount = new Random().Next(100) * 100000;
-                x.StartDate = GetRandomTime();
-                x.EndDate = GetRandomTime(x.StartDate);
+                x.StartDate = DemoHelper.GetRandomTime();
+                x.EndDate = DemoHelper.GetRandomTime(x.StartDate);
                 x.DepositRatio = 0.3m;
                 x.ReRatio = 0;
-                x.CounterGuarantee = Guid.Parse(GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CGType)).ID);
+                x.CounterGuarantee = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CGType)).ID);
                 x.Rates = 0.3m;
                 x.YearRates = 0.3m;
                 x.WarranteeItems = new List<WarranteeItemModel>()
                   {
                       WarranteeItemModel.Create(x1=> {
                           x1.ID = Guid.NewGuid();
-                        x1.WarranteeType = Guid.Parse(GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
-                        x1.Name = GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
-                        x1.CardType = Guid.Parse(GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
-                        x1.CardID = GetRandomCardID(18, true);
+                        x1.WarranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
+                        x1.Name = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
+                        x1.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                        x1.CardID = DemoHelper.GetRandomCardID(18, true);
                         x1.IsMain = true;
                       })
                   };
             });
         }
 
-     
+        protected override ContractItemModel UpdateItem(ContractItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
+
+    public class WarranteeItemDataProvider : DataProviderBase<WarranteeItemModel>
+    {
+        protected override WarranteeItemModel AddItem(WarranteeItemModel item)
+        {
+            item.ID = Guid.NewGuid();
+            return item;
+        }
+
+        protected override IList<WarranteeItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<WarranteeItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override WarranteeItemModel GetItem(object id)
+        {
+            return WarranteeItemModel.Create(x =>
+            {
+                x.ID = (Guid)id;
+                x.WarranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
+                x.Name = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
+                x.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                x.CardID = DemoHelper.GetRandomCardID(18, true);
+                x.IsMain = true;
+            });
+        }
+
+        protected override WarranteeItemModel UpdateItem(WarranteeItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public static class DemoHelper
+    {
         #region 帮助类
 
 
-        static int GetRandomSeed()
+        public static int GetRandomSeed()
         {
             byte[] bytes = new byte[4];
             System.Security.Cryptography.RNGCryptoServiceProvider rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
@@ -106,7 +164,7 @@ namespace ReportSystem.Common.Data.Demo
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <returns></returns>
-        private static T GetRandomItem<T>(IList<T> list)
+        public static T GetRandomItem<T>(IList<T> list)
         {
             if (list == null) throw new ArgumentNullException("list");
             int count = list.Count;
@@ -122,7 +180,7 @@ namespace ReportSystem.Common.Data.Demo
         /// <param name="date1">起始日期 默认值 new DateTime(2013, 1, 1)</param>
         /// <param name="date2">结束日期 默认值 DateTime.Now 或 起始有值延后3年</param>
         /// <returns>间隔日期之间的 随机日期</returns>
-        private static DateTime GetRandomTime(DateTime? date1 = null, DateTime? date2 = null)
+        public static DateTime GetRandomTime(DateTime? date1 = null, DateTime? date2 = null)
         {
             DateTime time1 = date1 ?? new DateTime(2013, 1, 1);
             DateTime time2 = date2 ?? (date1 == null ? DateTime.Now : time1.AddYears(3));
@@ -182,7 +240,7 @@ namespace ReportSystem.Common.Data.Demo
         /// </summary>  
         /// <param name="count">要产生汉字的个数</param>  
         /// <returns>常用汉字</returns>  
-        private static string GetRandomChineseWords(int count)
+        public static string GetRandomChineseWords(int count)
         {
             string chineseWords = "";
             Random rm = new Random();
@@ -225,7 +283,7 @@ namespace ReportSystem.Common.Data.Demo
         /// <param name="length">总长度</param>
         /// <param name="isLetter">是否在尾部后缀英文</param>
         /// <returns></returns>
-        private static string GetRandomCardID(int length, bool isLetter)
+        public static string GetRandomCardID(int length, bool isLetter)
         {
             length = isLetter ? length - 1 : length;
             string tmpstr = "";
@@ -245,13 +303,12 @@ namespace ReportSystem.Common.Data.Demo
             return tmpstr;
         }
 
-        private IList<T> GetRandomObjectList<T>(Action<T> Create, int count = 1)
+        public static IList<T> GetRandomObjectList<T>(Action<T> Create, int count = 1)
         {
 
             return null;
         }
 
         #endregion
-
     }
 }

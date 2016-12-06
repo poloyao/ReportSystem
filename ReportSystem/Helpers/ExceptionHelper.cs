@@ -93,9 +93,11 @@ namespace ReportSystem.Helpers
         static void copyButton_Click(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(GetMessage());
+            WriteLog();
         }
         static void button_Click(object sender, RoutedEventArgs e)
         {
+            WriteLog();
             Environment.Exit(1);
         }
         static void WriteLog()
