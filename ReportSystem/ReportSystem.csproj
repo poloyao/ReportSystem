@@ -101,8 +101,9 @@
     </Compile>
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Models\ContractItemModel.cs" />
+    <Compile Include="Models\CreditorItemModel.cs" />
+    <Compile Include="Models\LoanItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
-    <Compile Include="Models\ParentModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
@@ -110,22 +111,42 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Loan\AddLoanViewModel.cs" />
     <Compile Include="ViewModels\Contract\ContractCollectionViewModel.cs" />
     <Compile Include="ViewModels\Contract\ContractViewModel.cs" />
+    <Compile Include="ViewModels\Loan\CreditorViewModel.cs" />
+    <Compile Include="ViewModels\Loan\LoanCollocationViewModel.cs" />
+    <Compile Include="ViewModels\Loan\LoanDetailViewModel.cs" />
+    <Compile Include="ViewModels\Loan\LoanViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
+    <Compile Include="Views\Loan\AddLoanView.xaml.cs">
+      <DependentUpon>AddLoanView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Contract\ContractCollectionView.xaml.cs">
       <DependentUpon>ContractCollectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Contract\ContractView.xaml.cs">
       <DependentUpon>ContractView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectCollectionView.xaml.cs">
+    <Compile Include="Views\Loan\CreditorView.xaml.cs">
+      <DependentUpon>CreditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Loan\LoanCollocationView.xaml.cs">
+      <DependentUpon>LoanCollocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Loan\LoanDetailView.xaml.cs">
+      <DependentUpon>LoanDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Loan\LoanView.xaml.cs">
+      <DependentUpon>LoanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Project\ProjectCollectionView.xaml.cs">
       <DependentUpon>ProjectCollectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectSingleView.xaml.cs">
+    <Compile Include="Views\Project\ProjectSingleView.xaml.cs">
       <DependentUpon>ProjectSingleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Contract\WarranteeView.xaml.cs">
@@ -151,6 +172,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Loan\AddLoanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Contract\ContractCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,11 +184,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectCollectionView.xaml">
+    <Page Include="Views\Loan\CreditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectSingleView.xaml">
+    <Page Include="Views\Loan\LoanCollocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Loan\LoanDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Loan\LoanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Project\ProjectCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Project\ProjectSingleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -145,6 +145,10 @@ namespace ReportSystem.Common.ViewModel
 
     }
 
+    
+
+
+
     public class ParentModel
     {
         public Type ParentType { get; set; }

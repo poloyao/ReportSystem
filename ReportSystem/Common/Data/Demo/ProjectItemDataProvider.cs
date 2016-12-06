@@ -143,6 +143,36 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+
+    public class LoanItemDataProvider : DataProviderBase<LoanItemModel>
+    {
+        protected override LoanItemModel AddItem(LoanItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override LoanItemModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override LoanItemModel UpdateItem(LoanItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
     public static class DemoHelper
     {
         #region 帮助类
