@@ -12,7 +12,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReportSystem.ViewModels
 {
-    public  class MainWindowViewModel
+    public class MainWindowViewModel
     {
 
         public MainWindowViewModel()
@@ -21,8 +21,10 @@ namespace ReportSystem.ViewModels
 
             List<ModuleInfo> modules = new List<ModuleInfo>()
             {
-                ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts"),
-                 ViewModelSource.Create(()=>new ModuleInfo("ContractCollectionView",this,"合同列表")).SetIcon("GridContacts")
+                 ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts"),
+                 ViewModelSource.Create(()=>new ModuleInfo("ContractCollectionView",this,"合同列表")).SetIcon("GridContacts"),
+                 ViewModelSource.Create(()=>new ModuleInfo("LoanCollocationView",this,"放款")).SetIcon("GridContacts")
+
             };
             ModuleGroups = new ModuleGroup[] {
                 new ModuleGroup("功能",modules)
@@ -60,12 +62,12 @@ namespace ReportSystem.ViewModels
 
         protected virtual void OnSelectedModuleInfoChanged()
         {
-           // PrintingService.PreviewModelAction = null;
+            // PrintingService.PreviewModelAction = null;
         }
 
         protected virtual void OnIsBackstageOpenChanged()
         {
-           // HasPrinting = PrintingService.HasPrinting;
+            // HasPrinting = PrintingService.HasPrinting;
             if (!HasPrinting && DefaultBackstatgeIndex == 1)
                 DefaultBackstatgeIndex = 0;
         }

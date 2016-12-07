@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+                    xmlns:local="clr-namespace:ReportSystem.ViewResources">
+    <cvs:LoanStatusColorConverter x:Key="lscc" />
+    <cvs:LoanStatusTextConverter x:Key="lstc" />
+
+    <DataTemplate x:Key="LoanStatusCellTemplate">
+        <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border Height="16" Width="16" >
+                <Border.Background>
+                    <SolidColorBrush Color="{Binding Path=Value, Converter={StaticResource lscc}, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
+            </Border>
+            <TextBlock Margin="4,0,0,0" Text="{Binding Path=Value,Converter={StaticResource lstc},UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+        </Grid>
+    </DataTemplate>
+
+
+</ResourceDictionary>

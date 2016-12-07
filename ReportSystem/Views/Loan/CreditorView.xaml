@@ -3,10 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:CreditorViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <cvs:CommonTypeConverter x:Key="CommonTypeConverter" />
+    </UserControl.Resources>
     <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical">
+
+                <dxlc:LayoutItem Label="债权人类型">
+                    <dxe:ListBoxEdit ShowBorder="False" 
+                                     ItemsSource="{DynamicResource AllCreditorType}" 
+                                     DisplayMember="Name" ValueMember="ID" 
+                                     SelectedItem="{Binding LoanContent.Creditor.CreditorType,Converter={StaticResource CommonTypeConverter}}"
+                                     Background="{x:Null}" SelectedIndex="0" Margin="0,0,0,5">
+                        <dxe:ListBoxEdit.StyleSettings>
+                            <dxe:RadioListBoxEditStyleSettings />
+                        </dxe:ListBoxEdit.StyleSettings>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                    </dxe:ListBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem IsRequired="True" Label="债权人名称">
+                    <dxe:TextEdit EditValue="{Binding LoanContent.Creditor.CreditorName}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="证件类型">
+                    <dxe:ComboBoxEdit IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" SelectedIndex="0" DisplayMember="Name" ValueMember="ID" SelectedItem="{Binding LoanContent.Creditor.CardType,Converter={StaticResource CommonTypeConverter}}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="证件号码">
+                    <dxe:TextEdit EditValue="{Binding LoanContent.Creditor.CardID}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup >
+                    <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <dx:SimpleButton Content="选择已有债权人"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem Label="主合同号码">
+                    <dxlc:LayoutItem.ToolTip>
+                        <StackPanel>
+                            <TextBlock>用于唯一标识一笔主合同的编号，当债权人类型为“1-放贷机构”时必填。</TextBlock>
+                            <TextBlock>其中，当被担保人是企业或其他组织时，要求填写金融机构上报到企业征信系统中的主业务编号（贷款合同号码、汇票号码、融资协议编号、信用证号码）;</TextBlock>
+                            <TextBlock>当被担保人是个人时，要求填写金融机构上报到个人征信系统中的“业务号”。如此要求，主要是为了把担保公司报送的数据与银行报送的数据进行匹配。</TextBlock>
+                        </StackPanel>
+                    </dxlc:LayoutItem.ToolTip>
+                    <dxe:TextEdit EditValue="{Binding LoanContent.ContractID}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="主合同编号" ToolTip="指被担保人与债权人签订的纸质担保合同号码">
+                    <dxe:TextEdit EditValue="{Binding LoanContent.ContractNo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="投向">
+                    <dxe:ComboBoxEdit IsTextEditable="False" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="有效性">
+                    <dxe:CheckEdit EditValue="{Binding LoanContent.IsMain}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
     </Grid>
 </UserControl>

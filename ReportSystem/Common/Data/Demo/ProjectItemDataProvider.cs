@@ -153,7 +153,10 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override IList<LoanItemModel> FillItems(object filter)
         {
-            throw new NotImplementedException();
+            return new List<LoanItemModel>()
+            {
+                GetItem(null)
+            };
         }
 
         protected override IList<LoanItemModel> FillItems(object id, object filter)
@@ -163,7 +166,14 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override LoanItemModel GetItem(object id)
         {
-            throw new NotImplementedException();
+            return LoanItemModel.Create(x =>
+            {
+                x.ID = Guid.NewGuid();
+                x.ProjectNo = "XM001";
+                x.MianWarrantee = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
+                x.Amount = 5500000M;
+                x.LoanAmount = new Random(Guid.NewGuid().GetHashCode()).Next((int)x.Amount);
+            });
         }
 
         protected override LoanItemModel UpdateItem(LoanItemModel item, bool IsDelete)
@@ -173,6 +183,119 @@ namespace ReportSystem.Common.Data.Demo
     }
 
 
+    public class LoanSingleItemlDataProvider : DataProviderBase<LoanSingleItemlModel>
+    {
+        protected override LoanSingleItemlModel AddItem(LoanSingleItemlModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanSingleItemlModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanSingleItemlModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override LoanSingleItemlModel GetItem(object id)
+        {
+            return LoanSingleItemlModel.Create(x =>
+            {
+                x.ID = Guid.NewGuid();
+                x.ProjectNo = "XM001";
+                x.WarranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
+                x.Name = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
+                x.BusinessType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BusinessType)).ID);
+                x.GuaranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GuaranteeType)).ID);
+                x.Amount = 1000000m;
+                x.LoanSumAmount = 0m;
+                x.LoanCreditorItems = new List<LoanCreditorItemModel>()
+                {
+                    LoanCreditorItemModel.Create(lc =>
+                    {
+                        lc.ID = Guid.NewGuid();
+                        lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                        lc.ContractID = "ContractID";
+                        lc.ContractNo = "ContractNo";
+                        lc.TotalCredit = 10000m;
+                        lc.TotalLoanAmount = 5000m;
+                        lc.DirectionID = Guid.NewGuid();
+                        lc.IsMain = true;
+                        lc.LoanEntryList = new System.Collections.ObjectModel.ObservableCollection<LoanEntryItemModel>()
+                        {
+                            LoanEntryItemModel.Create(le =>
+                            {
+                                le.ID = Guid.NewGuid();
+                                le.Amount = new Random(Guid.NewGuid().GetHashCode()).Next(50) * 100000;
+                                le.StartDate = DemoHelper.GetRandomTime();
+                                le.EndDate = DemoHelper.GetRandomTime(le.StartDate);
+                                le.RelieveAmount = new Random(Guid.NewGuid().GetHashCode()).Next((int)le.Amount);
+
+                            })
+                        };
+                    })
+                };
+            });
+        }
+
+        protected override LoanSingleItemlModel UpdateItem(LoanSingleItemlModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class LoanCreditorItemDataProvider : DataProviderBase<LoanCreditorItemModel>
+    {
+        protected override LoanCreditorItemModel AddItem(LoanCreditorItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanCreditorItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<LoanCreditorItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override LoanCreditorItemModel GetItem(object id)
+        {
+            return LoanCreditorItemModel.Create(lc =>
+            {
+                lc.ID = Guid.NewGuid();
+                lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                lc.ContractID = "ContractID";
+                lc.ContractNo = "ContractNo";
+                lc.TotalCredit = 10000m;
+                lc.TotalLoanAmount = 5000m;
+                lc.DirectionID = Guid.NewGuid();
+                lc.IsMain = true;
+                lc.LoanEntryList = new System.Collections.ObjectModel.ObservableCollection<LoanEntryItemModel>()
+                        {
+                            LoanEntryItemModel.Create(le =>
+                            {
+                                le.ID = Guid.NewGuid();
+                                le.Amount = new Random(Guid.NewGuid().GetHashCode()).Next(50) * 100000;
+                                le.StartDate = DemoHelper.GetRandomTime();
+                                le.EndDate = DemoHelper.GetRandomTime(le.StartDate);
+                                le.RelieveAmount = new Random(Guid.NewGuid().GetHashCode()).Next((int)le.Amount);
+
+                            })
+                        };
+            });
+        }
+
+        protected override LoanCreditorItemModel UpdateItem(LoanCreditorItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public static class DemoHelper
     {
         #region 帮助类

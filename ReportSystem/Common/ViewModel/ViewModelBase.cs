@@ -114,9 +114,6 @@ namespace ReportSystem.Common.ViewModel
         }
         private void Init(object id)
         {
-            //Parent = (ParentModel)id;
-            //if (Parent.ChildID != null)
-            //    ContentBase = DataProvider.GetItem(Parent.ChildID);
             ModelID = id;
             ContentBase = DataProvider.GetItem(id);
         }

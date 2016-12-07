@@ -3,10 +3,253 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"    
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:LoanDetailViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
+            <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
+            <Setter Property="AutoGenerateColumns" Value="AddNew" />
+            <!--<Setter Property="ColumnsSource" Value="{Binding Columns}"/>-->
+            <!--<Setter Property="AutoExpandAllGroups" Value="True"/>-->
+            <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
+            <!--<Setter Property="FilterString" Value="{Binding FilterString, Mode=TwoWay}"/>-->
+        </Style>
+        <cvs:CommonTypeConverter x:Key="ctc"/>
+        <cvs:RelieveDisplayConverter x:Key="RelieveDisplayConverter" />
+        <cvs:RelieveReadOnlyConverter x:Key="RelieveReadOnlyConverter" />
+    </UserControl.Resources>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
+            <dx:WindowedDocumentUIService.WindowStyle>
+                <Style TargetType="dx:DXWindow">
+                    <Setter Property="Width" Value="500"/>
+                    <Setter Property="Height" Value="300"/>
+                    <Setter Property="ResizeMode" Value="NoResize" />
+                    <Setter Property="ShowIcon" Value="False"/>
+                </Style>
+            </dx:WindowedDocumentUIService.WindowStyle>
+        </dx:WindowedDocumentUIService>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
+        <dxb:BarManager CreateStandardLayout="False">
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
+                <!--<dxb:BarButtonItem x:Name="editTask" Content="撤销"  LargeGlyph="{dx:DXImage Image=DeleteList2_32x32.png}"/>-->
+                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+
+                <dxb:BarButtonItem x:Name="NewLoan" Content="添加新放款" Command="{Binding NewLoanCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
+
+                <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
+
+            </dxb:BarManager.Items>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2010">
+                    <dxr:RibbonDefaultPageCategory Caption="Default Category">
+                        <dxr:RibbonPage Caption="功能">
+                            <dxr:RibbonPageGroup Caption="导航">
+                                <dxb:BarButtonItemLink BarItemName="GoBack" />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="other">
+                                <dxb:BarButtonItemLink BarItemName="newTask" />
+                                <dxb:BarButtonItemLink BarItemName="deleteTask" />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="新放款">
+                                <dxb:BarButtonItemLink BarItemName="NewLoan" />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="other3">
+                                <dxb:BarButtonItem Content="导出" />
+                                <dxb:BarButtonItem Content="打印" />
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                    </dxr:RibbonDefaultPageCategory>
+                </dxr:RibbonControl>
+
+                <dxdo:DockLayoutManager Grid.Row="1">
+                    <dxdo:LayoutGroup Orientation="Vertical" >
+                        <dxdo:LayoutGroup Margin="0,0,0,0">
+                            <dxdo:LayoutPanel ShowBorder="False" ShowCaption="False">
+                                <Grid Grid.IsSharedSizeScope="True">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.ColumnSpan="2" Grid.Row="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <dxlc:LayoutControl Grid.Row="0" Orientation="Vertical">
+
+                                            <dxlc:LayoutGroup  Orientation="Vertical">
+
+                                                <dxlc:LayoutItem IsRequired="True" Label="债权人名称">
+                                                    <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.CreditorName}"/>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutGroup>
+
+                                                    <dxlc:LayoutItem Label="证件类型">
+                                                        <dxe:ComboBoxEdit IsReadOnly="True" IsTextEditable="False" 
+                                                                  ItemsSource="{DynamicResource AllCodeType}" 
+                                                                  SelectedIndex="0" DisplayMember="Name" ValueMember="ID" 
+                                                                  SelectedItem="{Binding Content.CardType, Converter={StaticResource ctc}}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="证件号码">
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.CardID}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="主合同号码">
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ContractID}"/>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                                <dxlc:LayoutGroup>
+                                                    <dxlc:LayoutItem Label="授信金额">
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.TotalCredit}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="在保总额">
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.TotalLoanAmount}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="主合同编号" ToolTip="指被担保人与债权人签订的纸质担保合同号码">
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ContractNo}"/>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+
+                                            </dxlc:LayoutGroup>
+
+                                        </dxlc:LayoutControl>
+
+
+
+                                        <Grid Grid.Row="1">
+                                            <dxg:GridControl 
+                                    x:Name="grid"
+									ItemsSource="{Binding Content.LoanEntryList}" 
+									AutoGenerateColumns="AddNew" 
+									EnableSmartColumnsGeneration="True">
+                                                <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn FieldName="解除比例" UnboundExpression="[RelieveAmount] / [Amount] * 100"  UnboundType="Decimal">
+                                                        <dxg:GridColumn.EditSettings>
+                                                            <dxe:ProgressBarEditSettings ContentDisplayMode="Value" DisplayFormat="p0" IsPercent="True" HorizontalContentAlignment="Center"  >
+                                                                <dxe:ProgressBarEditSettings.StyleSettings>
+                                                                    <dxe:ProgressBarStyleSettings />
+                                                                </dxe:ProgressBarEditSettings.StyleSettings>
+                                                            </dxe:ProgressBarEditSettings>
+                                                        </dxg:GridColumn.EditSettings>
+                                                    </dxg:GridColumn>
+                                                </dxg:GridControl.Columns>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView AutoWidth="True" 
+											            ShowGroupPanel="False"
+											            UseEvenRowBackground="True" 
+											            AllowPerPixelScrolling="True"
+											            AllowEditing="False"                                                       
+											            AllowCascadeUpdate="False" 
+                                                       >
+                                                        <dxg:TableView.RowDetailsTemplate>
+                                                            <DataTemplate >
+                                                                <dx:DXExpander IsExpanded="{Binding Row.isExp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" VerticalExpand="FromTopToBottom" HorizontalExpand="None">
+                                                                    <dxlc:LayoutControl>
+                                                                        <dxlc:LayoutGroup Orientation="Vertical">
+                                                                            <dxlc:LayoutGroup>
+                                                                                <dxlc:LayoutItem Label="解除方式">
+                                                                                    <dxe:ComboBoxEdit  IsTextEditable="False" 
+                                                                                           x:Name="reType"
+                                                                                           ItemsSource="{DynamicResource AllRelieveStatus}"
+                                                                                           ValueMember="ID" SelectedIndex="0" DisplayMember="Name"
+                                                                                           SelectedItem="{Binding Row.EditLoanRelieve.RelieveType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ctc}}" 
+                                                                                           >
+
+                                                                                    </dxe:ComboBoxEdit>
+                                                                                </dxlc:LayoutItem>
+                                                                                <dxlc:LayoutItem Label="解除日期">
+                                                                                    <dxe:DateEdit EditValue="{Binding Row.EditLoanRelieve.RelieveDate}" MinValue="{Binding Row.EditLoanRelieve.MinRelieveDate}" ></dxe:DateEdit>
+                                                                                </dxlc:LayoutItem>
+                                                                            </dxlc:LayoutGroup>
+                                                                            <dxlc:LayoutGroup>
+                                                                                <dxlc:LayoutItem Label="解除金额">
+                                                                                    <dxe:SpinEdit Value="{Binding Row.EditLoanRelieve.RelieveAmount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                                  MinValue="0" 
+                                                                                  IsReadOnly="{Binding ElementName=reType,Path=SelectedItem,Converter={StaticResource RelieveReadOnlyConverter}}"
+                                                                                  MaxValue="{Binding Row.EditLoanRelieve.MaxRelieveAmount}" 
+                                                                                  Increment="10000" />
+                                                                                </dxlc:LayoutItem>
+                                                                                <dxlc:LayoutItem Label="代偿金额" IsEnabled="{Binding ElementName=reType,Path=SelectedItem,Converter={StaticResource RelieveDisplayConverter}}">
+                                                                                    <dxe:SpinEdit Value="{Binding Row.EditLoanRelieve.RepaymentAmount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                                  MinValue="0" 
+                                                                                  MaxValue="{Binding Row.EditLoanRelieve.MaxRelieveAmount}" 
+                                                                                  Increment="10000" />
+                                                                                </dxlc:LayoutItem>
+                                                                            </dxlc:LayoutGroup>
+                                                                            <dxlc:LayoutGroup >
+                                                                                <dxlc:LayoutItem Label="占位"  Visibility="Hidden">
+                                                                                    <dxe:TextEdit ></dxe:TextEdit>
+                                                                                </dxlc:LayoutItem>
+                                                                                <dxlc:LayoutItem  Label="本机构代偿金额" IsEnabled="{Binding ElementName=reType,Path=SelectedItem,Converter={StaticResource RelieveDisplayConverter}}">
+                                                                                    <dxe:SpinEdit Value="{Binding Row.EditLoanRelieve.RepaymentAmount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                                  MinValue="0" 
+                                                                                  MaxValue="{Binding Row.EditLoanRelieve.MaxRelieveAmount}" 
+                                                                                  Increment="10000" />
+                                                                                </dxlc:LayoutItem>
+                                                                            </dxlc:LayoutGroup>
+                                                                            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                                                                <dx:SimpleButton Content="确认" Command="{Binding Row.AddRemoveCommand}" ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                                                                                <dx:SimpleButton Content="取消" Command="{Binding Row.CancelCommand}" ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                                                                            </dxlc:LayoutGroup>
+
+                                                                        </dxlc:LayoutGroup>
+                                                                    </dxlc:LayoutControl>
+                                                                </dx:DXExpander>
+                                                            </DataTemplate>
+                                                        </dxg:TableView.RowDetailsTemplate>
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding AddRemoveCommand}" CommandParameter="{Binding ElementName=grid,Path=CurrentItem}" />
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxg:TableView>
+                                                </dxg:GridControl.View>
+                                                <dxg:GridControl.DetailDescriptor>
+                                                    <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding LoanRelieveList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                        <dxg:GridControl EnableSmartColumnsGeneration="True"
+                                                              AutoGenerateColumns="AddNew" >
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TableView AutoWidth="True"
+                                                                   UseEvenRowBackground="True"
+                                                                   AllowPerPixelScrolling="True"
+                                                                   AllowEditing="False"
+                                                                   AllowCascadeUpdate="True"/>
+                                                            </dxg:GridControl.View>
+                                                        </dxg:GridControl>
+                                                    </dxg:DataControlDetailDescriptor>
+                                                </dxg:GridControl.DetailDescriptor>
+                                            </dxg:GridControl>
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            </dxdo:LayoutPanel>
+                        </dxdo:LayoutGroup>
+                    </dxdo:LayoutGroup>
+                </dxdo:DockLayoutManager>
+
+                <dxr:RibbonStatusBarControl/>
+
+            </Grid>
+        </dxb:BarManager>
     </Grid>
 </UserControl>

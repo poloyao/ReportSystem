@@ -30,6 +30,12 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)(new ContractItemDataProvider());
             if (IsDerivedFrom<TModel, WarranteeItemModel>())
                 return (IDataProvider<TModel>)(new WarranteeItemDataProvider());
+            if (IsDerivedFrom<TModel, LoanItemModel>())
+                return (IDataProvider<TModel>)new LoanItemDataProvider();
+            if (IsDerivedFrom<TModel, LoanSingleItemlModel>())
+                return (IDataProvider<TModel>)new LoanSingleItemlDataProvider();
+            if (IsDerivedFrom<TModel, LoanCreditorItemModel>())
+                return (IDataProvider<TModel>)new LoanCreditorItemDataProvider();
             return null;
         }
 
