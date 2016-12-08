@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.POCO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,12 @@ namespace ReportSystem.Models
         /// </summary>
         [Display(Name = "状态")]
         public virtual int LoanStatus { get; set; }
+
+        /// <summary>
+        /// 解除列表
+        /// </summary>
+        [Display(Name = "解除列表")]
+        public virtual ObservableCollection<LoanRelieveItemModel> LoanRelieveItems { get; set; } = new ObservableCollection<LoanRelieveItemModel>();
 
         #endregion
 

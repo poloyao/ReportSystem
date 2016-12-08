@@ -69,6 +69,10 @@
                 <dxlc:LayoutItem Label="有效性">
                     <dxe:CheckEdit EditValue="{Binding LoanContent.IsMain}"/>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton Content="确认" Command="{Binding SaveCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                    <dx:SimpleButton Content="取消" Command="{Binding CloseCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

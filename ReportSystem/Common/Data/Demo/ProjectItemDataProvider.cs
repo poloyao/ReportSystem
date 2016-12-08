@@ -270,6 +270,8 @@ namespace ReportSystem.Common.Data.Demo
             {
                 lc.ID = Guid.NewGuid();
                 lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                lc.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                lc.CardID = DemoHelper.GetRandomCardID(18, true);
                 lc.ContractID = "ContractID";
                 lc.ContractNo = "ContractNo";
                 lc.TotalCredit = 10000m;
@@ -285,7 +287,20 @@ namespace ReportSystem.Common.Data.Demo
                                 le.StartDate = DemoHelper.GetRandomTime();
                                 le.EndDate = DemoHelper.GetRandomTime(le.StartDate);
                                 le.RelieveAmount = new Random(Guid.NewGuid().GetHashCode()).Next((int)le.Amount);
+                                le.LoanRelieveItems = new System.Collections.ObjectModel.ObservableCollection<LoanRelieveItemModel>()
+                                {
+                                    LoanRelieveItemModel.Create(lr =>
+                                    {
+                                        lr.ID = Guid.NewGuid();
+                                        var stc = DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList("15"));
 
+                                        lr.RelieveType = Guid.Parse(stc.ID);
+                                        lr.RelieveAmount = stc.Value != "1" ? le.Amount:10000M;
+                                        lr.RelieveDate = DateTime.Now;
+                                        if(lr.RelieveAmount == le.Amount)
+                                            le.LoanStatus = 1;
+                                    })
+                                };
                             })
                         };
             });

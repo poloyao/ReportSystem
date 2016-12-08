@@ -23,5 +23,22 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void GridControl_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            //gridDetail
+            if (e.Column.FieldName == "RelieveType")
+            {
+                e.DisplayText = Common.Data.SingleTypeCode.GetInstance().GetCommonCode(e.Value.ToString()).Name;
+            }
+        }
+
+        private void grid_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (this.grid.Columns.GetColumnByFieldName("LoanStatus").CellTemplate == null)
+            {
+                this.grid.Columns.GetColumnByFieldName("LoanStatus").CellTemplate = (DataTemplate)Resources["LoanStatusCellTemplate"];
+            }
+        }
     }
 }

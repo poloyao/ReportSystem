@@ -106,6 +106,7 @@
     <Compile Include="Models\LoanDetailItemModel.cs" />
     <Compile Include="Models\LoanEntryItemModel.cs" />
     <Compile Include="Models\LoanItemModel.cs" />
+    <Compile Include="Models\LoanRelieveItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />

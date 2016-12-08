@@ -15,18 +15,23 @@
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:LoanDetailViewModel}"
              d:DesignHeight="800" d:DesignWidth="500">
-    <UserControl.Resources>
-        <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
-            <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
-            <Setter Property="AutoGenerateColumns" Value="AddNew" />
-            <!--<Setter Property="ColumnsSource" Value="{Binding Columns}"/>-->
-            <!--<Setter Property="AutoExpandAllGroups" Value="True"/>-->
-            <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
-            <!--<Setter Property="FilterString" Value="{Binding FilterString, Mode=TwoWay}"/>-->
-        </Style>
-        <cvs:CommonTypeConverter x:Key="ctc"/>
-        <cvs:RelieveDisplayConverter x:Key="RelieveDisplayConverter" />
-        <cvs:RelieveReadOnlyConverter x:Key="RelieveReadOnlyConverter" />
+    <UserControl.Resources>        
+        <ResourceDictionary>
+            <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
+                <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
+                <Setter Property="AutoGenerateColumns" Value="AddNew" />
+                <!--<Setter Property="ColumnsSource" Value="{Binding Columns}"/>-->
+                <!--<Setter Property="AutoExpandAllGroups" Value="True"/>-->
+                <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
+                <!--<Setter Property="FilterString" Value="{Binding FilterString, Mode=TwoWay}"/>-->
+            </Style>
+            <cvs:CommonTypeConverter x:Key="ctc"/>
+            <cvs:RelieveDisplayConverter x:Key="RelieveDisplayConverter" />
+            <cvs:RelieveReadOnlyConverter x:Key="RelieveReadOnlyConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ReportSystem;component/ViewResources/LoanStatusCellTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <dxmvvm:Interaction.Behaviors>
         <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
@@ -139,7 +144,7 @@
 
                                         <Grid Grid.Row="1">
                                             <dxg:GridControl 
-                                    x:Name="grid"
+                                    x:Name="grid" CustomColumnDisplayText="grid_CustomColumnDisplayText"
 									ItemsSource="{Binding Content.LoanEntryList}" 
 									AutoGenerateColumns="AddNew" 
 									EnableSmartColumnsGeneration="True">
@@ -162,7 +167,7 @@
 											            AllowEditing="False"                                                       
 											            AllowCascadeUpdate="False" 
                                                        >
-                                                        <dxg:TableView.RowDetailsTemplate>
+                                                        <!--<dxg:TableView.RowDetailsTemplate>
                                                             <DataTemplate >
                                                                 <dx:DXExpander IsExpanded="{Binding Row.isExp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" VerticalExpand="FromTopToBottom" HorizontalExpand="None">
                                                                     <dxlc:LayoutControl>
@@ -220,12 +225,13 @@
                                                         </dxg:TableView.RowDetailsTemplate>
                                                         <dxmvvm:Interaction.Behaviors>
                                                             <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding AddRemoveCommand}" CommandParameter="{Binding ElementName=grid,Path=CurrentItem}" />
-                                                        </dxmvvm:Interaction.Behaviors>
+                                                        </dxmvvm:Interaction.Behaviors>-->
                                                     </dxg:TableView>
                                                 </dxg:GridControl.View>
                                                 <dxg:GridControl.DetailDescriptor>
-                                                    <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding LoanRelieveList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                                                        <dxg:GridControl EnableSmartColumnsGeneration="True"
+                                                    <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding LoanRelieveItems}">
+                                                        <dxg:GridControl x:Name="gridDetail" EnableSmartColumnsGeneration="True"
+                                                                         CustomColumnDisplayText="GridControl_CustomColumnDisplayText"
                                                               AutoGenerateColumns="AddNew" >
                                                             <dxg:GridControl.View>
                                                                 <dxg:TableView AutoWidth="True"

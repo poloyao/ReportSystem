@@ -36,7 +36,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False">
+            <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False" ToolbarShowMode="Hide">
                 <dxr:RibbonControl.ApplicationMenu>
                     <dxr:BackstageViewControl SelectedTabIndex="{Binding DefaultBackstatgeIndex, Mode=TwoWay}" IsOpen="{Binding IsBackstageOpen, Mode=TwoWay}" IsFullScreen="True">
                         <dxr:BackstageTabItem  Content="导出" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
