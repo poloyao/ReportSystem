@@ -216,14 +216,36 @@ namespace ReportSystem.Common.Data.Demo
                 {
                     LoanCreditorItemModel.Create(lc =>
                     {
+                        //lc.ID = Guid.NewGuid();
+                        //lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                        //lc.ContractID = "ContractID";
+                        //lc.ContractNo = "ContractNo";
+                        //lc.TotalCredit = 10000m;
+                        //lc.TotalLoanAmount = 5000m;
+                        //lc.DirectionID = Guid.NewGuid();
+                        //lc.IsMain = true;
+
                         lc.ID = Guid.NewGuid();
-                        lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
-                        lc.ContractID = "ContractID";
-                        lc.ContractNo = "ContractNo";
                         lc.TotalCredit = 10000m;
                         lc.TotalLoanAmount = 5000m;
-                        lc.DirectionID = Guid.NewGuid();
-                        lc.IsMain = true;
+
+                        lc.Creditor = CreditorItemModel.Create(xc =>
+                        {
+                            xc.ID = Guid.NewGuid();
+                            xc.CreditorType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CreditorType)).ID);
+                            xc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                            xc.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                            xc.CardID = DemoHelper.GetRandomCardID(18, true);
+                        });
+                        lc.Contract = CreditorContractItemModel.Create(xc =>
+                        {
+                            xc.ID = Guid.NewGuid();
+                            xc.ContractID = "ContractID";
+                            xc.ContractNo = "ContractNo";
+                            //x.DirectionID
+                            xc.IsMain = true;
+                        });
+
                         lc.LoanEntryList = new System.Collections.ObjectModel.ObservableCollection<LoanEntryItemModel>()
                         {
                             LoanEntryItemModel.Create(le =>
@@ -269,15 +291,26 @@ namespace ReportSystem.Common.Data.Demo
             return LoanCreditorItemModel.Create(lc =>
             {
                 lc.ID = Guid.NewGuid();
-                lc.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
-                lc.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
-                lc.CardID = DemoHelper.GetRandomCardID(18, true);
-                lc.ContractID = "ContractID";
-                lc.ContractNo = "ContractNo";
                 lc.TotalCredit = 10000m;
                 lc.TotalLoanAmount = 5000m;
-                lc.DirectionID = Guid.NewGuid();
-                lc.IsMain = true;
+
+                lc.Creditor = CreditorItemModel.Create(x =>
+                {
+                    x.ID = Guid.NewGuid();
+                    x.CreditorType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CreditorType)).ID);
+                    x.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                    x.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                    x.CardID = DemoHelper.GetRandomCardID(18, true);
+                });
+                lc.Contract = CreditorContractItemModel.Create(x =>
+                {
+                    x.ID = Guid.NewGuid();
+                    x.ContractID = "ContractID";
+                    x.ContractNo = "ContractNo";
+                    //x.DirectionID
+                    x.IsMain = true;
+                });
+
                 lc.LoanEntryList = new System.Collections.ObjectModel.ObservableCollection<LoanEntryItemModel>()
                         {
                             LoanEntryItemModel.Create(le =>

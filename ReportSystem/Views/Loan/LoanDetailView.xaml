@@ -107,7 +107,7 @@
                                             <dxlc:LayoutGroup  Orientation="Vertical">
 
                                                 <dxlc:LayoutItem IsRequired="True" Label="债权人名称">
-                                                    <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.CreditorName}"/>
+                                                    <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Creditor.CreditorName}"/>
                                                 </dxlc:LayoutItem>
                                                 <dxlc:LayoutGroup>
 
@@ -115,13 +115,13 @@
                                                         <dxe:ComboBoxEdit IsReadOnly="True" IsTextEditable="False" 
                                                                   ItemsSource="{DynamicResource AllCodeType}" 
                                                                   SelectedIndex="0" DisplayMember="Name" ValueMember="ID" 
-                                                                  SelectedItem="{Binding Content.CardType, Converter={StaticResource ctc}}"/>
+                                                                  SelectedItem="{Binding Content.Creditor.CardType, Converter={StaticResource ctc}}"/>
                                                     </dxlc:LayoutItem>
                                                     <dxlc:LayoutItem Label="证件号码">
-                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.CardID}"/>
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Creditor.CardID}"/>
                                                     </dxlc:LayoutItem>
                                                     <dxlc:LayoutItem Label="主合同号码">
-                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ContractID}"/>
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Contract.ContractID}"/>
                                                     </dxlc:LayoutItem>
                                                 </dxlc:LayoutGroup>
                                                 <dxlc:LayoutGroup>
@@ -132,7 +132,7 @@
                                                         <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.TotalLoanAmount}"/>
                                                     </dxlc:LayoutItem>
                                                     <dxlc:LayoutItem Label="主合同编号" ToolTip="指被担保人与债权人签订的纸质担保合同号码">
-                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ContractNo}"/>
+                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Contract.ContractNo}"/>
                                                     </dxlc:LayoutItem>
                                                 </dxlc:LayoutGroup>
 

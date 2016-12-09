@@ -29,7 +29,7 @@ namespace ReportSystem.Models
         public virtual decimal Amount { get; set; }
 
         /// <summary>
-        /// 解除金额 vm	
+        /// 解除金额
         /// </summary>
         [Display(Name = "解除金额", AutoGenerateField = false)]
         public virtual decimal RelieveAmount { get; set; } = 0;

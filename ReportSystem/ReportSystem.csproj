@@ -118,6 +118,7 @@
     <Compile Include="ViewModels\Loan\AddLoanViewModel.cs" />
     <Compile Include="ViewModels\Contract\ContractCollectionViewModel.cs" />
     <Compile Include="ViewModels\Contract\ContractViewModel.cs" />
+    <Compile Include="Models\CreditorContractItemModel.cs" />
     <Compile Include="ViewModels\Loan\CreditorViewModel.cs" />
     <Compile Include="ViewModels\Loan\LoanCollocationViewModel.cs" />
     <Compile Include="ViewModels\Loan\LoanDetailViewModel.cs" />
