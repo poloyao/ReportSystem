@@ -4,6 +4,7 @@ using DevExpress.Mvvm;
 using ReportSystem.Common.ViewModel;
 using ReportSystem.Models;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace ReportSystem.ViewModels
 {
@@ -16,11 +17,15 @@ namespace ReportSystem.ViewModels
 
         public virtual LoanSingleItemlModel Content { get; set; }
 
+        public virtual ObservableCollection<LoanCreditorItemModel> DetailList { get; set; } = new ObservableCollection<LoanCreditorItemModel>();
+
 
         protected override void OnParameterChanged(object parameter)
         {
             base.OnParameterChanged(parameter);
             this.Content = base.ContentBase;
+            if (Content.LoanCreditorItems != null)
+                DetailList = new ObservableCollection<LoanCreditorItemModel>(Content.LoanCreditorItems);
             if (parameter != null)
                 return;
 
@@ -35,14 +40,20 @@ namespace ReportSystem.ViewModels
         public void AddCreditor()
         {
             var vm = CreditorViewModel.Create();
+            //vm.IsEdit = true;
             IDocument doc = documentManagerService.FindDocument(vm);
             if (doc == null)
             {
-                doc = documentManagerService.CreateDocument("CreditorView", vm);
+                doc = documentManagerService.CreateDocument("CreditorView", true, this);//.CreateDocument("CreditorView", vm);
                 doc.Id = documentManagerService.Documents.Count();
                 doc.Title = "新增债权人";
             }
             doc.Show();
+            var docContent = doc.Content as CreditorViewModel;
+            if (docContent.IsEdited)
+            {
+                DetailList.Add(docContent.Content);
+            }
         }
 
         public void SelectRow(object _id)

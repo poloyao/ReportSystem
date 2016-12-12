@@ -27,16 +27,17 @@ namespace ReportSystem.Models
         /// </summary>
         [Display(Name = "债权人" ,AutoGenerateField = false)]
         public virtual CreditorItemModel Creditor { get; set; } = CreditorItemModel.Create();
-        [Display(Name = "债权人")]
-        public virtual string CreditorName { get; set; }
+
+        //[Display(Name = "债权人")]
+        //public virtual string CreditorName { get; set; }
         /// <summary>
         /// 合同信息		
         /// </summary>
         [Display(Name = "合同信息",AutoGenerateField = false)]
         public virtual CreditorContractItemModel Contract { get; set; } = CreditorContractItemModel.Create();
 
-        [Display(Name = "合同信息")]
-        public virtual string ContractID { get; set; }
+        //[Display(Name = "合同信息")]
+        //public virtual string ContractID { get; set; }
 
         /// <summary>
         /// 放款详细信息		

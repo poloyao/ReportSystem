@@ -273,7 +273,12 @@ namespace ReportSystem.Common.Data.Demo
     {
         protected override LoanCreditorItemModel AddItem(LoanCreditorItemModel item)
         {
-            throw new NotImplementedException();
+            if (item.Creditor.ID == Guid.Empty)
+                item.Creditor.ID = Guid.NewGuid();
+            if (item.Contract.ID == Guid.Empty)
+                item.Contract.ID = Guid.NewGuid();
+            item.ID = Guid.NewGuid();
+            return item;
         }
 
         protected override IList<LoanCreditorItemModel> FillItems(object filter)
@@ -341,9 +346,125 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override LoanCreditorItemModel UpdateItem(LoanCreditorItemModel item, bool IsDelete)
         {
+            return item;
+        }
+    }
+
+    public class PremiumCollectionItemDataProvider : DataProviderBase<PremiumCollectionItemModel>
+    {
+        protected override PremiumCollectionItemModel AddItem(PremiumCollectionItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<PremiumCollectionItemModel> FillItems(object filter)
+        {
+            return new List<PremiumCollectionItemModel>()
+            {
+                GetItem(null)
+            };
+        }
+
+        protected override IList<PremiumCollectionItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override PremiumCollectionItemModel GetItem(object id)
+        {
+            return PremiumCollectionItemModel.Create(x =>
+            {
+                x.ID = Guid.NewGuid();
+                x.ProjectNo = "asda001";
+                x.PreviousBookedDate = DateTime.Now;
+                x.PremiumStatus = Guid.Parse("8FBB33BB-0F57-4BFC-97B1-18228C801307");
+                x.TotalAmount = 0;
+            });
+        }
+
+        protected override PremiumCollectionItemModel UpdateItem(PremiumCollectionItemModel item, bool IsDelete)
+        {
             throw new NotImplementedException();
         }
     }
+
+    public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
+    {
+        protected override PremiumItemModel AddItem(PremiumItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<PremiumItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<PremiumItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override PremiumItemModel GetItem(object id)
+        {
+            return PremiumItemModel.Create(x =>
+            {
+
+            });
+        }
+
+        protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class PremiumDisplayItemDataProvider : DataProviderBase<PremiumDisplayItemModel>
+    {
+        protected override PremiumDisplayItemModel AddItem(PremiumDisplayItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<PremiumDisplayItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<PremiumDisplayItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override PremiumDisplayItemModel GetItem(object id)
+        {
+            return PremiumDisplayItemModel.Create(x =>
+            {
+                x.ID = Guid.NewGuid();
+                x.DisplayLoanBriefContent = DisplayLoanBriefContentModel.Create(d =>
+                {
+                    d.ProjectNo = "asda001";
+                    d.WarranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
+                    d.Name = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
+                    d.BusinessType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BusinessType)).ID);
+                    d.GuaranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GuaranteeType)).ID);
+                    d.Amount = 1000000m;
+                    d.LoanSumAmount = 0m;
+                });
+                x.PremiumItems = new System.Collections.ObjectModel.ObservableCollection<PremiumItemModel>()
+                {
+
+                };
+            });
+        }
+
+        protected override PremiumDisplayItemModel UpdateItem(PremiumDisplayItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public static class DemoHelper
     {
         #region 帮助类

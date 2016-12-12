@@ -102,12 +102,16 @@
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Models\ContractItemModel.cs" />
     <Compile Include="Models\CreditorItemModel.cs" />
+    <Compile Include="Models\DisplayLoanBriefContentModel.cs" />
     <Compile Include="Models\LoanCreditorItemModel.cs" />
     <Compile Include="Models\LoanDetailItemModel.cs" />
     <Compile Include="Models\LoanEntryItemModel.cs" />
     <Compile Include="Models\LoanItemModel.cs" />
     <Compile Include="Models\LoanRelieveItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
+    <Compile Include="Models\PremiumCollectionItemModel.cs" />
+    <Compile Include="Models\PremiumDisplayItemModel.cs" />
+    <Compile Include="Models\PremiumItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
@@ -126,6 +130,8 @@
     <Compile Include="ViewModels\Loan\UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Premium\PremiumCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Premium\PremiumViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
@@ -150,6 +156,12 @@
     </Compile>
     <Compile Include="Views\Loan\LoanView.xaml.cs">
       <DependentUpon>LoanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Premium\PremiumCollectionView.xaml.cs">
+      <DependentUpon>PremiumCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Premium\PremiumView.xaml.cs">
+      <DependentUpon>PremiumView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Project\ProjectCollectionView.xaml.cs">
       <DependentUpon>ProjectCollectionView.xaml</DependentUpon>
@@ -213,6 +225,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Loan\LoanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Premium\PremiumCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Premium\PremiumView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

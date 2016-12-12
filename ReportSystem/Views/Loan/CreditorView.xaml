@@ -19,10 +19,10 @@
             <dxlc:LayoutGroup Orientation="Vertical">
 
                 <dxlc:LayoutItem Label="债权人类型">
-                    <dxe:ListBoxEdit ShowBorder="False" 
+                    <dxe:ListBoxEdit ShowBorder="False" IsReadOnly="{Binding IsReadOnly}"
                                      ItemsSource="{DynamicResource AllCreditorType}" 
                                      DisplayMember="Name" ValueMember="ID" 
-                                     SelectedItem="{Binding LoanContent.Creditor.CreditorType,Converter={StaticResource CommonTypeConverter}}"
+                                     SelectedItem="{Binding Content.Creditor.CreditorType,Converter={StaticResource CommonTypeConverter}}"
                                      Background="{x:Null}" SelectedIndex="0" Margin="0,0,0,5">
                         <dxe:ListBoxEdit.StyleSettings>
                             <dxe:RadioListBoxEditStyleSettings />
@@ -35,13 +35,13 @@
                     </dxe:ListBoxEdit>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem IsRequired="True" Label="债权人名称">
-                    <dxe:TextEdit EditValue="{Binding LoanContent.Creditor.CreditorName}"/>
+                    <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Creditor.CreditorName}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="证件类型">
-                    <dxe:ComboBoxEdit IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" SelectedIndex="0" DisplayMember="Name" ValueMember="ID" SelectedItem="{Binding LoanContent.Creditor.CardType,Converter={StaticResource CommonTypeConverter}}"/>
+                    <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" SelectedIndex="0" DisplayMember="Name" ValueMember="ID" SelectedItem="{Binding Content.Creditor.CardType, Converter={StaticResource CommonTypeConverter}}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="证件号码">
-                    <dxe:TextEdit EditValue="{Binding LoanContent.Creditor.CardID}"/>
+                    <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Creditor.CardID}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup >
@@ -58,19 +58,22 @@
                             <TextBlock>当被担保人是个人时，要求填写金融机构上报到个人征信系统中的“业务号”。如此要求，主要是为了把担保公司报送的数据与银行报送的数据进行匹配。</TextBlock>
                         </StackPanel>
                     </dxlc:LayoutItem.ToolTip>
-                    <dxe:TextEdit EditValue="{Binding LoanContent.ContractID}"/>
+                    <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Contract.ContractID}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="主合同编号" ToolTip="指被担保人与债权人签订的纸质担保合同号码">
-                    <dxe:TextEdit EditValue="{Binding LoanContent.ContractNo}"/>
+                    <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Contract.ContractNo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="授信金额" >
+                    <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.TotalCredit}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="投向">
-                    <dxe:ComboBoxEdit IsTextEditable="False" />
+                    <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" IsTextEditable="False" />
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="有效性">
-                    <dxe:CheckEdit EditValue="{Binding LoanContent.IsMain}"/>
+                    <dxe:CheckEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Contract.IsMain}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <dx:SimpleButton Content="确认" Command="{Binding SaveCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
+                <dxlc:LayoutGroup HorizontalAlignment="Right"  VerticalAlignment="Center">
+                    <dx:SimpleButton Content="确认" Command="{Binding SaveCommand}" IsEnabled="{Binding IsEnabled}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
                     <dx:SimpleButton Content="取消" Command="{Binding CloseCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=BOCustomer_16x16.png}" />
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
