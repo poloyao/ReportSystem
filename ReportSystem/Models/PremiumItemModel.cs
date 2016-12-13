@@ -88,9 +88,9 @@ namespace ReportSystem.Models
         /// <summary>
         /// 缴费列表
         /// </summary>
-       // [BindableProperty(OnPropertyChangedMethodName = "OnPremiumDetailAddItemViewModelListChanged")]
-       // [Display(Name = "缴费列表")]
-        //public virtual ObservableCollection<PremiumDetailAddItemViewModel> ListPremiumDetailAddItems { get; set; } = new ObservableCollection<PremiumDetailAddItemViewModel>();
+        //[BindableProperty(OnPropertyChangedMethodName = "OnPremiumDetailAddItemViewModelListChanged")]
+        [Display(Name = "缴费列表")]
+        public virtual ObservableCollection<PremiumRecordItemModel> PremiumRecordItems { get; set; } = new ObservableCollection<PremiumRecordItemModel>();
 
 
         #endregion

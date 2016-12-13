@@ -388,36 +388,36 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
-    public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
-    {
-        protected override PremiumItemModel AddItem(PremiumItemModel item)
-        {
-            throw new NotImplementedException();
-        }
+    //public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
+    //{
+    //    protected override PremiumItemModel AddItem(PremiumItemModel item)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        protected override IList<PremiumItemModel> FillItems(object filter)
-        {
-            throw new NotImplementedException();
-        }
+    //    protected override IList<PremiumItemModel> FillItems(object filter)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        protected override IList<PremiumItemModel> FillItems(object id, object filter)
-        {
-            throw new NotImplementedException();
-        }
+    //    protected override IList<PremiumItemModel> FillItems(object id, object filter)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        protected override PremiumItemModel GetItem(object id)
-        {
-            return PremiumItemModel.Create(x =>
-            {
+    //    protected override PremiumItemModel GetItem(object id)
+    //    {
+    //        return PremiumItemModel.Create(x =>
+    //        {
 
-            });
-        }
+    //        });
+    //    }
 
-        protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
 
     public class PremiumDisplayItemDataProvider : DataProviderBase<PremiumDisplayItemModel>
@@ -439,10 +439,10 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override PremiumDisplayItemModel GetItem(object id)
         {
-            return PremiumDisplayItemModel.Create(x =>
+            return PremiumDisplayItemModel.Create(p =>
             {
-                x.ID = Guid.NewGuid();
-                x.DisplayLoanBriefContent = DisplayLoanBriefContentModel.Create(d =>
+                p.ID = Guid.NewGuid();
+                p.DisplayLoanBriefContent = DisplayLoanBriefContentModel.Create(d =>
                 {
                     d.ProjectNo = "asda001";
                     d.WarranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.WarranteeType)).ID);
@@ -452,9 +452,34 @@ namespace ReportSystem.Common.Data.Demo
                     d.Amount = 1000000m;
                     d.LoanSumAmount = 0m;
                 });
-                x.PremiumItems = new System.Collections.ObjectModel.ObservableCollection<PremiumItemModel>()
+                p.PremiumItems = new System.Collections.ObjectModel.ObservableCollection<PremiumItemModel>()
                 {
-
+                    PremiumItemModel.Create(x=> 
+                    {
+                        x.ID = Guid.NewGuid();
+                        x.PayCategory = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.PayType)).ID);
+                        x.AccountingDate = DateTime.Now;
+                        x.PayAmount = 0;
+                        x.PayMethod = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.PayOption)).ID);
+                        x.PayFre = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.PayFre)).ID);
+                        x.StartDate = DateTime.Now;
+                        x.EndDate = DateTime.Now;
+                        x.Balance = 0;
+                        x.TotalArrears = 0;
+                        x.PayStatus = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.PayStatus)).ID);
+                        x.PremiumRecordItems = new System.Collections.ObjectModel.ObservableCollection<PremiumRecordItemModel>()
+                        {
+                            PremiumRecordItemModel.Create(pr =>
+                            {
+                                    pr.ID = Guid.NewGuid();
+                                    pr.PayableAmount = 1000m;
+                                    pr.PayableDate = DateTime.Now;
+                                    pr.PaidDate = DateTime.Now;
+                                    pr.ArrearsAmount = 0;
+                                    pr.CurrentStatus = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BQStatus)).ID);
+                            })
+                        };
+                    })
                 };
             });
         }

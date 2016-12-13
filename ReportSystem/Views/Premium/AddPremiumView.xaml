@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="ReportSystem.Views.AddPremiumView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:AddPremiumViewModel}"
+             d:DesignHeight="216.953" d:DesignWidth="491.845">
+    <UserControl.Resources>
+        <cvs:CommonTypeConverter x:Key="ctc" />
+        <Style x:Key="LayoutItemLightStyle" TargetType="dxlc:LayoutItem">
+            <Setter Property="AddColonToLabel" Value="True" />
+            <Setter Property="LabelStyle">
+                <Setter.Value>
+                    <Style TargetType="dxlc:LayoutItemLabel">
+                        <Setter Property="Foreground" Value="#FF707070" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="缴费类型">
+                        <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayType}" 
+                                                           SelectedItem="{Binding Content.PayCategory, Converter={StaticResource ctc}}" 
+                                                           DisplayMember="Name" ValueMember="ID" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="缴费金额">
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.PayAmount}" MinValue="0" Increment="10000"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="缴纳方式">
+                        <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayOption}" 
+                                                           SelectedItem="{Binding Content.PayMethod, Converter={StaticResource ctc}}" 
+                                                           DisplayMember="Name" ValueMember="ID" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="缴纳频率">
+                        <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayFre}" 
+                                                           SelectedItem="{Binding Content.PayFre, Converter={StaticResource ctc}}" 
+                                                           DisplayMember="Name" ValueMember="ID" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="计费起始日期">
+                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.StartDate}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="缴纳结束日期">
+                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.EndDate}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="余额">
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.Balance}"  MinValue="0" Increment="10000"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="累计欠缴金额">
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.TotalArrears}"  MinValue="0" Increment="10000"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="缴纳状态">
+                        <dxe:ComboBoxEdit IsReadOnly="True" IsTextEditable="False" ItemsSource="{DynamicResource AllPayStatus}" 
+                                                           SelectedItem="{Binding Content.PayStatus,Converter={StaticResource ctc}}" 
+                                                           DisplayMember="Name" ValueMember="ID" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Visibility="Hidden" Label="占位">
+                        <dxe:SpinEdit  MinValue="0" Increment="10000"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

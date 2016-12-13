@@ -40,7 +40,7 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Content="新增保费" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Add_32x32.png}" />
+                <dxb:BarButtonItem x:Name="newTask" Content="新增保费" Command="{Binding AddItemCommand}" LargeGlyph="{dx:DXImage Image=Add_32x32.png}" />
              
                 <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
 
@@ -96,12 +96,12 @@
 
                                     <dxlc:LayoutGroup   Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}" >
                                         <dxlc:LayoutItem Label="担保合同号码" >
-                                            <dxe:TextEdit IsReadOnly="True" Text="{Binding DisplayLoanBrief.ProjectNo}"/>
+                                            <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.DisplayLoanBriefContent.ProjectNo}"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="被担保人类型" >
                                             <dxe:ListBoxEdit ShowBorder="False" IsReadOnly="True" 
                                                          ItemsSource="{DynamicResource AllWarranteeType}" 
-                                                         SelectedItem="{Binding DisplayLoanBrief.WarranteeType,Converter={StaticResource ctc}}" 
+                                                         SelectedItem="{Binding Content.DisplayLoanBriefContent.WarranteeType, Converter={StaticResource ctc}}" 
                                                          DisplayMember="Name" ValueMember="ID"
                                                          Background="{x:Null}" SelectedIndex="0" x:Name="lbButtonIndex" Margin="0,0,0,5">
                                                 <dxe:ListBoxEdit.StyleSettings>
@@ -117,27 +117,27 @@
                                             </dxe:ListBoxEdit>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem  Label="主被担保人名称">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding DisplayLoanBrief.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                                            <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.DisplayLoanBriefContent.Name}"  />
                                         </dxlc:LayoutItem>
 
                                         <dxlc:LayoutGroup>
                                             <dxlc:LayoutItem Label="担保业务种类">
                                                 <dxe:ComboBoxEdit IsReadOnly="True"  IsTextEditable="False" ItemsSource="{DynamicResource AllBusinessType}" 
-                                                           SelectedItem="{Binding DisplayLoanBrief.BusinessType,Converter={StaticResource ctc}}" 
+                                                           SelectedItem="{Binding Content.DisplayLoanBriefContent.BusinessType, Converter={StaticResource ctc}}" 
                                                            DisplayMember="Name" ValueMember="ID"  MinWidth="100" />
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Label="担保方式">
                                                 <dxe:ComboBoxEdit IsReadOnly="True"  IsTextEditable="False" ItemsSource="{DynamicResource AllGuaranteeType}" 
-                                                           SelectedItem="{Binding DisplayLoanBrief.GuaranteeType,Converter={StaticResource ctc}}"  
+                                                           SelectedItem="{Binding Content.DisplayLoanBriefContent.GuaranteeType, Converter={StaticResource ctc}}"  
                                                            DisplayMember="Name" ValueMember="ID"  MinWidth="100" />
                                             </dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup>
                                             <dxlc:LayoutItem Label="担保金额">
-                                                <dxe:SpinEdit IsReadOnly="True" Text="{Binding DisplayLoanBrief.Amount}" MinValue="0" Increment="10000"/>
+                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.Amount}"/>
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Label="放款总金额">
-                                                <dxe:SpinEdit IsReadOnly="True" Text="{Binding DisplayLoanBrief.LoanSumAmount}" MinValue="0" Increment="10000"/>
+                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.LoanSumAmount}"/>
                                             </dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                     </dxlc:LayoutGroup>
@@ -150,8 +150,7 @@
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Row="0"  Margin="0,10,0,10">保费明细</TextBlock>
                                         <dxg:GridControl x:Name="grid" Grid.Row="1"
-                                                     ItemsSource="{Binding ItemSource}"
-                                                     CustomColumnDisplayText="grid_CustomColumnDisplayText"
+                                                     ItemsSource="{Binding Content.PremiumItems}"
                                                      AutoGenerateColumns="AddNew"
                                                  SelectedItem="{Binding SelectItem}"   
                                                  EnableSmartColumnsGeneration="True">
@@ -162,14 +161,12 @@
                                                 <dxg:TableView AllowFilterEditor="False" 
                                                        AllowEditing="False"
                                                        ShowGroupPanel="False" 
-                                                       RowDoubleClick="TableView_RowDoubleClick"
                                                        AutoWidth="False">
                                                 </dxg:TableView>
                                             </dxg:GridControl.View>
                                             <dxg:GridControl.DetailDescriptor>
-                                                <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding ListPremiumDetailAddItems}">
+                                                <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding PremiumRecordItems}">
                                                     <dxg:GridControl EnableSmartColumnsGeneration="True"
-                                                             CustomColumnDisplayText="GridControl_CustomColumnDisplayText"
                                                               AutoGenerateColumns="AddNew" >
                                                         <dxg:GridControl.View>
                                                             <dxg:TableView AutoWidth="True"

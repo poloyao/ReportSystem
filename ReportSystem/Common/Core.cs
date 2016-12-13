@@ -38,6 +38,8 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new LoanCreditorItemDataProvider();
             if (IsDerivedFrom<TModel, PremiumCollectionItemModel>())
                 return (IDataProvider<TModel>)new PremiumCollectionItemDataProvider();
+            if (IsDerivedFrom<TModel, PremiumDisplayItemModel>())
+                return (IDataProvider<TModel>)new PremiumDisplayItemDataProvider();
             return null;
         }
 
