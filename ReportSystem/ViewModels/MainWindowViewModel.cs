@@ -24,7 +24,8 @@ namespace ReportSystem.ViewModels
                  ViewModelSource.Create(()=>new ModuleInfo("ProjectCollectionView",this,"项目列表")).SetIcon("GridContacts"),
                  ViewModelSource.Create(()=>new ModuleInfo("ContractCollectionView",this,"合同列表")).SetIcon("GridContacts"),
                  ViewModelSource.Create(()=>new ModuleInfo("LoanCollocationView",this,"放款")).SetIcon("GridContacts"),
-                 ViewModelSource.Create(()=>new ModuleInfo("PremiumCollectionView",this,"保费信息")).SetIcon("GridContacts")
+                 ViewModelSource.Create(()=>new ModuleInfo("PremiumCollectionView",this,"保费信息")).SetIcon("GridContacts"),
+                 ViewModelSource.Create(()=>new ModuleInfo("CompanySettingView",this,"设置")).SetIcon("GridContacts")
 
             };
             ModuleGroups = new ModuleGroup[] {

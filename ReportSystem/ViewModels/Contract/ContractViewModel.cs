@@ -105,7 +105,7 @@ namespace ReportSystem.ViewModels
         {
             if (Content.ID == null || Content.ID == Guid.Empty)
             {
-                base.AddItem(Content);
+                base.AddItem(Content);Content.BusinessType.RaisePropertiesChanged();
             }
             else
             {

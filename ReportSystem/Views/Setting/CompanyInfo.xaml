@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="ReportSystem.Views.CompanyInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:CompanyInfoViewModel}"
+             d:DesignHeight="587" d:DesignWidth="546">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="机构名称" >
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="所在地区" >
+                        <dxe:ComboBoxEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="所在地区" >
+                        <dxe:ComboBoxEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="注册地址" >
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="办公地址" >
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="邮政编码" >
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="法人代表" >
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="法人类型" >
+                        <dxe:ComboBoxEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="出资类型" >
+                        <dxe:ComboBoxEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="注册资金">
+                        <dxe:TextEdit/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="出资情况" View="GroupBox" Orientation="Vertical">
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="出资背景" >
+                            <dxe:ComboBoxEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="政府出资金额" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="外资出资金额" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="注册时间" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="组织机构代码" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="登记部门" >
+                            <dxe:ComboBoxEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="经营许可证号码" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="许可证机构编码" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="所在地区" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="经营状态" >
+                            <dxe:ComboBoxEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="再担保业务" >
+                            <dxe:ComboBoxEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="联系人信息" View="GroupBox" Orientation="Vertical">
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="联系人姓名" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="联系人职务" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="联系人手机" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="联系人电话" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="联系人传真" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="联系人Email" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="员工情况" View="GroupBox" Orientation="Vertical">
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="机构总人数" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="3年以上从业经验" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="研究生及以上学历" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="本科学历" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="专科及以下学历" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="公务员" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="事业编制" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="党员" >
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>
