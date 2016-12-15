@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace ReportSystem.Views
 {
     /// <summary>
-    /// Interaction logic for CompanyStockholderView.xaml
+    /// Interaction logic for AddCompanyManagerView.xaml
     /// </summary>
-    public partial class CompanyStockholderView : UserControl
+    public partial class AddCompanyManagerView : UserControl
     {
-        public CompanyStockholderView()
+        public AddCompanyManagerView()
         {
             InitializeComponent();
         }
-        
     }
 }

@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="ReportSystem.Views.AddCompanyManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:AddCompanyManagerViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical" Height="150">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="姓名" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info1}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem  Label="性别" >
+                        <dxe:ListBoxEdit SelectedItem="{Binding Content.Info2}" >
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings/>
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                            <dxe:ListBoxEditItem>男</dxe:ListBoxEditItem>
+                            <dxe:ListBoxEditItem>女</dxe:ListBoxEditItem>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="职务" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info3}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem  Label="电话" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info4}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="户籍地址" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info5}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="身份证号" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info6}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="学历" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info7}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem  Label="公务员" >
+                        <dxe:CheckEdit EditValue="{Binding Content.Info8}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem  Label="任职资格" >
+                        <dxe:CheckEdit EditValue="{Binding Content.Info9}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

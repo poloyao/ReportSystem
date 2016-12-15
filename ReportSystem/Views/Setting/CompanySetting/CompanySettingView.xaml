@@ -16,9 +16,26 @@
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:CompanySettingViewModel}"
              d:DesignHeight="280.687" d:DesignWidth="478.326">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
+            <dx:WindowedDocumentUIService.WindowStyle>
+                <Style TargetType="dx:DXWindow">
+                    <Setter Property="Width" Value="500"/>
+                    <Setter Property="Height" Value="300"/>
+                    <Setter Property="ResizeMode" Value="NoResize" />
+                    <Setter Property="ShowIcon" Value="False"/>
+                </Style>
+            </dx:WindowedDocumentUIService.WindowStyle>
+        </dx:WindowedDocumentUIService>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="SaveTask" Content="保存基础信息" Command="{Binding SaveCommand}"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewManager" Content="添加高管信息" Command="{Binding NewManagerCommand}" CommandParameter="1"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewStockholder" Content="添加股东信息" Command="{Binding NewStockholderCommand}" CommandParameter="2" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewBranch" Content="添加分支机构" Command="{Binding NewBranchCommand}" CommandParameter="3" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewAccount" Content="添加银行账户" Command="{Binding NewAccountCommand}" CommandParameter="4" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
             </dxb:BarManager.Items>
             <Grid>
                 <Grid.RowDefinitions>
@@ -28,6 +45,15 @@
                 <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2010">
                     <dxr:RibbonDefaultPageCategory Caption="Default Category">
                         <dxr:RibbonPage Caption="功能">
+                            <dxr:RibbonPageGroup Caption="操作">
+                                <dxb:BarButtonItemLink BarItemName="SaveTask"  />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="添加信息">
+                                <dxb:BarButtonItemLink BarItemName="NewManager"  />
+                                <dxb:BarButtonItemLink BarItemName="NewStockholder"  />
+                                <dxb:BarButtonItemLink BarItemName="NewBranch"  />
+                                <dxb:BarButtonItemLink BarItemName="NewAccount"  />
+                            </dxr:RibbonPageGroup>
                             <dxr:RibbonPageGroup Caption="other3">
                                 <dxb:BarButtonItem Content="导出" />
                                 <dxb:BarButtonItem Content="打印" />
@@ -43,8 +69,8 @@
                     </Grid.RowDefinitions>
                     <dxe:ProgressBarEdit Value="1" ContentDisplayMode="Value" DisplayFormatString="信息完整度：{0} / 6" IsPercent="False" Maximum="6">
                     </dxe:ProgressBarEdit>
-                    <dx:DXTabControl Grid.Row="1">
-                        <dx:DXTabItem Header="基本信息">
+                    <dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
+                        <dx:DXTabItem Header="基础信息">
                             <view:CompanyInfo/>
                         </dx:DXTabItem>
                         <dx:DXTabItem Header="高管信息">

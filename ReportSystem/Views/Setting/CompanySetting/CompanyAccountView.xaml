@@ -6,17 +6,16 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="ReportSystem.Views.CompanyAccountView"
              mc:Ignorable="d"
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:CompanyAccountViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Content.CA}">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Column1" Header="账户类型"/>
-                <dxg:GridColumn FieldName="Column2" Header="开户行名称"/>
-                <dxg:GridColumn FieldName="Column3" Header="账号"/>
+                <dxg:GridColumn FieldName="Info1" Header="账户类型"/>
+                <dxg:GridColumn FieldName="Info2" Header="开户行名称"/>
+                <dxg:GridColumn FieldName="Info3" Header="账号"/>
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView ShowTotalSummary="True" NavigationStyle="Row"/>
+                <dxg:TableView ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

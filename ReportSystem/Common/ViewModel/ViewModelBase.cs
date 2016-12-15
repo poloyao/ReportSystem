@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Mvvm;
+using System.ComponentModel;
 
 namespace ReportSystem.Common.ViewModel
 {
@@ -100,11 +101,15 @@ namespace ReportSystem.Common.ViewModel
 
     }
 
-    public abstract class SingleViewModel<TModel> : ViewModelBase<TModel> where TModel : class
+    public abstract class SingleViewModel<TModel> : ViewModelBase<TModel> , IDocumentContent where TModel : class
     {
         protected virtual TModel ContentBase { get; private set; }
         
         protected ParentModel Parent { get; set; }
+
+        public IDocumentOwner DocumentOwner { get; set; }
+
+        public object Title { get; }
 
         object ModelID = null;        
 
@@ -114,6 +119,7 @@ namespace ReportSystem.Common.ViewModel
         }
         private void Init(object id)
         {
+            //主要区分模块传进的是“Module” 不能当id使用
             ModelID = id;
             ContentBase = DataProvider.GetItem(id);
         }
@@ -140,6 +146,12 @@ namespace ReportSystem.Common.ViewModel
                 Init(parameter);
         }
 
+        public void OnClose(CancelEventArgs e)
+        {
+            e.Cancel = false;
+        }
+
+        public void OnDestroy() { }
     }
 
     

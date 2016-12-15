@@ -6,21 +6,21 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="ReportSystem.Views.CompanyStockholderView"
              mc:Ignorable="d"
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:CompanyStockholderViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxg:GridControl x:Name="grid"  AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+        <dxg:GridControl x:Name="grid"  AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Content.CS}">
+           
             <dxg:GridControl.Columns>
-                <dxg:GridColumn Name="Column1" FieldName="Column1" Header="股东名称"/>
-                <dxg:GridColumn FieldName="Column2" Header="股东类型"/>
-                <dxg:GridColumn FieldName="Column3" Header="出资额（万元）"/>
-                <dxg:GridColumn FieldName="Column4" Header="法人代表"/>
-                <dxg:GridColumn FieldName="Column5" Header="持股比例（%）"/>
-                <dxg:GridColumn FieldName="Column6" Header="实际控制人"/>
-                <dxg:GridColumn FieldName="Column7" Header="第三方代持 "/>
+                <dxg:GridColumn Name="Column1" FieldName="Info1" Header="股东名称"/>
+                <dxg:GridColumn FieldName="Info2" Header="股东类型"/>
+                <dxg:GridColumn FieldName="Info3" Header="出资额（万元）"/>
+                <dxg:GridColumn FieldName="Info4" Header="法人代表"/>
+                <dxg:GridColumn FieldName="Info5" Header="持股比例（%）"/>
+                <dxg:GridColumn FieldName="Info6" Header="实际控制人"/>
+                <dxg:GridColumn FieldName="Info7" Header="第三方代持 "/>
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView ShowTotalSummary="True"  NewItemRowPosition="Top"  />
+                <dxg:TableView ShowTotalSummary="True"  AutoWidth="True"  />
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

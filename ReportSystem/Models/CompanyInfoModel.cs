@@ -16,6 +16,12 @@ namespace ReportSystem.Models
         #region 属性       
 
 
+        const string BaseGroup = "Base";
+        const string CZGroup = "出资情况";
+        const string LXRGroup = "联系人信息";
+        const string YGGroup = "员工情况";
+
+
         /// <summary>
         /// 		
         /// </summary>
@@ -152,6 +158,26 @@ namespace ReportSystem.Models
         [Display(Name = "")]
         public virtual string Info26 { get; set; }
 
+        [Display(Name = "")]
+        public virtual string Info27 { get; set; }
+
+        [Display(Name = "")]
+        public virtual string Info28 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info29 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info30 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info31 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info32 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info33 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info34 { get; set; }
+        [Display(Name = "")]
+        public virtual string Info35 { get; set; }
+
         #endregion
 
 
@@ -207,6 +233,16 @@ namespace ReportSystem.Models
             this.Info25 = content.Info25;
             this.Info26 = content.Info26;
 
+            this.Info27 = content.Info27;
+            this.Info28 = content.Info28;
+            this.Info29 = content.Info29;
+            this.Info30 = content.Info30;
+            this.Info31 = content.Info31;
+            this.Info32 = content.Info32;
+            this.Info33 = content.Info33;
+            this.Info34 = content.Info34;
+            this.Info35 = content.Info35;
+
         }
 
         [Command(false)]
@@ -241,6 +277,16 @@ namespace ReportSystem.Models
                 x.Info24 = this.Info24;
                 x.Info25 = this.Info25;
                 x.Info26 = this.Info26;
+
+                x.Info27 = this.Info27;
+                x.Info28 = this.Info28;
+                x.Info29 = this.Info29;
+                x.Info30 = this.Info30;
+                x.Info31 = this.Info31;
+                x.Info32 = this.Info32;
+                x.Info33 = this.Info33;
+                x.Info34 = this.Info34;
+                x.Info35 = this.Info35;
 
             });
         }

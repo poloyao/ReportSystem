@@ -6,19 +6,18 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="ReportSystem.Views.CompanyBranchView"
              mc:Ignorable="d"
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:CompanyBranchViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Content.CB}">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Column1" Header="机构名称"/>
-                <dxg:GridColumn FieldName="Column2" Header="所在地"/>
-                <dxg:GridColumn FieldName="Column3" Header="设立时间"/>
-                <dxg:GridColumn FieldName="Column4" Header="负责人	"/>
-                <dxg:GridColumn FieldName="Column5" Header="联系方式"/>
+                <dxg:GridColumn FieldName="Info1" Header="机构名称"/>
+                <dxg:GridColumn FieldName="Info2" Header="所在地"/>
+                <dxg:GridColumn FieldName="Info3" Header="设立时间"/>
+                <dxg:GridColumn FieldName="Info4" Header="负责人	"/>
+                <dxg:GridColumn FieldName="Info5" Header="联系方式"/>
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView ShowTotalSummary="True" NavigationStyle="Row"/>
+                <dxg:TableView ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

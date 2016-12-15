@@ -1,6 +1,7 @@
 ﻿using ReportSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -485,6 +486,170 @@ namespace ReportSystem.Common.Data.Demo
         }
 
         protected override PremiumDisplayItemModel UpdateItem(PremiumDisplayItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class CompanyDisplayDataProvider : DataProviderBase<CompanyDisplayModel>
+    {
+        protected override CompanyDisplayModel AddItem(CompanyDisplayModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyDisplayModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyDisplayModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyDisplayModel GetItem(object id)
+        {
+            //不需要使用此id，获取的是机构信息
+
+            return CompanyDisplayModel.Create(cd =>
+            {
+                cd.Info = CompanyInfoModel.Create(x => { x.Info1 = "123123123"; });
+                cd.CM = new ObservableCollection<CompanyManagersModel>()
+                {
+                    CompanyManagersModel.Create(x=> { x.Info1 = "22222222"; })
+                };
+                cd.CS = new ObservableCollection<CompanyStockholderModel>()
+                {
+                    CompanyStockholderModel.Create(x=> { x.Info1 = "555555"; })
+                };
+                cd.CB = new ObservableCollection<CompanyBranchModel>()
+                {
+                    CompanyBranchModel.Create(x=> { x.Info1 = "555555"; })
+                };
+                cd.CA = new ObservableCollection<CompanyAccountModel>()
+                {
+                    CompanyAccountModel.Create(x=> { x.Info1 = "555555"; })
+                };
+            });
+        }
+
+        protected override CompanyDisplayModel UpdateItem(CompanyDisplayModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class CompanyManagersDataprovider : DataProviderBase<CompanyManagersModel>
+    {
+        protected override CompanyManagersModel AddItem(CompanyManagersModel item)
+        {
+            item.ID = Guid.NewGuid();
+            return item;
+        }
+
+        protected override IList<CompanyManagersModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyManagersModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyManagersModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyManagersModel UpdateItem(CompanyManagersModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CompanyStockholderDataprovider : DataProviderBase<CompanyStockholderModel>
+    {
+        protected override CompanyStockholderModel AddItem(CompanyStockholderModel item)
+        {
+            item.ID = Guid.NewGuid();
+            return item;
+        }
+
+        protected override IList<CompanyStockholderModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyStockholderModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyStockholderModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyStockholderModel UpdateItem(CompanyStockholderModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CompanyBranchDataprovider : DataProviderBase<CompanyBranchModel>
+    {
+        protected override CompanyBranchModel AddItem(CompanyBranchModel item)
+        {
+            item.ID = Guid.NewGuid();
+            return item;
+        }
+
+        protected override IList<CompanyBranchModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyBranchModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyBranchModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyBranchModel UpdateItem(CompanyBranchModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CompanyAccountDataprovider : DataProviderBase<CompanyAccountModel>
+    {
+        protected override CompanyAccountModel AddItem(CompanyAccountModel item)
+        {
+            item.ID = Guid.NewGuid();
+            return item;
+        }
+
+        protected override IList<CompanyAccountModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<CompanyAccountModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyAccountModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CompanyAccountModel UpdateItem(CompanyAccountModel item, bool IsDelete)
         {
             throw new NotImplementedException();
         }

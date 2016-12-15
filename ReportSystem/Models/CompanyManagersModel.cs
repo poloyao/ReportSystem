@@ -59,12 +59,12 @@ namespace ReportSystem.Models
         /// 		
         /// </summary>
         [Display(Name = "")]
-        public virtual string Info8 { get; set; }
+        public virtual bool Info8 { get; set; }
         /// <summary>
         /// 		
         /// </summary>
         [Display(Name = "")]
-        public virtual string Info9 { get; set; }
+        public virtual bool Info9 { get; set; }
 
         #endregion
 

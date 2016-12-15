@@ -11,9 +11,9 @@ namespace ReportSystem.ViewModels
     [POCOViewModel]
     public class CreditorViewModel: SingleViewModel<LoanCreditorItemModel>, IDocumentContent
     {
-        public IDocumentOwner DocumentOwner { get; set; }
+        //public IDocumentOwner DocumentOwner { get; set; }
 
-        public object Title { get; }
+        //public object Title { get; }
 
         public virtual LoanCreditorItemModel Content { get; set; } = LoanCreditorItemModel.Create();
         [BindableProperty(OnPropertyChangedMethodName = "OnIsEditChanged")]
@@ -77,11 +77,11 @@ namespace ReportSystem.ViewModels
             DocumentOwner.Close(this, false);
         }
 
-        public void OnClose(CancelEventArgs e)
-        {
-            e.Cancel = false;
-        }
+        //public void OnClose(CancelEventArgs e)
+        //{
+        //    e.Cancel = false;
+        //}
 
-        public void OnDestroy() { }
+        //public void OnDestroy() { }
     }
 }

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ReportSystem.Views.AddCompanyBranchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:AddCompanyBranchViewModel}"
+             d:DesignHeight="222.667" d:DesignWidth="312">
+    <Grid>
+
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical" Height="150">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="机构名称" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info1}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="所在地" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info2}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="设立时间" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info3}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  Label="负责人" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info4}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem  Label="联系方式" >
+                        <dxe:TextEdit EditValue="{Binding Content.Info5}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

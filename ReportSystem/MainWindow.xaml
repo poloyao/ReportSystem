@@ -79,6 +79,7 @@
                                                 <Setter Property="Content" Value="{Binding Title}" />
                                                 <Setter Property="ImageSource" Value="{Binding Icon}" />
                                                 <Setter Property="Command" Value="{Binding ShowCommand}" />
+                                                <Setter Property="CommandParameter" Value="Module" />
                                                 <Setter Property="ImageSettings">
                                                     <Setter.Value>
                                                         <dxn:ImageSettings Width="32" Height="32" Stretch="Uniform" StretchDirection="Both" />

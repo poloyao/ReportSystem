@@ -126,12 +126,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Setting\CompanyAccountViewModel.cs" />
-    <Compile Include="ViewModels\Setting\CompanyBranchViewModel.cs" />
-    <Compile Include="ViewModels\Setting\CompanyInfoViewModel.cs" />
-    <Compile Include="ViewModels\Setting\CompanyManagerViewModel.cs" />
-    <Compile Include="ViewModels\Setting\CompanySettingViewModel.cs" />
-    <Compile Include="ViewModels\Setting\CompanyStockholderViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyAccountViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyBranchViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyManagerViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyStockholderViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanyAccountViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanyBranchViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanyInfoViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanyManagerViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanySettingViewModel.cs" />
+    <Compile Include="ViewModels\Setting\CompanySetting\CompanyStockholderViewModel.cs" />
     <Compile Include="ViewModels\Premium\AddPremiumViewModel.cs" />
     <Compile Include="ViewModels\Loan\AddLoanViewModel.cs" />
     <Compile Include="ViewModels\Contract\ContractCollectionViewModel.cs" />
@@ -151,22 +155,34 @@
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
-    <Compile Include="Views\Setting\CompanyAccountView.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\AddCompanyAccountView.xaml.cs">
+      <DependentUpon>AddCompanyAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\CompanySetting\AddCompanyBranchView.xaml.cs">
+      <DependentUpon>AddCompanyBranchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\CompanySetting\AddCompanyManagerView.xaml.cs">
+      <DependentUpon>AddCompanyManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\CompanySetting\AddCompanyStockholderView.xaml.cs">
+      <DependentUpon>AddCompanyStockholderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\CompanySetting\CompanyAccountView.xaml.cs">
       <DependentUpon>CompanyAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\CompanyBranchView.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\CompanyBranchView.xaml.cs">
       <DependentUpon>CompanyBranchView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\CompanyInfo.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\CompanyInfo.xaml.cs">
       <DependentUpon>CompanyInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\CompanyManagerView.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\CompanyManagerView.xaml.cs">
       <DependentUpon>CompanyManagerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\CompanySettingView.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\CompanySettingView.xaml.cs">
       <DependentUpon>CompanySettingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\CompanyStockholderView.xaml.cs">
+    <Compile Include="Views\Setting\CompanySetting\CompanyStockholderView.xaml.cs">
       <DependentUpon>CompanyStockholderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Premium\AddPremiumView.xaml.cs">
@@ -239,27 +255,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanyAccountView.xaml">
+    <Page Include="Views\Setting\CompanySetting\AddCompanyAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanyBranchView.xaml">
+    <Page Include="Views\Setting\CompanySetting\AddCompanyBranchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanyInfo.xaml">
+    <Page Include="Views\Setting\CompanySetting\AddCompanyManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanyManagerView.xaml">
+    <Page Include="Views\Setting\CompanySetting\AddCompanyStockholderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanySettingView.xaml">
+    <Page Include="Views\Setting\CompanySetting\CompanyAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\CompanyStockholderView.xaml">
+    <Page Include="Views\Setting\CompanySetting\CompanyBranchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\CompanySetting\CompanyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\CompanySetting\CompanyManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\CompanySetting\CompanySettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\CompanySetting\CompanyStockholderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

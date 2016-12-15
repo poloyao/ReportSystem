@@ -9,14 +9,15 @@
              xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              mc:Ignorable="d"
-             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:CompanyInfoViewModel}"
+             
              d:DesignHeight="587" d:DesignWidth="546">
+    <!--DataContext="{dxmvvm:ViewModelSource Type=ViewModels:CompanyInfoViewModel}"-->
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="机构名称" >
-                        <dxe:TextEdit />
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info1}" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
@@ -29,131 +30,131 @@
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="注册地址" >
-                        <dxe:TextEdit />
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info4}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="办公地址" >
-                        <dxe:TextEdit />
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info5}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="邮政编码" >
-                        <dxe:TextEdit />
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info6}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="法人代表" >
-                        <dxe:TextEdit />
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info7}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="法人类型" >
-                        <dxe:ComboBoxEdit />
+                        <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info8}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="出资类型" >
-                        <dxe:ComboBoxEdit />
+                        <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info9}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="注册资金">
-                        <dxe:TextEdit/>
+                        <dxe:TextEdit EditValue="{Binding Content.Info.Info10}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="出资情况" View="GroupBox" Orientation="Vertical">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="出资背景" >
-                            <dxe:ComboBoxEdit />
+                            <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info11}" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="政府出资金额" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info12}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="外资出资金额" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info13}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="注册时间" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info14}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="组织机构代码" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info15}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="登记部门" >
-                            <dxe:ComboBoxEdit />
+                            <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info16}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="经营许可证号码" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info17}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="许可证机构编码" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info18}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="所在地区" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info19}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="经营状态" >
-                            <dxe:ComboBoxEdit />
+                            <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info20}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="再担保业务" >
-                            <dxe:ComboBoxEdit />
+                            <dxe:ComboBoxEdit SelectedItem="{Binding Content.Info.Info21}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="联系人信息" View="GroupBox" Orientation="Vertical">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="联系人姓名" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info22}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="联系人职务" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info23}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="联系人手机" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info24}" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="联系人电话" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info25}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="联系人传真" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info26}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="联系人Email" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info27}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="员工情况" View="GroupBox" Orientation="Vertical">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="机构总人数" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info28}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="3年以上从业经验" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info29}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="研究生及以上学历" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info30}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="本科学历" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info31}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="专科及以下学历" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info32}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="公务员" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info33}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="事业编制" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info34}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="党员" >
-                            <dxe:TextEdit />
+                            <dxe:TextEdit EditValue="{Binding Content.Info.Info35}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>

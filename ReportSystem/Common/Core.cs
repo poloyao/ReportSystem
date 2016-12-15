@@ -40,6 +40,17 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new PremiumCollectionItemDataProvider();
             if (IsDerivedFrom<TModel, PremiumDisplayItemModel>())
                 return (IDataProvider<TModel>)new PremiumDisplayItemDataProvider();
+            if (IsDerivedFrom<TModel, CompanyDisplayModel>())
+                return (IDataProvider<TModel>)new CompanyDisplayDataProvider();
+
+            if (IsDerivedFrom<TModel, CompanyManagersModel>())
+                return (IDataProvider<TModel>)new CompanyManagersDataprovider();
+            if (IsDerivedFrom<TModel, CompanyStockholderModel>())
+                return (IDataProvider<TModel>)new CompanyStockholderDataprovider();
+            if (IsDerivedFrom<TModel, CompanyBranchModel>())
+                return (IDataProvider<TModel>)new CompanyBranchDataprovider();
+            if (IsDerivedFrom<TModel, CompanyAccountModel>())
+                return (IDataProvider<TModel>)new CompanyAccountDataprovider();
             return null;
         }
 
