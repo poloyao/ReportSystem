@@ -126,6 +126,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ReportCollectionViewModel.cs" />
+    <Compile Include="ViewModels\ReportMonthViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyAccountViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyBranchViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyManagerViewModel.cs" />
@@ -155,6 +157,12 @@
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
+    <Compile Include="Views\ReportCollectionView.xaml.cs">
+      <DependentUpon>ReportCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportMonthView.xaml.cs">
+      <DependentUpon>ReportMonthView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\CompanySetting\AddCompanyAccountView.xaml.cs">
       <DependentUpon>AddCompanyAccountView.xaml</DependentUpon>
     </Compile>
@@ -252,6 +260,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewResources\LoanStatusCellTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportMonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
