@@ -65,7 +65,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <dxe:ComboBoxEdit SelectedIndex="0" IsTextEditable="False" MinWidth="100" >
+                    <dxe:ComboBoxEdit x:Name="combox" SelectedIndex="{Binding SelectIndex}" IsTextEditable="False" MinWidth="100">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" Command="{Binding SelectedIndexChangedCommand}" CommandParameter="{Binding ElementName=combox,Path=SelectedIndex}"/>
+                        </dxmvvm:Interaction.Behaviors>
+
                         <dxe:ComboBoxEditItem Content="月报" />
                         <dxe:ComboBoxEditItem Content="季报" />
                         <dxe:ComboBoxEditItem Content="半年报" />
@@ -73,6 +77,9 @@
                     </dxe:ComboBoxEdit>
                     <dxdo:LayoutPanel Grid.Row="1" AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                         <dxwui:NavigationFrame>
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnViewLoadedCommand}" />
+                            </dxmvvm:Interaction.Triggers>
                             <dxmvvm:Interaction.Behaviors>
                                 <Custom:FrameNavigationService/>
                             </dxmvvm:Interaction.Behaviors>

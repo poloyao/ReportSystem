@@ -1,0 +1,305 @@
+﻿<UserControl x:Class="ReportSystem.Views.AddMonthView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:AddMonthViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <dxlc:LayoutControl x:Name="groupContainer" Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical" Header="融资性担保业务汇总情况" View="GroupBox">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="担保机构名称" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="注册资本">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="净资产" >
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="资产" UseLayoutRounding="True">
+                    <dxlc:LayoutItem IsRequired="True" Label="现金类资产">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="存入保证金">
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="存出保证金">
+                            <dxe:TextEdit/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="担保准备金">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="保额" UseLayoutRounding="True" >
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计担保额">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="个人担保金额">
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="企业担保金额">
+                            <dxe:TextEdit/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计担保企业户数" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计担保人数" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计解除担保额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计代偿额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="担保代偿余额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计损失额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计担保收入" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="净利润" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="纳税" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="保额" UseLayoutRounding="True">
+                    <dxlc:LayoutItem IsRequired="True" Label="在保责任余额">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="个人在保余额">
+                            <dxe:TextEdit />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="企业在保余额">
+                            <dxe:TextEdit/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="在保企业户数" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="在保人数" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Vertical" Header="企业担保业务明细情况" View="GroupBox">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="担保机构名称" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="月初在保责任余额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本月担保发生额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="中小企业担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="县域企业担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="高新技术企业担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本月担保企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="中小企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="县域企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="高新技术企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutItem IsRequired="True" Label="本月解除担保额" LabelPosition="Top">
+                    <dxe:TextEdit />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="月末在保责任余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="中小企业在保余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="县域企业在保余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="高新技术企业在保余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="月末在保企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="中小企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="县域企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="高新技术企业户数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Vertical" Header="个人担保业务明细情况" View="GroupBox">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="担保机构名称" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="月初在保责任余额" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本月担保发生额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="下岗失业人员小额贷款担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本月担保人数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="下岗失业人员小额贷款人数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutItem IsRequired="True" Label="本月解除额" LabelPosition="Top">
+                    <dxe:TextEdit />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="月末在保余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="下岗失业人员小额贷款余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="月末在保人数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="下岗失业人员小额贷款在保人数" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Vertical" Header="非融资性担保业务情况" View="GroupBox">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="担保机构名称" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  >
+                    <dxlc:LayoutItem IsRequired="True" Label="注册资本" LabelPosition="Top">
+                        <dxe:TextEdit MinWidth="200"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="其中：本月担保额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+
+                <dxlc:LayoutItem IsRequired="True" Label="本年累计解除担保额" LabelPosition="Top">
+                    <dxe:TextEdit />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计代偿额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计损失额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem IsRequired="True" Label="本年累计实现担保收入" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem IsRequired="True" Label="期末在保余额" LabelPosition="Top">
+                        <dxe:TextEdit />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

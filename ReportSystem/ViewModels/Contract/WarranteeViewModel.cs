@@ -56,7 +56,7 @@ namespace ReportSystem.ViewModels
                     IsChange = true;
                     this.Content = query;
                     DevExpress.Xpf.Core.DXMessageBox.Show("添加成功！");
-                    Common.Core.LOGGER.Info(string.Format("添加WarranteeItemModel成功,ID:{0}", query.ID));
+                    Common.Core.LOGGER.Info($"添加{query.GetType()}成功,ID:{query.ID}");
                 }
                 else
                 {

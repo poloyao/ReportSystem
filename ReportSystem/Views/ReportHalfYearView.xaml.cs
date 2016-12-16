@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace ReportSystem.Views
 {
     /// <summary>
-    /// Interaction logic for ReportCollectionView.xaml
+    /// Interaction logic for ReportHalfYearView.xaml
     /// </summary>
-    public partial class ReportCollectionView : UserControl
+    public partial class ReportHalfYearView : UserControl
     {
-        public ReportCollectionView()
+        public ReportHalfYearView()
         {
             InitializeComponent();
         }
-        
     }
 }
