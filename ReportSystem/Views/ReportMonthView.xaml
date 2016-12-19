@@ -15,10 +15,22 @@
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:ReportMonthViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
+            <dx:WindowedDocumentUIService.WindowStyle>
+                <Style TargetType="dx:DXWindow">
+                    <Setter Property="Width" Value="500"/>
+                    <Setter Property="Height" Value="300"/>
+                    <!--<Setter Property="ResizeMode" Value="NoResize" />
+                    <Setter Property="ShowIcon" Value="False"/>-->
+                </Style>
+            </dx:WindowedDocumentUIService.WindowStyle>
+        </dx:WindowedDocumentUIService>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="SaveTask" Content="添加表1" Command="{Binding SaveCommand}"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="AddMonthTask" Content="添加月报" Command="{Binding AddMonthCommand}"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
 
             </dxb:BarManager.Items>
             <Grid>
@@ -30,7 +42,7 @@
                     <dxr:RibbonDefaultPageCategory Caption="Default Category">
                         <dxr:RibbonPage Caption="功能">
                             <dxr:RibbonPageGroup Caption="操作">
-                                <dxb:BarButtonItemLink BarItemName="SaveTask"  />
+                                <dxb:BarButtonItemLink BarItemName="AddMonthTask"  />
                             </dxr:RibbonPageGroup>
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
