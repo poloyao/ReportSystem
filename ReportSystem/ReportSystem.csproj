@@ -129,6 +129,7 @@
     <Compile Include="Models\PremiumItemModel.cs" />
     <Compile Include="Models\PremiumRecordItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
+    <Compile Include="Models\ReportMonthModel.cs" />
     <Compile Include="Models\ReportQuarterModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
