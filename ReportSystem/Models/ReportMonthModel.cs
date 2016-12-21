@@ -9,7 +9,10 @@ namespace ReportSystem.Models
 {
     public class ReportMonthModel
     {
-
+        public ReportMonthSheet1 Sheet1 { get; set; }
+        public ReportMonthSheet2 Sheet2 { get; set; }
+        public ReportMonthSheet3 Sheet3 { get; set; }
+        public ReportMonthSheet4 Sheet4 { get; set; }
     }
 
     public class ReportMonthSheet1

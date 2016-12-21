@@ -3,6 +3,8 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using System.Linq;
+using System.Collections.ObjectModel;
+using ReportSystem.Models;
 
 namespace ReportSystem.ViewModels
 {
@@ -10,6 +12,15 @@ namespace ReportSystem.ViewModels
     public class ReportMonthViewModel
     {
         protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
+
+        public ObservableCollection<ReportMonthSheet1> Sheet1 { get; set; } = new ObservableCollection<ReportMonthSheet1>();
+        public ObservableCollection<ReportMonthSheet2> Sheet2 { get; set; } = new ObservableCollection<ReportMonthSheet2>();
+
+        public ObservableCollection<ReportMonthSheet3> Sheet3 { get; set; } = new ObservableCollection<ReportMonthSheet3>();
+
+        public ObservableCollection<ReportMonthSheet4> Sheet4 { get; set; } = new ObservableCollection<ReportMonthSheet4>();
+
+
 
         public void AddMonth()
         {
@@ -24,11 +35,14 @@ namespace ReportSystem.ViewModels
                 doc.Title = "新增月报信息";
             }
             doc.Show();
-            //var docVM = (AddCompanyStockholderViewModel)doc.Content;
-            //if (docVM.IsChange)
-            //{
-            //    Content.CS.Add(docVM.Content);
-            //}
+            var docVM = (AddMonthViewModel)doc.Content;
+            if (docVM.IsSaved)
+            {
+                Sheet1.Add(docVM.Content.Sheet1);
+                Sheet2.Add(docVM.Content.Sheet2);
+                Sheet3.Add(docVM.Content.Sheet3);
+                Sheet4.Add(docVM.Content.Sheet4);
+            }
         }
     }
 }

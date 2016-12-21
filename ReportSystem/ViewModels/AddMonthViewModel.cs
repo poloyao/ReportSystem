@@ -4,11 +4,12 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using ReportSystem.Models;
 using System.Linq;
+using ReportSystem.Common.ViewModel;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class AddMonthViewModel
+    public class AddMonthViewModel: SingleViewModel<ReportMonthModel>
     {
         public static AddMonthViewModel Create()
         {
@@ -20,14 +21,50 @@ namespace ReportSystem.ViewModels
 
         }
 
+        public ReportMonthModel Content { get; set; }
+        public bool IsSaved { get; set; } = false;
+
         public void Save(object obj)
         {
+            Content = new ReportMonthModel();
             var workbook = ((DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj).Document;
             var workSheet = workbook.Worksheets[0];
-            var rang = workSheet.Range["B8:O8"];
+            var rang = workSheet.Range["B8:Y8"];
             //!++ rqs1
-            ReportQuarterSheet1 rqs1 = new ReportQuarterSheet1();
-            System.Reflection.PropertyInfo[] properties = rqs1.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+            ReportMonthSheet1 rqs1 = new ReportMonthSheet1();
+            SetModelValue(rang, rqs1);
+
+            workSheet = workbook.Worksheets[1];
+            rang = workSheet.Range["B8:T8"];
+            ReportMonthSheet2 rqs2 = new ReportMonthSheet2();
+            SetModelValue(rang, rqs2);
+
+            workSheet = workbook.Worksheets[2];
+            rang = workSheet.Range["B8:L8"];
+            ReportMonthSheet3 rqs3 = new ReportMonthSheet3();
+            SetModelValue(rang, rqs3);
+
+            workSheet = workbook.Worksheets[3];
+            rang = workSheet.Range["B8:J8"];
+            ReportMonthSheet4 rqs4 = new ReportMonthSheet4();
+            SetModelValue(rang, rqs4);
+
+            Content.Sheet1 = rqs1;
+            Content.Sheet2 = rqs2;
+            Content.Sheet3 = rqs3;
+            Content.Sheet4 = rqs4;
+
+            var query =  base.AddItem(Content);
+            if (query != null)
+                Content = query;
+
+            IsSaved = true;
+
+        }
+
+        private static void SetModelValue<T>(DevExpress.Spreadsheet.Range rang,  T sheet)
+        {
+            System.Reflection.PropertyInfo[] properties = sheet.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
 
             for (int i = 0; i < rang.ColumnCount; i++)
             {
@@ -36,9 +73,16 @@ namespace ReportSystem.ViewModels
                     continue;
                 foreach (var item in query)
                 {
-                    item.SetValue(rqs1, rang[i].Value.ToString());
+                    item.SetValue(sheet, rang[i].Value.ToString());
                 }
             }
+        }
+
+        protected override void OnParameterChanged(object parameter)
+        {
+            base.OnParameterChanged(parameter);
+            if (parameter != null)
+                this.Content = base.ContentBase;
         }
     }
 }

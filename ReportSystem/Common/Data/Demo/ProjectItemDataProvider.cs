@@ -655,6 +655,36 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+
+    public class ReportMonthDataProvider : DataProviderBase<ReportMonthModel>
+    {
+        protected override ReportMonthModel AddItem(ReportMonthModel item)
+        {
+            return item;
+            //throw new NotImplementedException();
+        }
+
+        protected override IList<ReportMonthModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<ReportMonthModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportMonthModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportMonthModel UpdateItem(ReportMonthModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public static class DemoHelper
     {
         #region 帮助类

@@ -51,7 +51,7 @@
                 <dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
                     <dx:DXTabItem Header="融资性担保业务汇总情况">
                         <Grid>
-                            <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                            <dxg:GridControl ItemsSource="{Binding Sheet1}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
                                 <dxg:GridControl.View>
                                     <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                                 </dxg:GridControl.View>
@@ -60,7 +60,7 @@
                     </dx:DXTabItem>
                     <dx:DXTabItem Header="企业担保业务">
                         <Grid>
-                            <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                            <dxg:GridControl ItemsSource="{Binding Sheet2}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
                                 <dxg:GridControl.View>
                                     <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                                 </dxg:GridControl.View>
@@ -69,7 +69,7 @@
                     </dx:DXTabItem>
                     <dx:DXTabItem Header="个人担保业务">
                         <Grid>
-                            <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                            <dxg:GridControl ItemsSource="{Binding Sheet3}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
                                 <dxg:GridControl.View>
                                     <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                                 </dxg:GridControl.View>
@@ -78,7 +78,7 @@
                     </dx:DXTabItem>
                     <dx:DXTabItem Header="非融资性担保业务情况">
                         <Grid>
-                            <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                            <dxg:GridControl  ItemsSource="{Binding Sheet4}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
                                 <dxg:GridControl.View>
                                     <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                                 </dxg:GridControl.View>

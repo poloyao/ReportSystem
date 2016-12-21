@@ -51,6 +51,11 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new CompanyBranchDataprovider();
             if (IsDerivedFrom<TModel, CompanyAccountModel>())
                 return (IDataProvider<TModel>)new CompanyAccountDataprovider();
+
+            //报表
+            if (IsDerivedFrom<TModel, ReportMonthModel>())
+                return (IDataProvider<TModel>)new ReportMonthDataProvider();
+
             return null;
         }
 
