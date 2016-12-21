@@ -25,6 +25,9 @@ namespace ReportSystem
         private void OnAppStartup_UpdateThemeName(object sender, StartupEventArgs e)
         {
 
+            var win = new Views.LoginWindow();
+            win.Show();
+
             DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
 
             var singleCommon = Common.Data.SingleTypeCode.GetInstance();

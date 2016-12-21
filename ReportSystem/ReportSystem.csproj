@@ -137,13 +137,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddMonthViewModel.cs" />
-    <Compile Include="ViewModels\AddQuarterViewModel.cs" />
-    <Compile Include="ViewModels\ReportCollectionViewModel.cs" />
-    <Compile Include="ViewModels\ReportHalfYearViewModel.cs" />
-    <Compile Include="ViewModels\ReportMonthViewModel.cs" />
-    <Compile Include="ViewModels\ReportQuarterViewModel.cs" />
-    <Compile Include="ViewModels\ReportYearViewModel.cs" />
+    <Compile Include="ViewModels\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModels\Report\AddMonthViewModel.cs" />
+    <Compile Include="ViewModels\Report\AddQuarterViewModel.cs" />
+    <Compile Include="ViewModels\Report\ReportCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Report\ReportHalfYearViewModel.cs" />
+    <Compile Include="ViewModels\Report\ReportMonthViewModel.cs" />
+    <Compile Include="ViewModels\Report\ReportQuarterViewModel.cs" />
+    <Compile Include="ViewModels\Report\ReportYearViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyAccountViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyBranchViewModel.cs" />
     <Compile Include="ViewModels\Setting\CompanySetting\AddCompanyManagerViewModel.cs" />
@@ -173,25 +174,28 @@
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
-    <Compile Include="Views\AddMonthView.xaml.cs">
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\AddMonthView.xaml.cs">
       <DependentUpon>AddMonthView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddQuarterView.xaml.cs">
+    <Compile Include="Views\Report\AddQuarterView.xaml.cs">
       <DependentUpon>AddQuarterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportCollectionView.xaml.cs">
+    <Compile Include="Views\Report\ReportCollectionView.xaml.cs">
       <DependentUpon>ReportCollectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportHalfYearView.xaml.cs">
+    <Compile Include="Views\Report\ReportHalfYearView.xaml.cs">
       <DependentUpon>ReportHalfYearView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportMonthView.xaml.cs">
+    <Compile Include="Views\Report\ReportMonthView.xaml.cs">
       <DependentUpon>ReportMonthView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportQuarterView.xaml.cs">
+    <Compile Include="Views\Report\ReportQuarterView.xaml.cs">
       <DependentUpon>ReportQuarterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportYearView.xaml.cs">
+    <Compile Include="Views\Report\ReportYearView.xaml.cs">
       <DependentUpon>ReportYearView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\CompanySetting\AddCompanyAccountView.xaml.cs">
@@ -294,31 +298,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddMonthView.xaml">
+    <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddQuarterView.xaml">
+    <Page Include="Views\Report\AddMonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReportCollectionView.xaml">
+    <Page Include="Views\Report\AddQuarterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReportHalfYearView.xaml">
+    <Page Include="Views\Report\ReportCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReportMonthView.xaml">
+    <Page Include="Views\Report\ReportHalfYearView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReportQuarterView.xaml">
+    <Page Include="Views\Report\ReportMonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReportYearView.xaml">
+    <Page Include="Views\Report\ReportQuarterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\ReportYearView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
