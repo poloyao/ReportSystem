@@ -55,6 +55,12 @@ namespace ReportSystem.Common
             //报表
             if (IsDerivedFrom<TModel, ReportMonthModel>())
                 return (IDataProvider<TModel>)new ReportMonthDataProvider();
+            if (IsDerivedFrom<TModel, ReportQuarterModel>())
+                return (IDataProvider<TModel>)new ReportQuarterDataProvider();
+            if (IsDerivedFrom<TModel, ReportHalfYearModel>())
+                return (IDataProvider<TModel>)new ReportHalfYearDataProvider();
+            if (IsDerivedFrom<TModel, ReportYearModel>())
+                return (IDataProvider<TModel>)new ReportYearDataProvider();
 
             return null;
         }

@@ -24,6 +24,17 @@ namespace ReportSystem
 
         private void OnAppStartup_UpdateThemeName(object sender, StartupEventArgs e)
         {
+            //const int unit = 1024;
+            //int bytes = 1042000;
+            //string rsult;
+            //if (bytes < unit)
+            //    rsult = bytes + " B";
+            //int exp = (int)(Math.Log(bytes) / Math.Log(unit));
+            //var query = (bytes / Math.Pow(unit, exp));
+            //if (query > 1000)
+            //    rsult = $"{(query / 1024).ToString("F2")} {"KMGTPE"[exp]}";
+            //else
+            //    rsult = $"{(bytes / Math.Pow(unit, exp)).ToString("F1")} {"KMGTPE"[exp - 1]}";
 
             var win = new Views.LoginWindow();
             win.Show();

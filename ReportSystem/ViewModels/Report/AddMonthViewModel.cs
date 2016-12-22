@@ -56,9 +56,10 @@ namespace ReportSystem.ViewModels
 
             var query =  base.AddItem(Content);
             if (query != null)
+            {
                 Content = query;
-
-            IsSaved = true;
+                IsSaved = true;
+            }
 
         }
 

@@ -666,7 +666,7 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override IList<ReportMonthModel> FillItems(object filter)
         {
-            throw new NotImplementedException();
+            return new List<ReportMonthModel>();
         }
 
         protected override IList<ReportMonthModel> FillItems(object id, object filter)
@@ -680,6 +680,90 @@ namespace ReportSystem.Common.Data.Demo
         }
 
         protected override ReportMonthModel UpdateItem(ReportMonthModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ReportQuarterDataProvider : DataProviderBase<ReportQuarterModel>
+    {
+        protected override ReportQuarterModel AddItem(ReportQuarterModel item)
+        {
+            return item;
+        }
+
+        protected override IList<ReportQuarterModel> FillItems(object filter)
+        {
+            return new List<ReportQuarterModel>();
+        }
+
+        protected override IList<ReportQuarterModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportQuarterModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportQuarterModel UpdateItem(ReportQuarterModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ReportHalfYearDataProvider : DataProviderBase<ReportHalfYearModel>
+    {
+        protected override ReportHalfYearModel AddItem(ReportHalfYearModel item)
+        {
+            return item;
+        }
+
+        protected override IList<ReportHalfYearModel> FillItems(object filter)
+        {
+            return new List<ReportHalfYearModel>();
+        }
+
+        protected override IList<ReportHalfYearModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportHalfYearModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportHalfYearModel UpdateItem(ReportHalfYearModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ReportYearDataProvider : DataProviderBase<ReportYearModel>
+    {
+        protected override ReportYearModel AddItem(ReportYearModel item)
+        {
+            return item;
+        }
+
+        protected override IList<ReportYearModel> FillItems(object filter)
+        {
+            return new List<ReportYearModel>();
+        }
+
+        protected override IList<ReportYearModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportYearModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportYearModel UpdateItem(ReportYearModel item, bool IsDelete)
         {
             throw new NotImplementedException();
         }

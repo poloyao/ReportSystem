@@ -5,11 +5,12 @@ using DevExpress.Mvvm.POCO;
 using ReportSystem.Models;
 using System.Linq;
 using System.Collections.Generic;
+using ReportSystem.Common.ViewModel;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class AddQuarterViewModel
+    public class AddQuarterViewModel: SingleViewModel<ReportQuarterModel>
     {
         public static AddQuarterViewModel Create()
         {
@@ -22,6 +23,7 @@ namespace ReportSystem.ViewModels
 
 
         public ReportQuarterModel Content { get; private set; }
+        public bool IsSaved { get; set; } = false;
 
         public void Save(object obj)
         {
@@ -111,6 +113,13 @@ namespace ReportSystem.ViewModels
             Content.sheet1 = rqs1;
             Content.sheet2 = rqs2;
             Content.sheet3 = rqs3List;
+
+            var result = base.AddItem(Content);
+            if (result != null)
+            {
+                IsSaved = true;
+                Content = result;
+            }
         }
     }
 }

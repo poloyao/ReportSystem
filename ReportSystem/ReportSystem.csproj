@@ -109,13 +109,13 @@
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExceptionHelper.cs" />
-    <Compile Include="Models\CompanyAccountModel.cs" />
-    <Compile Include="Models\CompanyBranchModel.cs" />
-    <Compile Include="Models\CompanyDisplayModel.cs" />
-    <Compile Include="Models\CompanyInfoModel.cs" />
-    <Compile Include="Models\CompanyManagersModel.cs" />
-    <Compile Include="Models\CompanyStockholderModel.cs" />
-    <Compile Include="Models\ContractItemModel.cs" />
+    <Compile Include="Models\Company\CompanyAccountModel.cs" />
+    <Compile Include="Models\Company\CompanyBranchModel.cs" />
+    <Compile Include="Models\Company\CompanyDisplayModel.cs" />
+    <Compile Include="Models\Company\CompanyInfoModel.cs" />
+    <Compile Include="Models\Company\CompanyManagersModel.cs" />
+    <Compile Include="Models\Company\CompanyStockholderModel.cs" />
+    <Compile Include="Models\Company\ContractItemModel.cs" />
     <Compile Include="Models\CreditorItemModel.cs" />
     <Compile Include="Models\DisplayLoanBriefContentModel.cs" />
     <Compile Include="Models\LoanCreditorItemModel.cs" />
@@ -129,14 +129,19 @@
     <Compile Include="Models\PremiumItemModel.cs" />
     <Compile Include="Models\PremiumRecordItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
-    <Compile Include="Models\ReportMonthModel.cs" />
-    <Compile Include="Models\ReportQuarterModel.cs" />
+    <Compile Include="Models\Reports\ReportHalfYearModel.cs" />
+    <Compile Include="Models\Reports\ReportMonthModel.cs" />
+    <Compile Include="Models\Reports\ReportQuarterModel.cs" />
+    <Compile Include="Models\Reports\ReportYearModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Report\AddHalfYearDetailViewModel.cs" />
+    <Compile Include="ViewModels\Report\AddHalfYearViewModel.cs" />
+    <Compile Include="ViewModels\Report\AddYearViewModel.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\Report\AddMonthViewModel.cs" />
     <Compile Include="ViewModels\Report\AddQuarterViewModel.cs" />
@@ -174,6 +179,15 @@
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
+    <Compile Include="Views\Report\AddHalfYearDetailView.xaml.cs">
+      <DependentUpon>AddHalfYearDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\AddHalfYearView.xaml.cs">
+      <DependentUpon>AddHalfYearView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\AddYearView.xaml.cs">
+      <DependentUpon>AddYearView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -295,6 +309,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewResources\LoanStatusCellTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\AddHalfYearDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\AddHalfYearView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\AddYearView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

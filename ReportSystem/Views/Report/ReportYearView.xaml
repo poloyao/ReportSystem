@@ -3,11 +3,120 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"    
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:ReportYearViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
+            <dx:WindowedDocumentUIService.WindowStyle>
+                <Style TargetType="dx:DXWindow">
+                    <Setter Property="Width" Value="500"/>
+                    <Setter Property="Height" Value="300"/>
+                </Style>
+            </dx:WindowedDocumentUIService.WindowStyle>
+        </dx:WindowedDocumentUIService>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
-        <Label x:Name="label" Content="Year" HorizontalAlignment="Left" Margin="83.649,96.788,0,0" VerticalAlignment="Top"/>
+        <dxb:BarManager CreateStandardLayout="False">
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="AddYearTask" Content="添加年报" Command="{Binding AddYearCommand}"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+
+            </dxb:BarManager.Items>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2010">
+                    <dxr:RibbonDefaultPageCategory Caption="Default Category">
+                        <dxr:RibbonPage Caption="功能">
+                            <dxr:RibbonPageGroup Caption="操作">
+                                <dxb:BarButtonItemLink BarItemName="AddYearTask"  />
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                    </dxr:RibbonDefaultPageCategory>
+                </dxr:RibbonControl>
+
+                <dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
+                    <dx:DXTabItem Header="G1">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet1}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G2">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet2}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G3">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet3}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G4">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet4}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G5">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet5}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G6">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet6}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+                    <dx:DXTabItem Header="G7">
+                        <Grid>
+                            <dxg:GridControl ItemsSource="{Binding Sheet7}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dx:DXTabItem>
+
+
+                </dx:DXTabControl>
+
+
+
+            </Grid>
+        </dxb:BarManager>
     </Grid>
 </UserControl>

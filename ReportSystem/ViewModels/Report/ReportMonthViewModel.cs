@@ -5,12 +5,28 @@ using DevExpress.Mvvm.POCO;
 using System.Linq;
 using System.Collections.ObjectModel;
 using ReportSystem.Models;
+using ReportSystem.Common.ViewModel;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class ReportMonthViewModel
+    public class ReportMonthViewModel : CollectionViewModel<ReportMonthModel>
     {
+        public static ReportMonthViewModel Create()
+        {
+            return ViewModelSource.Create(() => new ReportMonthViewModel());
+        }
+
+        protected ReportMonthViewModel()
+        {
+            if (Items == null)
+                return;
+            this.Sheet1 = new ObservableCollection<ReportMonthSheet1>(Items.Select(x => x.Sheet1).ToList());
+            this.Sheet2 = new ObservableCollection<ReportMonthSheet2>(Items.Select(x => x.Sheet2).ToList());
+            this.Sheet3 = new ObservableCollection<ReportMonthSheet3>(Items.Select(x => x.Sheet3).ToList());
+            this.Sheet4 = new ObservableCollection<ReportMonthSheet4>(Items.Select(x => x.Sheet4).ToList());
+        }
+
         protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
 
         public ObservableCollection<ReportMonthSheet1> Sheet1 { get; set; } = new ObservableCollection<ReportMonthSheet1>();
@@ -38,6 +54,8 @@ namespace ReportSystem.ViewModels
             var docVM = (AddMonthViewModel)doc.Content;
             if (docVM.IsSaved)
             {
+                Items.Add(docVM.Content);
+                ItemSource.Add(docVM.Content);
                 Sheet1.Add(docVM.Content.Sheet1);
                 Sheet2.Add(docVM.Content.Sheet2);
                 Sheet3.Add(docVM.Content.Sheet3);
