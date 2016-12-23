@@ -33,10 +33,10 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="NewMonth" Content="月报"  CommandParameter="1"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="NewQuarter" Content="季报"  CommandParameter="2" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="NewHalfYear" Content="半年报" CommandParameter="3" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="NewYear" Content="年报" CommandParameter="4" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewMonth" Content="月报" Command="{Binding ItemsChangedCommand}" CommandParameter="0"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewQuarter" Content="季报" Command="{Binding ItemsChangedCommand}" CommandParameter="1" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewHalfYear" Content="半年报" Command="{Binding ItemsChangedCommand}" CommandParameter="2" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="NewYear" Content="年报" Command="{Binding ItemsChangedCommand}" CommandParameter="3" LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
             </dxb:BarManager.Items>
             <Grid>
                 <Grid.RowDefinitions>
@@ -67,7 +67,7 @@
                     </Grid.RowDefinitions>
                     <dxe:ComboBoxEdit x:Name="combox" SelectedIndex="{Binding SelectIndex}" IsTextEditable="False" MinWidth="100">
                         <dxmvvm:Interaction.Behaviors>
-                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" Command="{Binding SelectedIndexChangedCommand}" CommandParameter="{Binding ElementName=combox,Path=SelectedIndex}"/>
+                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" Command="{Binding SelectedIndexChangedCommand}" />
                         </dxmvvm:Interaction.Behaviors>
 
                         <dxe:ComboBoxEditItem Content="月报" />

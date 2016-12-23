@@ -26,16 +26,22 @@ namespace ReportSystem.Common
         {
             if (IsDerivedFrom<TModel, ProjectItemModel>())
                 return (IDataProvider<TModel>)(new ProjectItemDataProvider());
+
+            //合同
             if (IsDerivedFrom<TModel, ContractItemModel>())
                 return (IDataProvider<TModel>)(new ContractItemDataProvider());
             if (IsDerivedFrom<TModel, WarranteeItemModel>())
                 return (IDataProvider<TModel>)(new WarranteeItemDataProvider());
+
+            //放款
             if (IsDerivedFrom<TModel, LoanItemModel>())
                 return (IDataProvider<TModel>)new LoanItemDataProvider();
             if (IsDerivedFrom<TModel, LoanSingleItemlModel>())
                 return (IDataProvider<TModel>)new LoanSingleItemlDataProvider();
             if (IsDerivedFrom<TModel, LoanCreditorItemModel>())
                 return (IDataProvider<TModel>)new LoanCreditorItemDataProvider();
+
+            //保费
             if (IsDerivedFrom<TModel, PremiumCollectionItemModel>())
                 return (IDataProvider<TModel>)new PremiumCollectionItemDataProvider();
             if (IsDerivedFrom<TModel, PremiumDisplayItemModel>())
@@ -43,6 +49,13 @@ namespace ReportSystem.Common
             if (IsDerivedFrom<TModel, CompanyDisplayModel>())
                 return (IDataProvider<TModel>)new CompanyDisplayDataProvider();
 
+            //不良
+            if (IsDerivedFrom<TModel, SupervisionModel>())
+                return (IDataProvider<TModel>)new SupervisionDataProvider();
+            if (IsDerivedFrom<TModel, SupervisionDetailModel>())
+                return (IDataProvider<TModel>)new SupervisionDetailDataProvider();
+
+            //机构信息
             if (IsDerivedFrom<TModel, CompanyManagersModel>())
                 return (IDataProvider<TModel>)new CompanyManagersDataprovider();
             if (IsDerivedFrom<TModel, CompanyStockholderModel>())

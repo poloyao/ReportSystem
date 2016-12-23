@@ -34,7 +34,7 @@ namespace ReportSystem.Models
             /// <summary>
             /// 		
             /// </summary>
-            [Display(Name = "")]
+            [Display(Name = "",AutoGenerateField = false)]
             public Guid ID { get; set; }
             /// <summary>
             /// 担保机构名称		
@@ -109,12 +109,12 @@ namespace ReportSystem.Models
             /// <summary>
             /// 年份		
             /// </summary>
-            [Display(Name = "年份")]
+            [Display(Name = "年份",Order = 1)]
             public string Year { get; set; }
             /// <summary>
             /// 季度		
             /// </summary>
-            [Display(Name = "季度")]
+            [Display(Name = "季度",Order = 2)]
             public string Quarter { get; set; }
             /// <summary>
             /// 状态		
@@ -139,7 +139,7 @@ namespace ReportSystem.Models
         #endregion
 
         #region 属性	
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
 
         /// <summary>
@@ -221,12 +221,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 季度		
         /// </summary>
-        [Display(Name = "季度")]
+        [Display(Name = "季度",Order = 2)]
         public string Quarter { get; set; }
         /// <summary>
         /// 状态		
@@ -251,7 +251,7 @@ namespace ReportSystem.Models
         #endregion
 
         #region 属性	
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 1.法人机构（家）		
@@ -377,12 +377,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 季度		
         /// </summary>
-        [Display(Name = "季度")]
+        [Display(Name = "季度",Order = 2)]
         public string Quarter { get; set; }
         /// <summary>
         /// 状态		

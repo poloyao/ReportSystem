@@ -25,10 +25,16 @@ namespace ReportSystem.ViewModels
             NavigationService.Navigate("ReportMonthView", null, this);
         }
 
-        public void SelectedIndexChanged(int index)
+        public void ItemsChanged(int index)
         {
+            this.SelectIndex = index;
+        }
+
+        public void SelectedIndexChanged()
+        {
+            //SelectIndex = index;
             string navString = "ReportMonthView";
-            switch (index)
+            switch (SelectIndex)
             {
                 case 0:
                     navString = "ReportMonthView";

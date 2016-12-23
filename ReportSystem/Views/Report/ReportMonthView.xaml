@@ -52,8 +52,9 @@
                     <dx:DXTabItem Header="融资性担保业务汇总情况">
                         <Grid>
                             <dxg:GridControl ItemsSource="{Binding Sheet1}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                 
                                 <dxg:GridControl.View>
-                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="False"/>
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
                         </Grid>

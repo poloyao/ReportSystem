@@ -153,7 +153,6 @@ namespace ReportSystem.Common.ViewModel
 
         public void OnDestroy() { }
     }
-
     
 
 

@@ -38,7 +38,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 1. 本市融资性担保机构数量		
@@ -173,12 +173,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -202,7 +202,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 资产总额		
@@ -327,12 +327,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -356,7 +356,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 1.担保业务收入		
@@ -456,12 +456,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -485,7 +485,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 		
@@ -620,12 +620,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -649,7 +649,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 		
@@ -784,12 +784,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -813,7 +813,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 担保机构名称		
@@ -883,12 +883,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 
@@ -912,7 +912,7 @@ namespace ReportSystem.Models
         /// <summary>
         /// 		
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "",AutoGenerateField = false)]
         public Guid ID { get; set; }
         /// <summary>
         /// 地区		
@@ -992,12 +992,12 @@ namespace ReportSystem.Models
         /// <summary>
         /// 年份		
         /// </summary>
-        [Display(Name = "年份")]
+        [Display(Name = "年份",Order = 1)]
         public string Year { get; set; }
         /// <summary>
         /// 状态		
         /// </summary>
-        [Display(Name = "状态")]
+        [Display(Name = "状态",Order = 2)]
         public int Status { get; set; }
 
 

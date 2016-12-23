@@ -116,7 +116,7 @@
                             </dxwui:NavigationFrame.Resources>
                             <dxmvvm:Interaction.Behaviors>
                                 <Custom:FrameNavigationService Frame="{Binding ElementName=documentFrame}"/>
-                                <dx:DXSplashScreenService SplashScreenType="{Binding SplashScreenType}" />
+                                <dx:DXSplashScreenService SplashScreenType="{Binding SplashScreenType}" SplashScreenStartupLocation="CenterOwner" />
                             </dxmvvm:Interaction.Behaviors>
                         </dxwui:NavigationFrame>
 

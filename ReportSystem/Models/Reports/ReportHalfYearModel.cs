@@ -10,6 +10,7 @@ namespace ReportSystem.Models
 {
     public class ReportHalfYearModel
     {
+        [Display(AutoGenerateField = false)]
         public Guid ID { get; set; }
 
         [Display(Name = "担保机构名称")]
@@ -27,7 +28,10 @@ namespace ReportSystem.Models
         [Display(Name = "法定代表人")]
         public string Legal { get; set; }
 
-        [Display(Name = "上/下半年")]
+        [Display(Name = "年度",Order = 1)]
+        public string Year { get; set; }
+
+        [Display(Name = "上/下半年",Order = 2)]
         public string HalfYear { get; set; }
 
         public ObservableCollection<ReportHalfYearDetailModel> HalfYearDetail { get; set; } = new ObservableCollection<ReportHalfYearDetailModel>();

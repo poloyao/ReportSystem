@@ -133,6 +133,9 @@
     <Compile Include="Models\Reports\ReportMonthModel.cs" />
     <Compile Include="Models\Reports\ReportQuarterModel.cs" />
     <Compile Include="Models\Reports\ReportYearModel.cs" />
+    <Compile Include="Models\SupervisionDetailModel.cs" />
+    <Compile Include="Models\SupervisionModel.cs" />
+    <Compile Include="Models\SupervisionRecoveryModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -178,6 +181,8 @@
     <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
+    <Compile Include="ViewModels\Supervision\SupervisionCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Supervision\SupervisionViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
     <Compile Include="Views\Report\AddHalfYearDetailView.xaml.cs">
       <DependentUpon>AddHalfYearDetailView.xaml</DependentUpon>
@@ -283,6 +288,12 @@
     </Compile>
     <Compile Include="Views\Contract\WarranteeView.xaml.cs">
       <DependentUpon>WarranteeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupervisionView\SupervisionCollectionView.xaml.cs">
+      <DependentUpon>SupervisionCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupervisionView\SupervisionView.xaml.cs">
+      <DependentUpon>SupervisionView.xaml</DependentUpon>
     </Compile>
     <Page Include="DXSplashScreen\ProgressWindow.xaml">
       <SubType>Designer</SubType>
@@ -449,6 +460,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Contract\WarranteeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupervisionView\SupervisionCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupervisionView\SupervisionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

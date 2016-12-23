@@ -769,6 +769,67 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+
+    public class SupervisionDataProvider : DataProviderBase<SupervisionModel>
+    {
+        protected override SupervisionModel AddItem(SupervisionModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SupervisionModel> FillItems(object filter)
+        {
+            return new List<SupervisionModel>()
+            {
+                SupervisionModel.Create()
+            };
+        }
+
+        protected override IList<SupervisionModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SupervisionModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SupervisionModel UpdateItem(SupervisionModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class SupervisionDetailDataProvider : DataProviderBase<SupervisionDetailModel>
+    {
+        protected override SupervisionDetailModel AddItem(SupervisionDetailModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SupervisionDetailModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SupervisionDetailModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SupervisionDetailModel GetItem(object id)
+        {
+            return SupervisionDetailModel.Create();
+        }
+
+        protected override SupervisionDetailModel UpdateItem(SupervisionDetailModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public static class DemoHelper
     {
         #region 帮助类
