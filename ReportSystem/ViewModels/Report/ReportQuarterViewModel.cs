@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class ReportQuarterViewModel: CollectionViewModel<ReportQuarterModel>
+    public class ReportQuarterViewModel: ReportViewModel<ReportModel>
     {
         protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
 
@@ -24,18 +24,18 @@ namespace ReportSystem.ViewModels
             return ViewModelSource.Create(() => new ReportQuarterViewModel());
         }
 
-        protected ReportQuarterViewModel()
+        protected ReportQuarterViewModel():base(ReportType.QUARTER)
         {
-            if (Items == null)
-                return;
-            this.sheet1 = new ObservableCollection<ReportQuarterSheet1>(Items.Select(x => x.sheet1).ToList());
-            this.sheet2 = new ObservableCollection<ReportQuarterSheet2>(Items.Select(x => x.sheet2).ToList());
-            var querysheet3 = Items.Select(x => x.sheet3).ToList();
+            //if (Items == null)
+            //    return;
+            //this.sheet1 = new ObservableCollection<ReportQuarterSheet1>(Items.Select(x => x.sheet1).ToList());
+            //this.sheet2 = new ObservableCollection<ReportQuarterSheet2>(Items.Select(x => x.sheet2).ToList());
+            //var querysheet3 = Items.Select(x => x.sheet3).ToList();
             
-            querysheet3.ForEach(x =>
-            {
-                sheet3.AddRange(x);
-            });
+            //querysheet3.ForEach(x =>
+            //{
+            //    sheet3.AddRange(x);
+            //});
         }
 
 
@@ -55,11 +55,11 @@ namespace ReportSystem.ViewModels
             var docVM = (AddQuarterViewModel)doc.Content;
             if (docVM.IsSaved)
             {
-                Items.Add(docVM.Content);
-                ItemSource.Add(docVM.Content);
-                sheet1.Add(docVM.Content.sheet1);
-                sheet2.Add(docVM.Content.sheet2);
-                sheet3.AddRange(docVM.Content.sheet3);
+                //Items.Add(docVM.Content);
+                //ItemSource.Add(docVM.Content);
+                //sheet1.Add(docVM.Content.sheet1);
+                //sheet2.Add(docVM.Content.sheet2);
+                //sheet3.AddRange(docVM.Content.sheet3);
             }
 
         }

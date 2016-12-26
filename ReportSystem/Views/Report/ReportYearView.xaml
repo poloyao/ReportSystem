@@ -46,7 +46,7 @@
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
 
-                <dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
+                <!--<dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
                     <dx:DXTabItem Header="G1">
                         <Grid>
                             <dxg:GridControl ItemsSource="{Binding Sheet1}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
@@ -112,8 +112,18 @@
                     </dx:DXTabItem>
 
 
-                </dx:DXTabControl>
+                </dx:DXTabControl>-->
 
+                <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding ItemSource}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" SelectionMode="Row">
+                    <dxg:GridControl.View>
+                        <dxg:TableView   ShowGroupPanel="False" AllowEditing="False" AutoWidth="True">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding ShowReportCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
+                            </dxmvvm:Interaction.Behaviors>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+
+                </dxg:GridControl>
 
 
             </Grid>

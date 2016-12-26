@@ -194,7 +194,111 @@ namespace ReportSystem.ViewModels
         {
             base.OnParameterChanged(parameter);
             if (parameter != null)
+            {
                 this.Content = base.ContentBase;
+                SetExcel();
+            }
+        }
+
+        private void SetExcel()
+        {
+            object obj = new DevExpress.Xpf.Spreadsheet.SpreadsheetControl();
+            var workbook = ((DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj).Document;
+            var workSheet = workbook.Worksheets[0];
+            DevExpress.Spreadsheet.Range rang;
+            if (this.Content.Sheet1.Mark == "公司制")
+            {
+                rang = workSheet.Range["E11:E35"];
+            }
+            else
+            {
+                rang = workSheet.Range["F11:F35"];
+            }
+            SetCellValue_Column(rang, this.Content.Sheet1);
+
+
+
+
+        }
+        /// <summary>
+        /// 单列赋值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="rang"></param>
+        /// <param name="sheet"></param>
+        private static void SetCellValue<T>(DevExpress.Spreadsheet.Range rang, T sheet)
+        {
+            System.Reflection.PropertyInfo[] properties = sheet.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+            for (int i = 0; i < rang.ColumnCount; i++)
+            {
+                var query = properties.Where(x => x.Name == $"A{(i + 1).ToString().PadLeft(2, '0')}");
+                if (query == null)
+                    continue;
+                foreach (var item in query)
+                {
+                    if (item.PropertyType == typeof(string))
+                        rang[i].Value = (string)item.GetValue(sheet);
+                }
+            }
+        }
+        /// <summary>
+        /// 单列多行赋值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="rang"></param>
+        /// <param name="sheet"></param>
+        private static void SetCellValue_Column<T>(DevExpress.Spreadsheet.Range rang, T sheet)
+        {
+            for (int i = 0; i < rang.ColumnCount; i++)
+            {
+                string mark = i == 0 ? "A" : i == 1 ? "B" : i == 2 ? "C" : "D";
+                System.Reflection.PropertyInfo[] properties = sheet.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                for (int j = 0; j < rang.RowCount; j++)
+                {
+                    var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
+                    if (query == null || rang[j, i].Value.ToString() == "——")
+                        continue;
+                    foreach (var item in query)
+                    {
+                        if (item.PropertyType == typeof(string))
+                            rang[j, i].Value = (string)item.GetValue(sheet);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 多列多行
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="rang"></param>
+        /// <param name="sheet"></param>
+        private static void SetCellValue_Column_Row<T>(DevExpress.Spreadsheet.Range rang, T sheet)where T: new()
+        {
+            
+
+            Type type = typeof(T);
+            System.Reflection.PropertyInfo[] properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+            var markTemp = properties.Single(x => x.Name == "Mark").GetValue(sheet).ToString();
+            var mark = markTemp == "A" ? 0 : markTemp == "B" ? 1 : markTemp == "C" ? 2 : 3;
+
+            for (int j = 0; j < rang.RowCount; j++)
+            {
+                var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
+                if (query == null || rang[j, mark].Value.ToString() == "——")
+                    continue;
+                foreach (var item in query)
+                {
+                    if (item.PropertyType == typeof(string))
+                        rang[j, mark].Value = (string)item.GetValue(sheet);
+                }
+
+            }
+                
+            
+
         }
 
     }

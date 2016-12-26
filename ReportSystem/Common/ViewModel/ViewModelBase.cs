@@ -153,7 +153,14 @@ namespace ReportSystem.Common.ViewModel
 
         public void OnDestroy() { }
     }
-    
+
+    public abstract class ReportViewModel<TModel> : CollectionViewModel<TModel> where TModel : class
+    {
+        protected ReportViewModel(Models.ReportType repType):base(repType)
+        {
+            
+        }
+    }
 
 
 

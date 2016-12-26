@@ -656,6 +656,78 @@ namespace ReportSystem.Common.Data.Demo
     }
 
 
+    public class ReportDataProvider : DataProviderBase<ReportModel>
+    {
+        protected override ReportModel AddItem(ReportModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<ReportModel> FillItems(object filter)
+        {
+            List<ReportModel> result = null;
+            var repType = (ReportType)filter;
+            if (repType == ReportType.YEAR)
+            {
+                result = new List<ReportModel>()
+                {
+                    new ReportModel() { Year = "2016",RType = ReportType.YEAR,Period = 1,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+            new ReportModel() { Year = "2015",RType = ReportType.YEAR,Period = 1,UDP = DateTime.Now,Status = ReportStatus.CANREPORT },
+            new ReportModel() { Year = "2014",RType = ReportType.YEAR,Period = 1,UDP = DateTime.Now,Status = ReportStatus.UNFILLED },
+            new ReportModel() { Year = "2013",RType = ReportType.YEAR,Period = 1,UDP = DateTime.Now,Status = ReportStatus.REPORTED },
+                };
+            }
+            else if (repType == ReportType.MONTH)
+            {
+                result = new List<ReportModel>()
+                 {
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 1,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 2,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 3,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 4,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 5,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 6,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 7,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                 };
+            }
+            else if (repType == ReportType.QUARTER)
+            {
+                result = new List<ReportModel>()
+                 {
+                     new ReportModel() { Year = "2016",RType = ReportType.QUARTER,Period = 1,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.QUARTER,Period = 2,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.QUARTER,Period = 3,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.QUARTER,Period = 4,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                 };
+            }
+            else if (repType == ReportType.HALFYEAR)
+            {
+                result = new List<ReportModel>()
+                 {
+                     new ReportModel() { Year = "2016",RType = ReportType.HALFYEAR,Period = 1,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                     new ReportModel() { Year = "2016",RType = ReportType.HALFYEAR,Period = 2,UDP = DateTime.Now,Status = ReportStatus.MODIFIED },
+                 };
+            }
+
+            return result;
+        }
+
+        protected override IList<ReportModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ReportModel UpdateItem(ReportModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ReportMonthDataProvider : DataProviderBase<ReportMonthModel>
     {
         protected override ReportMonthModel AddItem(ReportMonthModel item)
@@ -676,7 +748,7 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ReportMonthModel GetItem(object id)
         {
-            throw new NotImplementedException();
+            return new ReportMonthModel();
         }
 
         protected override ReportMonthModel UpdateItem(ReportMonthModel item, bool IsDelete)
@@ -704,7 +776,7 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ReportQuarterModel GetItem(object id)
         {
-            throw new NotImplementedException();
+            return new ReportQuarterModel();
         }
 
         protected override ReportQuarterModel UpdateItem(ReportQuarterModel item, bool IsDelete)
@@ -732,7 +804,7 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ReportHalfYearModel GetItem(object id)
         {
-            throw new NotImplementedException();
+            return new ReportHalfYearModel();
         }
 
         protected override ReportHalfYearModel UpdateItem(ReportHalfYearModel item, bool IsDelete)
@@ -760,7 +832,7 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ReportYearModel GetItem(object id)
         {
-            throw new NotImplementedException();
+            return new ReportYearModel();
         }
 
         protected override ReportYearModel UpdateItem(ReportYearModel item, bool IsDelete)

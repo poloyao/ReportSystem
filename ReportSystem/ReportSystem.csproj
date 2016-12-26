@@ -130,6 +130,7 @@
     <Compile Include="Models\PremiumRecordItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\Reports\ReportHalfYearModel.cs" />
+    <Compile Include="Models\Reports\ReportModel.cs" />
     <Compile Include="Models\Reports\ReportMonthModel.cs" />
     <Compile Include="Models\Reports\ReportQuarterModel.cs" />
     <Compile Include="Models\Reports\ReportYearModel.cs" />

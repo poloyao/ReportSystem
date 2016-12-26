@@ -9,14 +9,14 @@ using ReportSystem.Models;
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class ReportHalfYearViewModel : CollectionViewModel<ReportHalfYearModel>
+    public class ReportHalfYearViewModel : ReportViewModel<ReportModel>
     {
         public static ReportHalfYearViewModel Create()
         {
             return ViewModelSource.Create(() => new ReportHalfYearViewModel());
         }
 
-        protected ReportHalfYearViewModel()
+        protected ReportHalfYearViewModel():base(ReportType.HALFYEAR)
         {
 
         }
@@ -39,8 +39,8 @@ namespace ReportSystem.ViewModels
             var docVM = (AddHalfYearViewModel)doc.Content;
             if (docVM.IsSaved)
             {
-                Items.Add(docVM.Content);
-                ItemSource.Add(docVM.Content);
+                //Items.Add(docVM.Content);
+                //ItemSource.Add(docVM.Content);
             }
         }
     }

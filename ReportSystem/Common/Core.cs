@@ -66,6 +66,8 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new CompanyAccountDataprovider();
 
             //报表
+            if (IsDerivedFrom<TModel, ReportModel>())
+                return (IDataProvider<TModel>)new ReportDataProvider();
             if (IsDerivedFrom<TModel, ReportMonthModel>())
                 return (IDataProvider<TModel>)new ReportMonthDataProvider();
             if (IsDerivedFrom<TModel, ReportQuarterModel>())
