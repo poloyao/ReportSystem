@@ -54,6 +54,8 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new SupervisionDataProvider();
             if (IsDerivedFrom<TModel, SupervisionDetailModel>())
                 return (IDataProvider<TModel>)new SupervisionDetailDataProvider();
+            if (IsDerivedFrom<TModel, SupervisionRecoveryModel>())
+                return (IDataProvider<TModel>)new SupervisionRecoveryDataProvider();
 
             //机构信息
             if (IsDerivedFrom<TModel, CompanyManagersModel>())
@@ -77,7 +79,8 @@ namespace ReportSystem.Common
             if (IsDerivedFrom<TModel, ReportYearModel>())
                 return (IDataProvider<TModel>)new ReportYearDataProvider();
 
-            return null;
+            throw new Exception($"未实现{typeof(TModel)}的数据接口");
+           // return null;
         }
 
 

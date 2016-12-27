@@ -23,5 +23,13 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void gridDetail_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (this.gridDetail.Columns.GetColumnByFieldName("LoanStatus").CellTemplate == null)
+            {
+                this.gridDetail.Columns.GetColumnByFieldName("LoanStatus").CellTemplate = (DataTemplate)Resources["LoanStatusCellTemplate"];
+            }
+        }
     }
 }

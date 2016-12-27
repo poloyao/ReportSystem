@@ -118,25 +118,25 @@
     <Compile Include="Models\Company\ContractItemModel.cs" />
     <Compile Include="Models\CreditorItemModel.cs" />
     <Compile Include="Models\DisplayLoanBriefContentModel.cs" />
-    <Compile Include="Models\LoanCreditorItemModel.cs" />
-    <Compile Include="Models\LoanDetailItemModel.cs" />
-    <Compile Include="Models\LoanEntryItemModel.cs" />
-    <Compile Include="Models\LoanItemModel.cs" />
-    <Compile Include="Models\LoanRelieveItemModel.cs" />
+    <Compile Include="Models\Loan\LoanCreditorItemModel.cs" />
+    <Compile Include="Models\Loan\LoanDetailItemModel.cs" />
+    <Compile Include="Models\Loan\LoanEntryItemModel.cs" />
+    <Compile Include="Models\Loan\LoanItemModel.cs" />
+    <Compile Include="Models\Loan\LoanRelieveItemModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
-    <Compile Include="Models\PremiumCollectionItemModel.cs" />
-    <Compile Include="Models\PremiumDisplayItemModel.cs" />
-    <Compile Include="Models\PremiumItemModel.cs" />
-    <Compile Include="Models\PremiumRecordItemModel.cs" />
+    <Compile Include="Models\Premium\PremiumCollectionItemModel.cs" />
+    <Compile Include="Models\Premium\PremiumDisplayItemModel.cs" />
+    <Compile Include="Models\Premium\PremiumItemModel.cs" />
+    <Compile Include="Models\Premium\PremiumRecordItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
     <Compile Include="Models\Reports\ReportHalfYearModel.cs" />
     <Compile Include="Models\Reports\ReportModel.cs" />
     <Compile Include="Models\Reports\ReportMonthModel.cs" />
     <Compile Include="Models\Reports\ReportQuarterModel.cs" />
     <Compile Include="Models\Reports\ReportYearModel.cs" />
-    <Compile Include="Models\SupervisionDetailModel.cs" />
-    <Compile Include="Models\SupervisionModel.cs" />
-    <Compile Include="Models\SupervisionRecoveryModel.cs" />
+    <Compile Include="Models\Supervision\SupervisionDetailModel.cs" />
+    <Compile Include="Models\Supervision\SupervisionModel.cs" />
+    <Compile Include="Models\Supervision\SupervisionRecoveryModel.cs" />
     <Compile Include="Models\WarranteeItemModel.cs" />
     <Compile Include="Service References\CommonSer\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -182,6 +182,7 @@
     <Compile Include="ViewModels\Project\ProjectCollectionViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectSingleViewModel.cs" />
     <Compile Include="ViewModels\Contract\WarranteeViewModel.cs" />
+    <Compile Include="ViewModels\Supervision\SupervisionRecovertViewModel.cs" />
     <Compile Include="ViewModels\Supervision\SupervisionCollectionViewModel.cs" />
     <Compile Include="ViewModels\Supervision\SupervisionViewModel.cs" />
     <Compile Include="ViewResources\Converters.cs" />
@@ -289,6 +290,9 @@
     </Compile>
     <Compile Include="Views\Contract\WarranteeView.xaml.cs">
       <DependentUpon>WarranteeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupervisionView\SupervisionRecovertView.xaml.cs">
+      <DependentUpon>SupervisionRecovertView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SupervisionView\SupervisionCollectionView.xaml.cs">
       <DependentUpon>SupervisionCollectionView.xaml</DependentUpon>
@@ -461,6 +465,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Contract\WarranteeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupervisionView\SupervisionRecovertView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

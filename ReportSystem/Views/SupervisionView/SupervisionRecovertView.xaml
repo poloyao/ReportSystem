@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="ReportSystem.Views.SupervisionRecovertView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:SupervisionRecovertViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <cvs:GoMarkConverter x:Key="GoMarkConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="待追偿总金额">
+                        <dxe:TextEdit  IsReadOnly="True" MaskType="Numeric"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="追偿日期">
+                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.RecoveryDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="追偿金额">
+                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.RecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="占位" Visibility="Hidden">
+                        <dxe:TextEdit IsReadOnly="{Binding IsRead}"  />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="本机构追偿金额">
+                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.OwnRecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="是否确认损失">
+                        <dxe:CheckEdit x:Name="isLoss" IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.IsLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="损失金额">
+                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" IsEnabled="{Binding ElementName=isLoss,Path=EditValue}" EditValue="{Binding EditItem.LossAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="是否继续追偿" >
+                        <dxe:CheckEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.GoMark,Converter={StaticResource GoMarkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="占位" Visibility="Hidden">
+                        <dxe:CheckEdit/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <dx:SimpleButton IsEnabled="{Binding IsEdit}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Save_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

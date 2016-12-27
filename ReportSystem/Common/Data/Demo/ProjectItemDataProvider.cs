@@ -903,6 +903,8 @@ namespace ReportSystem.Common.Data.Demo
     }
 
 
+    //不良项目
+
     public class SupervisionDataProvider : DataProviderBase<SupervisionModel>
     {
         protected override SupervisionModel AddItem(SupervisionModel item)
@@ -954,7 +956,90 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override SupervisionDetailModel GetItem(object id)
         {
-            return SupervisionDetailModel.Create();
+            var result = SupervisionDetailModel.Create();
+            result.RecoveryItems = new List<SupervisionRecoveryModel>()
+            {
+                SupervisionRecoveryModel.Create(x=>
+                {
+                       x.ID = Guid.NewGuid();
+                x.RecoveryDate = DateTime.Now;
+                x.RecoveryAmount = new Random().Next(100) * 100000;
+                x.OwnRecoveryAmount = x.RecoveryAmount;
+                x.IsLoss = false;
+                x.LossAmount = 0m;
+                    x.GoMark = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GoMark)).ID);
+                }),
+                SupervisionRecoveryModel.Create(x=>
+                {
+                       x.ID = Guid.NewGuid();
+                x.RecoveryDate = DateTime.Now;
+                x.RecoveryAmount = new Random().Next(100) * 100000;
+                x.OwnRecoveryAmount = x.RecoveryAmount;
+                x.IsLoss = false;
+                x.LossAmount = 0m;
+                    x.GoMark = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GoMark)).ID);
+                }),
+            };
+
+            result.LoanCreditors = new List<LoanCreditorItemModel>()
+            {
+                LoanCreditorItemModel.Create(lc =>
+                {
+                    lc.ID = Guid.NewGuid();
+                    lc.TotalCredit = 10000m;
+                    lc.TotalLoanAmount = 5000m;
+
+                    lc.Creditor = CreditorItemModel.Create(x =>
+                    {
+                        x.ID = Guid.NewGuid();
+                        x.CreditorType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CreditorType)).ID);
+                        x.CreditorName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "银行";
+                        x.CardType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.CodeType)).ID);
+                        x.CardID = DemoHelper.GetRandomCardID(18, true);
+                    });
+                    lc.Contract = CreditorContractItemModel.Create(x =>
+                    {
+                        x.ID = Guid.NewGuid();
+                        x.ContractID = "ContractID";
+                        x.ContractNo = "ContractNo";
+                        //x.DirectionID
+                        x.IsMain = true;
+                    });
+                     lc.LoanEntryList = new System.Collections.ObjectModel.ObservableCollection<LoanEntryItemModel>()
+                            {
+                                LoanEntryItemModel.Create(le =>
+                                {
+                                    le.ID = Guid.NewGuid();
+                                    le.Amount = new Random(Guid.NewGuid().GetHashCode()).Next(50) * 100000;
+                                    le.StartDate = DemoHelper.GetRandomTime();
+                                    le.EndDate = DemoHelper.GetRandomTime(le.StartDate);
+                                    le.RelieveAmount = new Random(Guid.NewGuid().GetHashCode()).Next((int)le.Amount);
+                                    le.LoanRelieveItems = new System.Collections.ObjectModel.ObservableCollection<LoanRelieveItemModel>()
+                                    {
+                                        LoanRelieveItemModel.Create(lr =>
+                                        {
+                                            lr.ID = Guid.NewGuid();
+                                            var stc = DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList("15"));
+
+                                            lr.RelieveType = Guid.Parse(stc.ID);
+                                            lr.RelieveAmount = stc.Value != "1" ? le.Amount:10000M;
+                                            lr.RelieveDate = DateTime.Now;
+                                            if(lr.RelieveAmount == le.Amount)
+                                                le.LoanStatus = 1;
+                                        })
+                                    };
+                                })
+                            };
+
+                })
+            };
+
+            result.SupervisionItem = SupervisionModel.Create(x=>
+            {
+                x.ProjectNo = "adas943kjk";
+            });
+
+            return result;
         }
 
         protected override SupervisionDetailModel UpdateItem(SupervisionDetailModel item, bool IsDelete)
@@ -963,6 +1048,34 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+
+    public class SupervisionRecoveryDataProvider : DataProviderBase<SupervisionRecoveryModel>
+    {
+        protected override SupervisionRecoveryModel AddItem(SupervisionRecoveryModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SupervisionRecoveryModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SupervisionRecoveryModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SupervisionRecoveryModel GetItem(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SupervisionRecoveryModel UpdateItem(SupervisionRecoveryModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public static class DemoHelper
     {
         #region 帮助类

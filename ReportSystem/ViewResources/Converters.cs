@@ -160,4 +160,30 @@ namespace ReportSystem.ViewResources
         }
     }
 
+
+    /// <summary>
+    /// 转换继续追偿标记
+    /// </summary>
+    public class GoMarkConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //如果传入此类异常值 则表示默认true状态，继续追偿
+            if (value == null || value.ToString() == Guid.Empty.ToString())
+                return true;
+            var query = SingleTypeCode.GetInstance().GetCommonCode(value.ToString()).Value; //((CommonSer.CommonCodeDataObject)value).Value;
+            if (query == "1")
+                return true;
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var query = SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GoMark);
+            if ((bool)value)
+                return query.Single(x => x.Value == "1").ID;
+            return query.Single(x => x.Value == "2").ID;
+        }
+    }
+
 }

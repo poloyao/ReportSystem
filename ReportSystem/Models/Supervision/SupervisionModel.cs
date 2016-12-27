@@ -72,11 +72,11 @@ namespace ReportSystem.Models
         [Display(Name = "本机构承担代偿金额")]
         public virtual Decimal OwnRepaymentAmount { get; set; }
         /// <summary>
-        /// 最近一次追偿日期		
+        /// 最近一次追偿日期 	DateTime?
         /// </summary>
         [NumericMask(Mask = PredefinedMasks.DateTime.LongDate)]
         [Display(Name = "最近一次追偿日期")]
-        public virtual DateTime LastRecoveryDate { get; set; }
+        public virtual DateTime? LastRecoveryDate { get; set; }
         /// <summary>
         /// 代偿余额		
         /// </summary>

@@ -16,15 +16,17 @@
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:SupervisionViewModel}"
              d:DesignHeight="685.5" d:DesignWidth="652.5">
     <UserControl.Resources>
-        <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
-            <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
-            <Setter Property="AutoGenerateColumns" Value="AddNew" />
-            <!--<Setter Property="ColumnsSource" Value="{Binding Columns}"/>-->
-            <!--<Setter Property="AutoExpandAllGroups" Value="True"/>-->
-            <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
-            <!--<Setter Property="FilterString" Value="{Binding FilterString, Mode=TwoWay}"/>-->
-        </Style>
-        <cvs:CommonTypeConverter x:Key="ctc" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ReportSystem;component/ViewResources/LoanStatusCellTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
+                <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
+                <Setter Property="AutoGenerateColumns" Value="AddNew" />
+                <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
+            </Style>
+            <cvs:CommonTypeConverter x:Key="ctc" />
+        </ResourceDictionary>        
     </UserControl.Resources>
     <dxmvvm:Interaction.Behaviors>
         <dx:WindowedDocumentUIService DocumentShowMode="Dialog">
@@ -41,13 +43,8 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
-                <!--<dxb:BarButtonItem x:Name="editTask" Content="撤销"  LargeGlyph="{dx:DXImage Image=DeleteList2_32x32.png}"/>-->
-                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="newTask" Content="新增追偿" Command="{Binding AddRecovertCommand}" LargeGlyph="{dx:DXImage Image=BOSaleItem_32x32.png}" Glyph="{dx:DXImage Image=BOSaleItem_16x16.png}" />
 
-                <dxb:BarButtonItem x:Name="WarranteeBar" Content="添加被担保人" Command="{Binding AddItemCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="ReGuarantorBar" Content="反担保人列表"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="CreditorBar" Content="债权人列表"  LargeGlyph="{dx:DXImage Image=Currency_32x32.png}"/>
 
                 <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
 
@@ -65,14 +62,6 @@
                             </dxr:RibbonPageGroup>
                             <dxr:RibbonPageGroup Caption="other">
                                 <dxb:BarButtonItemLink BarItemName="newTask" />
-                                <dxb:BarButtonItemLink BarItemName="deleteTask" />
-                            </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="被担保人">
-                                <dxb:BarButtonItemLink BarItemName="WarranteeBar" />
-                            </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other2">
-                                <dxb:BarButtonItemLink BarItemName="ReGuarantorBar" />
-                                <dxb:BarButtonItemLink BarItemName="CreditorBar" />
                             </dxr:RibbonPageGroup>
                             <dxr:RibbonPageGroup Caption="other3">
                                 <dxb:BarButtonItem Content="导出" />
@@ -96,65 +85,71 @@
                                                     <dxlc:LayoutGroup   Orientation="Vertical"  >
 
                                                             <dxlc:LayoutItem Label="项目编号">
-                                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ProjectNo}"/>
+                                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.SupervisionItem.ProjectNo}"/>
                                                             </dxlc:LayoutItem>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem  Label="主被担保人">
-                                                                <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Content.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                                                                <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Content.SupervisionItem.MainWarantee}"  />
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutItem Label="担保金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.Amount}"/>
                                                             </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem Label="最近代偿日期">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:DateEdit EditValue="{Binding Content.SupervisionItem.LastRepaymentDate}" IsReadOnly="True"/>
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutGroup Orientation="Vertical">
                                                                 <dxlc:LayoutItem Label="累计代偿金额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRepaymentAmount}"/>
                                                                 </dxlc:LayoutItem>
                                                                 <dxlc:LayoutItem Label="本机构承担代偿金额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentAmount}"/>
                                                                 </dxlc:LayoutItem>
                                                             </dxlc:LayoutGroup>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem Label="最近追偿日期">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:DateEdit IsReadOnly="True"  EditValue="{Binding Content.SupervisionItem.LastRecoveryDate}"/>
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutGroup Orientation="Vertical">
                                                                 <dxlc:LayoutItem Label="代偿余额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.RepaymentBalance}"/>
                                                                 </dxlc:LayoutItem>
                                                                 <dxlc:LayoutItem Label="本机构承担代偿余额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentBalance}"/>
                                                                 </dxlc:LayoutItem>
                                                             </dxlc:LayoutGroup>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem Label="累计追偿金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRecoveryAmount}"/>
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutItem Label="累计损失金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalLossAmount}"/>
                                                             </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem Label="记账日期">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000"/>
+                                                                <dxe:DateEdit IsReadOnly="True" EditValue="{Binding Content.SupervisionItem.AccountingDate}"/>
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutItem Label="是否继续追偿">
-                                                                <dxe:TextEdit IsReadOnly="True"/>
+                                                                <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Content.SupervisionItem.GoMark}"/>
                                                             </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
                                                     </dxlc:LayoutGroup>
                                                 </dxlc:LayoutControl>
                                             </TabItem>
-                                            <TabItem Header="债权人信息" DataContext="{Binding Content.LoanCreditors}">
-                                                <dxg:GridControl ItemsSource="{Binding}"                                                  
+                                            <TabItem Header="债权人信息">
+                                                <dxg:GridControl ItemsSource="{Binding Content.LoanCreditors}"                                                  
                                  EnableSmartColumnsGeneration="True"                       
                                  AutoGenerateColumns="AddNew">
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn FieldName="Creditor.CreditorName"  Header="债权人"/>
+                                                        <dxg:GridColumn FieldName="Contract.ContractID"  Header="合同"/>
+                                                        <dxg:GridColumn FieldName="TotalCredit" Header="授信总额"/>
+                                                        <dxg:GridColumn FieldName="TotalLoanAmount" Header="在保总额"/>
+                                                    </dxg:GridControl.Columns>
                                                     <dxg:GridControl.View>
                                                         <dxg:TableView UseEvenRowBackground="True" 
                                        AutoWidth="True" 
@@ -165,10 +160,11 @@
                                                AllowCascadeUpdate="True"/>
                                                     </dxg:GridControl.View>
                                                     <dxg:GridControl.DetailDescriptor>
-                                                        <dxg:DataControlDetailDescriptor  ItemsSourceBinding="{Binding LoanDetailList}">
+                                                        <dxg:DataControlDetailDescriptor  ItemsSourceBinding="{Binding LoanEntryList}">
                                                             <dxg:GridControl  x:Name="gridDetail"  
                                                               EnableSmartColumnsGeneration="True"
-                                                              AutoGenerateColumns="AddNew"                   >
+                                                                              CustomColumnDisplayText="gridDetail_CustomColumnDisplayText"
+                                                              AutoGenerateColumns="AddNew">
                                                                 <dxg:GridControl.Columns>
                                                                     <dxg:GridColumn FieldName="解除比例" UnboundExpression="[RelieveAmount] / [Amount] * 100"  UnboundType="Decimal">
                                                                         <dxg:GridColumn.EditSettings>
