@@ -655,6 +655,7 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+    //报表列表 需要根据filter值获取相应的数据列表FillItems
 
     public class ReportDataProvider : DataProviderBase<ReportModel>
     {
@@ -728,6 +729,9 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
+
+    //具体的报表需要实现AddItem，GetItem
+
     public class ReportMonthDataProvider : DataProviderBase<ReportMonthModel>
     {
         protected override ReportMonthModel AddItem(ReportMonthModel item)
@@ -748,7 +752,14 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override ReportMonthModel GetItem(object id)
         {
-            return new ReportMonthModel();
+            ReportMonthModel result = new ReportMonthModel();
+            result.Sheet1 = new ReportMonthSheet1()
+            {
+                A01 = "111",
+                Month = "2"
+            };
+
+            return result;
         }
 
         protected override ReportMonthModel UpdateItem(ReportMonthModel item, bool IsDelete)
@@ -815,6 +826,11 @@ namespace ReportSystem.Common.Data.Demo
 
     public class ReportYearDataProvider : DataProviderBase<ReportYearModel>
     {
+        /// <summary>
+        /// 添加年报
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         protected override ReportYearModel AddItem(ReportYearModel item)
         {
             return item;
@@ -830,9 +846,54 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 获取指定年报信息
+        /// </summary>
+        /// <param name="id">ReportModel。ID</param>
+        /// <returns></returns>
         protected override ReportYearModel GetItem(object id)
         {
-            return new ReportYearModel();
+            ReportYearModel result = new ReportYearModel();
+            result.Sheet1 = new ReportYearSheet1()
+            {
+                A01 = "123",
+                A02 = "434",
+                A25 = "asda",
+                Mark = "公司制",
+                Year = "2016"
+            };
+            result.Sheet2 = new ReportYearSheet2()
+            {
+                A01 = "234234",
+                Year = "2016"
+            };
+
+            result.Sheet4 = new List<ReportYearSheet4>()
+            {
+                new ReportYearSheet4()
+                {
+                    Mark = "A",
+                    A01 = "122222"
+                },
+                 new ReportYearSheet4()
+                {
+                    Mark = "B",
+                    A01 = "2222"
+                },
+                  new ReportYearSheet4()
+                {
+                    Mark = "C",
+                    A01 = "3333"
+                }
+            };
+
+            result.Sheet6 = new ReportYearSheet6()
+            {
+                A01 = "466666666",
+                A12 = "1212121"
+
+            };
+            return result;
         }
 
         protected override ReportYearModel UpdateItem(ReportYearModel item, bool IsDelete)

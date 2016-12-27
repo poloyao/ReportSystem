@@ -53,11 +53,11 @@
                         <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>-->
-                <dxg:GridControl Grid.Row="1" ItemsSource="{Binding ItemSource}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" SelectionMode="Row">
+                <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding ItemSource}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" SelectionMode="Row">
                     <dxg:GridControl.View>
                         <dxg:TableView  ShowGroupPanel="False" AllowEditing="False" AutoWidth="True">
                             <dxmvvm:Interaction.Behaviors>
-                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding ShowReportCommand}" />
+                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding ShowReportCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}"/>
                             </dxmvvm:Interaction.Behaviors>
                         </dxg:TableView>
                     </dxg:GridControl.View>

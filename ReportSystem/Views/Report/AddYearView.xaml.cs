@@ -28,8 +28,10 @@ namespace ReportSystem.Views
             Worksheet worksheet = workbook.Worksheets[0];
             workbook.Worksheets.ActiveWorksheet = worksheet;
             spreadsheet.CellValueChanged += Spreadsheet_CellValueChanged;
+            //spreadsheet.DocumentLoaded += Spreadsheet_DocumentLoaded;
 
-            
+
+
         }
 
         private void Spreadsheet_CellValueChanged(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCellEventArgs e)

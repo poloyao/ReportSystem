@@ -38,6 +38,9 @@
 
                 <Grid Grid.Row="1">
                     <dxsps:SpreadsheetControl x:Name="spreadsheet">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxmvvm:EventToCommand EventName="DocumentLoaded" Command="{Binding DocLoadedCommand}" CommandParameter="{Binding ElementName=spreadsheet}" ></dxmvvm:EventToCommand>
+                        </dxmvvm:Interaction.Behaviors>
                     </dxsps:SpreadsheetControl>
                 </Grid>
             </Grid>

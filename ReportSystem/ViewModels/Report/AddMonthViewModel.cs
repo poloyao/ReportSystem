@@ -85,5 +85,59 @@ namespace ReportSystem.ViewModels
             if (parameter != null)
                 this.Content = base.ContentBase;
         }
+
+        public void DocLoaded(object obj)
+        {
+            if (this.Content == null)
+                return;
+            try
+            {
+                var sp = (DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj;
+                sp.BeginUpdate();
+                var workbook = (sp).Document;
+                var workSheet = workbook.Worksheets[0];
+                DevExpress.Spreadsheet.Range rang;
+                rang = workSheet.Range["B8:Y8"];
+                SetCellValue(rang, this.Content.Sheet1);
+
+                workSheet = workbook.Worksheets[1];
+                rang = workSheet.Range["B8:T8"];
+                SetCellValue(rang, this.Content.Sheet2);
+
+                workSheet = workbook.Worksheets[2];
+                rang = workSheet.Range["B8:L8"];
+                SetCellValue(rang, this.Content.Sheet3);
+
+
+                workSheet = workbook.Worksheets[3];
+                rang = workSheet.Range["B8:J8"];
+                SetCellValue(rang, this.Content.Sheet4);
+
+                sp.EndUpdate();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("月报表数据不完整。请联系管理员。");
+            }
+        }
+
+        private static void SetCellValue<T>(DevExpress.Spreadsheet.Range rang, T sheet)
+        {
+            System.Reflection.PropertyInfo[] properties = sheet.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+            for (int i = 0; i < rang.ColumnCount; i++)
+            {
+                var query = properties.Where(x => x.Name == $"A{(i + 1).ToString().PadLeft(2, '0')}");
+                if (query == null)
+                    continue;
+                foreach (var item in query)
+                {
+                    if (item.PropertyType == typeof(string))
+                        rang[i].Value = (string)item.GetValue(sheet);
+                }
+            }
+        }
+
     }
 }

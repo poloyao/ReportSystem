@@ -196,30 +196,78 @@ namespace ReportSystem.ViewModels
             if (parameter != null)
             {
                 this.Content = base.ContentBase;
-                SetExcel();
+                //SetExcel();
             }
         }
 
-        private void SetExcel()
+        public void DocLoaded(object obj)
         {
-            object obj = new DevExpress.Xpf.Spreadsheet.SpreadsheetControl();
-            var workbook = ((DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj).Document;
-            var workSheet = workbook.Worksheets[0];
-            DevExpress.Spreadsheet.Range rang;
-            if (this.Content.Sheet1.Mark == "公司制")
+            if (this.Content == null)
+                return;
+            try
             {
-                rang = workSheet.Range["E11:E35"];
+                var sp = (DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj;
+                sp.BeginUpdate();
+                var workbook = (sp).Document;
+                var workSheet = workbook.Worksheets[0];
+                DevExpress.Spreadsheet.Range rang;
+                bool IsCompany = false;
+                if (this.Content.Sheet1.Mark == "公司制")
+                    IsCompany = true;
+
+                if (IsCompany)
+                {
+                    rang = workSheet.Range["E11:E35"];
+                }
+                else
+                {
+                    rang = workSheet.Range["F11:F35"];
+                }
+                SetCellValue_Column(rang, this.Content.Sheet1);
+
+
+                workSheet = workbook.Worksheets[1];
+                if (IsCompany)
+                    rang = workSheet.Range["D10:D32"];
+                else
+                    rang = workSheet.Range["E10:E32"];
+                SetCellValue_Column(rang, this.Content.Sheet2);
+
+                workSheet = workbook.Worksheets[2];
+                if (IsCompany)
+                    rang = workSheet.Range["C10:C27"];
+                else
+                    rang = workSheet.Range["D10:D27"];
+                SetCellValue_Column(rang, this.Content.Sheet3);
+
+                workSheet = workbook.Worksheets[3];
+                rang = workSheet.Range["D10:G34"];
+                SetCellValue_Column_Row(rang, this.Content.Sheet4);
+
+                workSheet = workbook.Worksheets[4];
+                rang = workSheet.Range["D10:F34"];
+                SetCellValue_Column_Row(rang, this.Content.Sheet5);
+
+                workSheet = workbook.Worksheets[5];
+                rang = workSheet.Range["B8:M8"];
+                SetCellValue(rang, this.Content.Sheet6);
+
+                workSheet = workbook.Worksheets[6];
+                rang = workSheet.Range["B7:O7"];
+                SetCellValue(rang, this.Content.Sheet7);
+
+                sp.EndUpdate();
             }
-            else
+            catch (Exception)
             {
-                rang = workSheet.Range["F11:F35"];
+
+                throw new Exception("年报表数据不完整。请联系管理员。");
             }
-            SetCellValue_Column(rang, this.Content.Sheet1);
+           
 
-
-
-
+            
         }
+        
         /// <summary>
         /// 单列赋值
         /// </summary>
@@ -274,28 +322,32 @@ namespace ReportSystem.ViewModels
         /// <typeparam name="T"></typeparam>
         /// <param name="rang"></param>
         /// <param name="sheet"></param>
-        private static void SetCellValue_Column_Row<T>(DevExpress.Spreadsheet.Range rang, T sheet)where T: new()
+        private static void SetCellValue_Column_Row<T>(DevExpress.Spreadsheet.Range rang, List<T> ListSheet)where T: new()
         {
             
 
             Type type = typeof(T);
             System.Reflection.PropertyInfo[] properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
 
-            var markTemp = properties.Single(x => x.Name == "Mark").GetValue(sheet).ToString();
-            var mark = markTemp == "A" ? 0 : markTemp == "B" ? 1 : markTemp == "C" ? 2 : 3;
-
-            for (int j = 0; j < rang.RowCount; j++)
+            ListSheet.ForEach(s =>
             {
-                var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
-                if (query == null || rang[j, mark].Value.ToString() == "——")
-                    continue;
-                foreach (var item in query)
-                {
-                    if (item.PropertyType == typeof(string))
-                        rang[j, mark].Value = (string)item.GetValue(sheet);
-                }
+                var markTemp = properties.Single(x => x.Name == "Mark").GetValue(s).ToString();
+                var mark = markTemp == "A" ? 0 : markTemp == "B" ? 1 : markTemp == "C" ? 2 : 3;
 
-            }
+                for (int j = 0; j < rang.RowCount; j++)
+                {
+                    var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
+                    if (query == null || rang[j, mark].Value.ToString() == "——")
+                        continue;
+                    foreach (var item in query)
+                    {
+                        if (item.PropertyType == typeof(string))
+                            rang[j, mark].Value = (string)item.GetValue(s);
+                    }
+
+                }
+            });
+            
                 
             
 

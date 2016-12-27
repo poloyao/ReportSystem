@@ -43,5 +43,20 @@ namespace ReportSystem.ViewModels
                 //ItemSource.Add(docVM.Content);
             }
         }
+
+        public void ShowReport(object id)
+        {
+            var vm = AddHalfYearViewModel.Create();
+            IDocument doc = documentManagerService.FindDocument(vm);
+
+            if (doc == null)
+            {
+                doc = documentManagerService.CreateDocument("AddHalfYearView", id, vm);
+                doc.Id = documentManagerService.Documents.Count();
+                doc.Title = "新增半年报信息";
+            }
+            doc.Show();
+        }
+
     }
 }

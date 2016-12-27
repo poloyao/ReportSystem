@@ -10,7 +10,7 @@ using ReportSystem.Common.ViewModel;
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class AddQuarterViewModel: SingleViewModel<ReportQuarterModel>
+    public class AddQuarterViewModel : SingleViewModel<ReportQuarterModel>
     {
         public static AddQuarterViewModel Create()
         {
@@ -43,7 +43,7 @@ namespace ReportSystem.ViewModels
                 foreach (var item in query)
                 {
                     item.SetValue(rqs1, rang[i].Value.ToString());
-                }                
+                }
             }
             rqs1.Year = "2016";
             rqs1.Quarter = "4";
@@ -97,11 +97,11 @@ namespace ReportSystem.ViewModels
                 for (int j = 0; j < rang.RowCount; j++)
                 {
                     var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
-                    if (query == null || rang[j,i].Value.ToString() == "——")
+                    if (query == null || rang[j, i].Value.ToString() == "——")
                         continue;
                     foreach (var item in query)
                     {
-                        item.SetValue(rqs3, rang[j,i].Value.ToString());
+                        item.SetValue(rqs3, rang[j, i].Value.ToString());
                     }
                 }
                 rqs3.Mark = mark;
@@ -121,5 +121,82 @@ namespace ReportSystem.ViewModels
                 Content = result;
             }
         }
+
+
+        public void DocLoaded(object obj)
+        {
+            if (this.Content == null)
+                return;
+            try
+            {
+                var sp = (DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj;
+                sp.BeginUpdate();
+                var workbook = (sp).Document;
+                var workSheet = workbook.Worksheets[0];
+                DevExpress.Spreadsheet.Range rang;
+                rang = workSheet.Range["B8:O8"];
+                SetCellValue(rang, this.Content.sheet1);
+
+                workSheet = workbook.Worksheets[1];
+                rang = workSheet.Range["B9:P9"];
+                SetCellValue(rang, this.Content.sheet2);
+
+                workSheet = workbook.Worksheets[2];
+                rang = workSheet.Range["C9:F31"];
+                SetCellValue_Column_Row(rang, this.Content.sheet3);
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("季报表数据不完整。请联系管理员。");
+            }
+        }
+
+        private static void SetCellValue<T>(DevExpress.Spreadsheet.Range rang, T sheet)
+        {
+            System.Reflection.PropertyInfo[] properties = sheet.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+            for (int i = 0; i < rang.ColumnCount; i++)
+            {
+                var query = properties.Where(x => x.Name == $"A{(i + 1).ToString().PadLeft(2, '0')}");
+                if (query == null)
+                    continue;
+                foreach (var item in query)
+                {
+                    if (item.PropertyType == typeof(string))
+                        rang[i].Value = (string)item.GetValue(sheet);
+                }
+            }
+        }
+
+        private static void SetCellValue_Column_Row<T>(DevExpress.Spreadsheet.Range rang, List<T> ListSheet) where T : new()
+        {
+
+
+            Type type = typeof(T);
+            System.Reflection.PropertyInfo[] properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+            ListSheet.ForEach(s =>
+            {
+                var markTemp = properties.Single(x => x.Name == "Mark").GetValue(s).ToString();
+                var mark = markTemp == "A" ? 0 : markTemp == "B" ? 1 : markTemp == "C" ? 2 : 3;
+
+                for (int j = 0; j < rang.RowCount; j++)
+                {
+                    var query = properties.Where(x => x.Name == $"A{(j + 1).ToString().PadLeft(2, '0')}");
+                    if (query == null || rang[j, mark].Value.ToString() == "——")
+                        continue;
+                    foreach (var item in query)
+                    {
+                        if (item.PropertyType == typeof(string))
+                            rang[j, mark].Value = (string)item.GetValue(s);
+                    }
+
+                }
+            });
+
+        }
+
     }
 }

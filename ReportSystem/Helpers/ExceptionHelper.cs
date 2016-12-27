@@ -37,6 +37,7 @@ namespace ReportSystem.Helpers
         static void ShowWindow()
         {
             string message = GetMessage();
+            WriteLog(message);
             var window = new Window() { Width = 600, Height = 400, WindowStyle = WindowStyle.ToolWindow, ShowActivated = true, Title = "异常情况" };
             var grid = new Grid() { Margin = new Thickness(5) };
             var closeButton = new Button() { Content = "关闭", Margin = new Thickness(3) };
@@ -93,16 +94,16 @@ namespace ReportSystem.Helpers
         static void copyButton_Click(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(GetMessage());
-            WriteLog();
+            //WriteLog();
         }
         static void button_Click(object sender, RoutedEventArgs e)
         {
-            WriteLog();
+            //WriteLog();
             Environment.Exit(1);
         }
-        static void WriteLog()
+        static void WriteLog(string message)
         {
-            Common.Core.LOGGER.Error(GetMessage());
+            Common.Core.LOGGER.Error(message);
         }
     }
 }

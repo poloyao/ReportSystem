@@ -62,5 +62,21 @@ namespace ReportSystem.ViewModels
                 //Sheet4.Add(docVM.Content.Sheet4);
             }
         }
+
+        public void ShowReport(object id)
+        {
+
+            var vm = AddMonthViewModel.Create();
+            IDocument doc = documentManagerService.FindDocument(vm);
+
+            if (doc == null)
+            {
+                doc = documentManagerService.CreateDocument("AddMonthView", id, vm);
+                doc.Id = documentManagerService.Documents.Count();
+                doc.Title = "新增月报信息";
+            }
+            doc.Show();
+        }
+
     }
 }

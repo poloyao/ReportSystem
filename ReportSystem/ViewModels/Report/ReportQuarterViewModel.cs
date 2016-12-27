@@ -63,5 +63,20 @@ namespace ReportSystem.ViewModels
             }
 
         }
+
+        public void ShowReport(object id)
+        {
+            var vm = AddQuarterViewModel.Create();
+            IDocument doc = documentManagerService.FindDocument(vm);
+
+            if (doc == null)
+            {
+                doc = documentManagerService.CreateDocument("AddQuarterView", id, vm);
+                doc.Id = documentManagerService.Documents.Count();
+                doc.Title = "新增季报信息";
+            }
+            doc.Show();
+
+        }
     }
 }
