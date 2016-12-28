@@ -32,11 +32,12 @@ namespace ReportSystem.ViewModels
                     this.Content = query;
                     DevExpress.Xpf.Core.DXMessageBox.Show("添加成功！");
                     Common.Core.LOGGER.Info($"添加{query.GetType()}成功,ID:{query.ID}");
+                    base.DocumentOwner.Close(this, false);
                 }
                 else
                 {
                     DevExpress.Xpf.Core.DXMessageBox.Show("添加失败！", "提示", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                    Common.Core.LOGGER.Error("添加WarranteeItemModel失败");
+                    Common.Core.LOGGER.Error($"添加{Content.GetType()}失败");
                 }
             }
             else
@@ -47,12 +48,13 @@ namespace ReportSystem.ViewModels
                     IsChange = true;
                     this.Content = query;
                     DevExpress.Xpf.Core.DXMessageBox.Show("修改成功！");
-                    Common.Core.LOGGER.Info(string.Format("修改WarranteeItemModel成功,ID:{0}", query.ID));
+                    Common.Core.LOGGER.Info($"修改{query.GetType()}成功,ID:{query.ID}");
+                    base.DocumentOwner.Close(this, false);
                 }
                 else
                 {
                     DevExpress.Xpf.Core.DXMessageBox.Show("修改失败！", "提示", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                    Common.Core.LOGGER.Error(string.Format("修改WarranteeItemModel失败,ID:{0}", query.ID));
+                    Common.Core.LOGGER.Error($"修改{Content.GetType()}失败,ID:{query.ID}");
                 }
             }
         }

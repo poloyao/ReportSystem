@@ -4,6 +4,7 @@ using DevExpress.Mvvm;
 using ReportSystem.Common.ViewModel;
 using ReportSystem.Models;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace ReportSystem.ViewModels
 {
@@ -13,6 +14,7 @@ namespace ReportSystem.ViewModels
 
 
         public virtual SupervisionDetailModel Content { get; set; }
+        public virtual ObservableCollection<SupervisionRecoveryModel> RecoveryItems { get; set; } = new ObservableCollection<SupervisionRecoveryModel>();
         protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
 
 
@@ -22,7 +24,11 @@ namespace ReportSystem.ViewModels
         {
             base.OnParameterChanged(parameter);
             if (parameter != null)
-                Content = ContentBase; 
+            {
+                Content = ContentBase;
+                if (Content.RecoveryItems != null)
+                    this.RecoveryItems = new ObservableCollection<SupervisionRecoveryModel>(Content.RecoveryItems);
+            }
         }
 
 
@@ -38,6 +44,12 @@ namespace ReportSystem.ViewModels
                 doc.Title = "新增追偿信息";
             }
             doc.Show();
+            var docVM = (SupervisionRecovertViewModel)doc.Content;
+            if (docVM.IsChange)
+            {
+                this.Content.RecoveryItems.Add(docVM.Content);
+                this.RecoveryItems.Add(docVM.Content);
+            }
         }
     }
 }

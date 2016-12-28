@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReportSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,15 @@ namespace ReportSystem.Views
         public SupervisionView()
         {
             InitializeComponent();
+            gridCreditor.ItemsSourceChanged += GridCreditor_ItemsSourceChanged;
+        }
+
+        private void GridCreditor_ItemsSourceChanged(object sender, DevExpress.Xpf.Grid.ItemsSourceChangedEventArgs e)
+        {
+            int dataRowCount = ((IList<LoanCreditorItemModel>)e.NewItemsSource).Count();
+            for (int rowHandle = 0; rowHandle < dataRowCount; rowHandle++)
+                gridCreditor.ExpandMasterRow(rowHandle);
+            this.gridCreditor.ItemsSourceChanged -= GridCreditor_ItemsSourceChanged;
         }
 
         private void gridDetail_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)

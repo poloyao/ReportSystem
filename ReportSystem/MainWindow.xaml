@@ -12,10 +12,11 @@
     xmlns:viewmodel="clr-namespace:ReportSystem.ViewModels"
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
     xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     DataContext="{dxmvvm:ViewModelSource Type={x:Type viewmodel:MainWindowViewModel}}"
     x:Class="ReportSystem.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="705.283" Width="880.958" WindowStartupLocation="CenterScreen">
+        Title="信息监管系统" Height="705.283" Width="880.958" WindowStartupLocation="CenterScreen" Icon="Images/LAFA_Logo.png">
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService />
     </dxmvvm:Interaction.Behaviors>
@@ -36,7 +37,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False" ToolbarShowMode="Hide">
+            <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False" ToolbarShowMode="Hide" >
                 <dxr:RibbonControl.ApplicationMenu>
                     <dxr:BackstageViewControl SelectedTabIndex="{Binding DefaultBackstatgeIndex, Mode=TwoWay}" IsOpen="{Binding IsBackstageOpen, Mode=TwoWay}" IsFullScreen="True">
                         <dxr:BackstageTabItem  Content="导出" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
@@ -44,9 +45,13 @@
                         <!--<dxr:BackstageButtonItem Glyph="{dx:DXImage Image=Close_16x16.png}" Content="Exit" Command="{Binding ExitCommand}" />-->
                     </dxr:BackstageViewControl>
                 </dxr:RibbonControl.ApplicationMenu>
+                <dxr:RibbonControl.PageHeaderItems>
+                    <dxb:BarEditItem  Content="使用人："  Content2="{Binding LoginMan}" />
+                    <dxb:BarButtonItem Content="关于" LargeGlyph="{dx:DXImage Image=Info_32x32.png}" Glyph="{dx:DXImage Image=Info_16x16.png}" ItemClick="BarButtonItem_ItemClick" />
+                </dxr:RibbonControl.PageHeaderItems>
                 <dxr:RibbonDefaultPageCategory>
-                    <dxr:RibbonPage Caption="视图" MergeOrder="99">
-                        <dxr:RibbonPageGroup Caption="Appearance">
+                    <dxr:RibbonPage Caption="主题" MergeOrder="99">
+                        <dxr:RibbonPageGroup>
                             <dxr:RibbonGalleryBarItemLink BarItemName="ribbonGalleryBarItem1">
                                 <dxr:RibbonGalleryBarItemLink.CustomResources>
                                     <ResourceDictionary>
@@ -58,12 +63,16 @@
                             </dxr:RibbonGalleryBarItemLink>
                         </dxr:RibbonPageGroup>
                     </dxr:RibbonPage>
+                    <dxr:RibbonPage Caption="设置" MergeOrder="99">
+                        <dxr:RibbonPageGroup Caption="设置">
+                        </dxr:RibbonPageGroup>
+                    </dxr:RibbonPage>
                 </dxr:RibbonDefaultPageCategory>
             </dxr:RibbonControl>
 
             <dxdo:DockLayoutManager Grid.Row="1">
                 <dxdo:LayoutGroup Caption="LoayoutRoot">
-                    <dxdo:LayoutPanel Caption="Panel" x:Name="layoutPanel" ItemWidth="Auto" AllowClose="False" ShowCaption="False" MaxWidth="200" AllowSizing="{Binding IsExpanded, ElementName=navPanelView}">
+                    <dxdo:LayoutPanel Caption="Panel" x:Name="layoutPanel" ItemWidth="Auto" AllowClose="False" ShowCaption="False" MaxWidth="150" AllowSizing="{Binding IsExpanded, ElementName=navPanelView}">
                         <dxn:NavBarControl SelectedItem="{Binding SelectedModuleInfo, Mode=OneWayToSource}" ItemsSource="{Binding ModuleGroups}">
                             <dxmvvm:Interaction.Behaviors>
                                 <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnModulesLoadedCommand}"/>
@@ -125,7 +134,8 @@
 
                 </dxdo:LayoutGroup>
             </dxdo:DockLayoutManager>
-            <dxr:RibbonStatusBarControl x:Name="statusBar" Grid.Row="2">
+            <dxr:RibbonStatusBarControl x:Name="statusBar" IsSizeGripVisible="True" Grid.Row="2">
+              
             </dxr:RibbonStatusBarControl>
 
         </Grid>

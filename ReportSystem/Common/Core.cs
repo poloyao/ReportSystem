@@ -48,6 +48,8 @@ namespace ReportSystem.Common
                 return (IDataProvider<TModel>)new PremiumDisplayItemDataProvider();
             if (IsDerivedFrom<TModel, CompanyDisplayModel>())
                 return (IDataProvider<TModel>)new CompanyDisplayDataProvider();
+            if (IsDerivedFrom<TModel, PremiumItemModel>())
+                return (IDataProvider<TModel>)new PremiumItemDataProvider();
 
             //不良
             if (IsDerivedFrom<TModel, SupervisionModel>())

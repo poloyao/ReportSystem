@@ -35,7 +35,7 @@ namespace ReportSystem.ViewModels
             };
         }
 
-
+        public string LoginMan { get; set; } = "王五";
         public virtual Type SplashScreenType { get; set; }
         public virtual IEnumerable<ModuleGroup> ModuleGroups { get; protected set; }
 

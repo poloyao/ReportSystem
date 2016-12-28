@@ -2,14 +2,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Name="dXWindow"
-    x:Class="ReportSystem.Views.LoginWindow" WindowStartupLocation="CenterScreen"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:viewmodel="clr-namespace:ReportSystem.ViewModels"
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-    DataContext="{dxmvvm:ViewModelSource Type=viewmodel:LoginWindowViewModel}"
-    Title="LoginWindow" Height="350" Width="525"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="dXWindow"
+    x:Class="ReportSystem.Views.LoginWindow" WindowStartupLocation="CenterScreen"
+    DataContext="{dxmvvm:ViewModelSource Type={x:Type viewmodel:LoginWindowViewModel}}"
+    Title="登陆" Height="350" Width="525" Icon="/ReportSystem;component/Images/LAFA_Logo.png"
     >
-   
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -21,6 +22,7 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ><Run Text="XX信息系统" FontSize="21.333" FontWeight="Bold"/></TextBlock>
         <dxe:TextEdit EditValue="{Binding Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="62,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150"/>
         <dxe:PasswordBoxEdit EditValue="{Binding Pwd}" NullText="请输入密码" Grid.Column="1" HorizontalAlignment="Left" Margin="62,41,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150"/>
         <TextBlock  Grid.Column="1" HorizontalAlignment="Left" Margin="10,16,0,0" Grid.Row="1" TextWrapping="Wrap" Text="账户：" VerticalAlignment="Top"/>

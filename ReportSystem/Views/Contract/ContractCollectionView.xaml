@@ -13,15 +13,12 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:ContractCollectionViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="400">
     <UserControl.Resources>
         <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
             <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
             <Setter Property="AutoGenerateColumns" Value="AddNew" />
-            <!--<Setter Property="ColumnsSource" Value="{Binding Columns}"/>-->
-            <!--<Setter Property="AutoExpandAllGroups" Value="True"/>-->
             <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
-            <!--<Setter Property="FilterString" Value="{Binding FilterString, Mode=TwoWay}"/>-->
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -44,20 +41,19 @@
                                 <dxb:BarButtonItemLink BarItemName="editTask" />
                                 <dxb:BarButtonItemLink BarItemName="deleteTask" />
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other3">
-                                <dxb:BarButtonItem Content="导出" />
-                                <dxb:BarButtonItem Content="打印" />
+                            <dxr:RibbonPageGroup Caption="排序">
+                                <dxb:BarButtonItem Content="排序" Glyph="pack://application:,,,/ReportSystem;component/Images/LAFA_Logo.png"></dxb:BarButtonItem>                              
                             </dxr:RibbonPageGroup>
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-                <dxdo:DockLayoutManager Grid.Row="1">
-                    <dxdo:LayoutGroup Margin="1">
+                <!--<dxdo:DockLayoutManager Grid.Row="1">
+                    <dxdo:LayoutGroup Margin="1" Orientation="Vertical">
                         <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                             <Grid>
                                 <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
                                     <dxg:GridControl.View>
-                                        <dxg:TableView x:Name="tableView" AutoWidth="True" IndicatorWidth="40" UseEvenRowBackground="True" ShowGroupPanel="False"
+                                        <dxg:TableView x:Name="tableView" AutoWidth="True" UseEvenRowBackground="True" ShowGroupPanel="False"
                                                        AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
                                             <dxmvvm:Interaction.Behaviors>
                                                 <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
@@ -68,9 +64,47 @@
                             </Grid>
                         </dxdo:LayoutPanel>
                     </dxdo:LayoutGroup>
-                </dxdo:DockLayoutManager>
-                
-                <dxr:RibbonStatusBarControl/>
+                </dxdo:DockLayoutManager>-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <dxlc:LayoutControl Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="项目编号">
+                                    <dxe:TextEdit  EditValue="{Binding QProjectNo}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="被担保人">
+                                    <dxe:TextEdit  EditValue="{Binding QWaranteeMan}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
+                                <dxlc:LayoutGroup>
+                                    <dx:SimpleButton Command="{Binding QueryClearCommand}" Content="清除" HorizontalAlignment="Right"  VerticalAlignment="Top" Glyph="{dx:DXImage Image=ClearFilter_16x16.png}" />
+                                    <dx:SimpleButton Command="{Binding QueryItemsCommand}" Content="查询" HorizontalAlignment="Right"  VerticalAlignment="Top" Glyph="{dx:DXImage Image=Zoom_16x16.png}" />
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                    </Grid>
+                    <dxg:GridControl Grid.Row="1" x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableView" AutoWidth="True" UseEvenRowBackground="True" ShowGroupPanel="False"
+                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+
+                <dxr:RibbonStatusBarControl>
+                    <dxr:RibbonStatusBarControl.LeftItems>
+                        <dxb:BarStaticItem  ItemMinWidth="150" Content="合同信息：1000 条"/>
+                    </dxr:RibbonStatusBarControl.LeftItems>
+                </dxr:RibbonStatusBarControl>
             </Grid>
         </dxb:BarManager>
     </Grid>

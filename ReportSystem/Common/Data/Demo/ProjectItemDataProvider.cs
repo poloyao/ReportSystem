@@ -389,36 +389,36 @@ namespace ReportSystem.Common.Data.Demo
         }
     }
 
-    //public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
-    //{
-    //    protected override PremiumItemModel AddItem(PremiumItemModel item)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+    public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
+    {
+        protected override PremiumItemModel AddItem(PremiumItemModel item)
+        {
+            return item;
+        }
 
-    //    protected override IList<PremiumItemModel> FillItems(object filter)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        protected override IList<PremiumItemModel> FillItems(object filter)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    protected override IList<PremiumItemModel> FillItems(object id, object filter)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        protected override IList<PremiumItemModel> FillItems(object id, object filter)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    protected override PremiumItemModel GetItem(object id)
-    //    {
-    //        return PremiumItemModel.Create(x =>
-    //        {
+        protected override PremiumItemModel GetItem(object id)
+        {
+            return PremiumItemModel.Create(x =>
+            {
 
-    //        });
-    //    }
+            });
+        }
 
-    //    protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
     public class PremiumDisplayItemDataProvider : DataProviderBase<PremiumDisplayItemModel>
@@ -1053,7 +1053,7 @@ namespace ReportSystem.Common.Data.Demo
     {
         protected override SupervisionRecoveryModel AddItem(SupervisionRecoveryModel item)
         {
-            throw new NotImplementedException();
+            return item;
         }
 
         protected override IList<SupervisionRecoveryModel> FillItems(object filter)

@@ -60,5 +60,10 @@ namespace ReportSystem
                // RibbonMergingHelper.SetMergeStatusBarWith(newContent, statusBar);
             }
         }
+
+        private void BarButtonItem_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("由辽宁省融资担保业协会开发并维护", "关于本软件");
+        }
     }
 }

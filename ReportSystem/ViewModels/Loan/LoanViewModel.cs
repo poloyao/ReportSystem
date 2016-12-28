@@ -23,7 +23,8 @@ namespace ReportSystem.ViewModels
         protected override void OnParameterChanged(object parameter)
         {
             base.OnParameterChanged(parameter);
-            this.Content = base.ContentBase;
+            if (parameter != null)
+                this.Content = base.ContentBase;
             if (Content.LoanCreditorItems != null)
                 DetailList = new ObservableCollection<LoanCreditorItemModel>(Content.LoanCreditorItems);
             if (parameter != null)

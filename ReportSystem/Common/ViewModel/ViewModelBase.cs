@@ -51,6 +51,8 @@ namespace ReportSystem.Common.ViewModel
 
         public virtual TModel SelectedItem { get; set; }
 
+        protected Type FilterType { get; set; }
+
         object baseId = null;
 
         protected CollectionViewModel()
@@ -62,7 +64,7 @@ namespace ReportSystem.Common.ViewModel
         {
             if (DataProvider == null)
             {
-                Core.LOGGER.Error(string.Format(" {0} 模块的DataProvider异常", typeof(TModel)));
+                Core.LOGGER.Error($"{typeof(TModel)}模块的DataProvider异常");
                 return;
             }
             Items = DataProvider.GetCollection(filter).ToList();
@@ -161,7 +163,7 @@ namespace ReportSystem.Common.ViewModel
             
         }
     }
-
+    
 
 
     public class ParentModel
