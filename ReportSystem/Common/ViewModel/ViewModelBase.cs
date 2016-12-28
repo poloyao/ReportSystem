@@ -163,8 +163,64 @@ namespace ReportSystem.Common.ViewModel
             
         }
     }
-    
 
+    public abstract class CollectionQueryViewModel<TModel,TQuery> : ViewModelBase<TModel> where TModel : class where TQuery : class
+    {
+        protected IList<TModel> Items { get; set; }
+        public virtual ObservableCollection<TModel> ItemSource { get; set; }
+
+        public virtual TModel SelectedItem { get; set; }
+        
+
+        object baseId = null;
+
+        protected CollectionQueryViewModel()
+        {
+            Init();
+        }
+
+        private void Init(TQuery filter = null)
+        {
+            if (DataProvider == null)
+            {
+                Core.LOGGER.Error($"{typeof(TModel)}模块的DataProvider异常");
+                return;
+            }
+            Items = DataProvider.GetCollection(filter).ToList();
+            ItemSource = new ObservableCollection<TModel>(Items);
+        }
+
+        protected CollectionQueryViewModel(object id)
+        {
+            Init(id);
+        }
+
+        private void Init(object id, TQuery filter = null)
+        {
+            baseId = id;
+            Items = DataProvider.GetCollection(id, filter).ToList();
+            ItemSource = new ObservableCollection<TModel>(Items);
+        }
+
+        protected void Refresh()
+        {
+            if (baseId == null)
+                Init();
+            else
+                Init(baseId);
+        }
+
+        protected void FilterItems(TQuery filter)
+        {
+            if (baseId == null)
+                Init(filter);
+            else
+                Init(baseId, filter);
+        }
+
+
+
+    }
 
     public class ParentModel
     {

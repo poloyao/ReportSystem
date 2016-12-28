@@ -4,11 +4,12 @@ using DevExpress.Mvvm;
 using ReportSystem.Common.ViewModel;
 using ReportSystem.Models;
 using System.Collections.Generic;
+using ReportSystem.Models.Query;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
-    public class ContractCollectionViewModel: CollectionViewModel<ContractItemModel>
+    public class ContractCollectionViewModel: CollectionQueryViewModel<ContractItemModel, QueryContractModel>
     {
 
         private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
@@ -31,7 +32,7 @@ namespace ReportSystem.ViewModels
         
         public void QueryItems()
         {
-            //Dictionary<>
+            base.FilterItems(new QueryContractModel());
         }
 
         public void QueryClear()

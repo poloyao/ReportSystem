@@ -129,6 +129,7 @@
     <Compile Include="Models\Premium\PremiumItemModel.cs" />
     <Compile Include="Models\Premium\PremiumRecordItemModel.cs" />
     <Compile Include="Models\ProjectItemModel.cs" />
+    <Compile Include="Models\Query\QueryContractModel.cs" />
     <Compile Include="Models\Reports\ReportHalfYearModel.cs" />
     <Compile Include="Models\Reports\ReportModel.cs" />
     <Compile Include="Models\Reports\ReportMonthModel.cs" />
