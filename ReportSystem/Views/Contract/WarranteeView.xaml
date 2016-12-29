@@ -63,7 +63,7 @@
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="是否为主被担保人">
-                        <dxe:CheckEdit  IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.IsMain}"/>
+                        <dxe:CheckEdit  IsReadOnly="{Binding IsRead}" IsEnabled="{Binding IsMain}" EditValue="{Binding Content.IsMain}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="占位" Visibility="Hidden">
                         <dxe:CheckEdit />

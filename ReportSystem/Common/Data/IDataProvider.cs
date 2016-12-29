@@ -13,20 +13,21 @@ namespace ReportSystem.Common.Data
 
         TModel GetItem(object id);
 
-        TModel UpdateItem(TModel item, bool IsDelete = false);
+        TModel UpdateItem(TModel item);
 
+        bool DeleteItem(TModel item);
         TModel AddItem(TModel item);
     }
 
     public abstract class DataProviderBase<TModel> : IDataProvider<TModel> where TModel : class
     {
 
-        IList<TModel> projectItems;
-        IEnumerable<TModel> GeItems(object filter) { return projectItems ?? (projectItems = FillItems(filter)); }
+        //IList<TModel> projectItems;
+        IEnumerable<TModel> GeItems(object filter) { return FillItems(filter); }//{ return projectItems ?? (projectItems = FillItems(filter)); }
 
         protected abstract IList<TModel> FillItems(object filter);
 
-        IEnumerable<TModel> GetItems(object id, object filter) { return projectItems ?? (projectItems = FillItems(id, filter)); }
+        IEnumerable<TModel> GetItems(object id, object filter) { return FillItems(id, filter); }//{ return projectItems ?? (projectItems = FillItems(id, filter)); }
 
         protected abstract IList<TModel> FillItems(object id, object filter);
 
@@ -34,7 +35,9 @@ namespace ReportSystem.Common.Data
 
         protected abstract TModel AddItem(TModel item);
 
-        protected abstract TModel UpdateItem(TModel item, bool IsDelete);
+        protected abstract TModel UpdateItem(TModel item);
+
+        protected abstract bool DeleteItem(TModel item);
 
 
         #region IDataProvider       
@@ -54,14 +57,19 @@ namespace ReportSystem.Common.Data
             return GetItem(id);
         }
 
-        TModel IDataProvider<TModel>.UpdateItem(TModel item, bool IsDelete)
+        TModel IDataProvider<TModel>.UpdateItem(TModel item)
         {
-            return UpdateItem(item, IsDelete);
+            return UpdateItem(item);
         }
 
         TModel IDataProvider<TModel>.AddItem(TModel item)
         {
             return AddItem(item);
+        }
+
+        bool IDataProvider<TModel>.DeleteItem(TModel item)
+        {
+            return DeleteItem(item);
         }
         #endregion
 

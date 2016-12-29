@@ -545,6 +545,8 @@
     </None>
     <Resource Include="Images\LAFA_Logo.png" />
     <Resource Include="Images\menubar_logo.png" />
+    <Resource Include="Images\Collection\icon-reading-bottom-16.png" />
+    <Resource Include="Images\Collection\icon-normal-bottom-16.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

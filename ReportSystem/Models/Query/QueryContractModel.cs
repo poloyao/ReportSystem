@@ -8,5 +8,7 @@ namespace ReportSystem.Models.Query
 {
     public class QueryContractModel
     {
+        public virtual string QProjectNo { get; set; }
+        public virtual string QWaranteeMan { get; set; }
     }
 }

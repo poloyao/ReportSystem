@@ -17,6 +17,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
+        protected override bool DeleteItem(ProjectItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override IList<ProjectItemModel> FillItems(object filter)
         {
             return new List<ProjectItemModel>()
@@ -38,10 +43,11 @@ namespace ReportSystem.Common.Data.Demo
             return ProjectItemModel.Create(x => { x.ID = Guid.NewGuid(); x.Amount = 100000m; });
         }
 
-        protected override ProjectItemModel UpdateItem(ProjectItemModel item, bool IsDelete)
+        protected override ProjectItemModel UpdateItem(ProjectItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class ContractItemDataProvider : DataProviderBase<ContractItemModel>
@@ -51,12 +57,28 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
+        protected override bool DeleteItem(ContractItemModel item)
+        {
+            return true;
+        }
+
         protected override IList<ContractItemModel> FillItems(object filter)
         {
-            return new List<ContractItemModel>()
+            if (filter == null)
             {
-                GetItem(null)
-            };
+                return new List<ContractItemModel>()
+                {
+                    GetItem(null),
+                    GetItem(null)
+                };
+            }
+            else
+            {
+                return new List<ContractItemModel>()
+                {
+                    GetItem(null)
+                };
+            }
         }
 
         protected override IList<ContractItemModel> FillItems(object id, object filter)
@@ -64,7 +86,7 @@ namespace ReportSystem.Common.Data.Demo
             return new List<ContractItemModel>()
             {
                 //ContractItemModel.Create(x=> { x.ID = Guid.NewGuid();x.Amount =100003m; })
-                GetItem(null)
+                //GetItem(null)
             };
         }
 
@@ -74,8 +96,10 @@ namespace ReportSystem.Common.Data.Demo
             return ContractItemModel.Create(x =>
             {
                 x.ID = Guid.NewGuid();
+                x.AllowEdit = false;
                 x.ProjectNo = "XM" + number.ToString("000");
                 x.ContractrNo = "HT" + number.ToString("000");
+                x.MainWarranteeName = DemoHelper.GetRandomChineseWords(new Random().Next(2, 5)) + "有限公司";
                 x.BusinessType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.BusinessType)).ID);
                 x.GuaranteeType = Guid.Parse(DemoHelper.GetRandomItem(SingleTypeCode.GetInstance().GetList(CommonSer.CommonStatusDataObject.GuaranteeType)).ID);
                 x.Amount = new Random().Next(100) * 100000;
@@ -100,10 +124,11 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override ContractItemModel UpdateItem(ContractItemModel item, bool IsDelete)
+        protected override ContractItemModel UpdateItem(ContractItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
@@ -113,6 +138,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(WarranteeItemModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<WarranteeItemModel> FillItems(object filter)
@@ -138,16 +168,22 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override WarranteeItemModel UpdateItem(WarranteeItemModel item, bool IsDelete)
+        protected override WarranteeItemModel UpdateItem(WarranteeItemModel item)
         {
-            throw new NotImplementedException();
+            return item;
         }
+        
     }
 
 
     public class LoanItemDataProvider : DataProviderBase<LoanItemModel>
     {
         protected override LoanItemModel AddItem(LoanItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(LoanItemModel item)
         {
             throw new NotImplementedException();
         }
@@ -177,16 +213,22 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override LoanItemModel UpdateItem(LoanItemModel item, bool IsDelete)
+        protected override LoanItemModel UpdateItem(LoanItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
     public class LoanSingleItemlDataProvider : DataProviderBase<LoanSingleItemlModel>
     {
         protected override LoanSingleItemlModel AddItem(LoanSingleItemlModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(LoanSingleItemlModel item)
         {
             throw new NotImplementedException();
         }
@@ -264,10 +306,11 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override LoanSingleItemlModel UpdateItem(LoanSingleItemlModel item, bool IsDelete)
+        protected override LoanSingleItemlModel UpdateItem(LoanSingleItemlModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class LoanCreditorItemDataProvider : DataProviderBase<LoanCreditorItemModel>
@@ -280,6 +323,11 @@ namespace ReportSystem.Common.Data.Demo
                 item.Contract.ID = Guid.NewGuid();
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(LoanCreditorItemModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<LoanCreditorItemModel> FillItems(object filter)
@@ -345,15 +393,22 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override LoanCreditorItemModel UpdateItem(LoanCreditorItemModel item, bool IsDelete)
+        protected override LoanCreditorItemModel UpdateItem(LoanCreditorItemModel item)
         {
-            return item;
+            throw new NotImplementedException();
         }
+
+        
     }
 
     public class PremiumCollectionItemDataProvider : DataProviderBase<PremiumCollectionItemModel>
     {
         protected override PremiumCollectionItemModel AddItem(PremiumCollectionItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(PremiumCollectionItemModel item)
         {
             throw new NotImplementedException();
         }
@@ -383,10 +438,11 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override PremiumCollectionItemModel UpdateItem(PremiumCollectionItemModel item, bool IsDelete)
+        protected override PremiumCollectionItemModel UpdateItem(PremiumCollectionItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class PremiumItemDataProvider : DataProviderBase<PremiumItemModel>
@@ -394,6 +450,11 @@ namespace ReportSystem.Common.Data.Demo
         protected override PremiumItemModel AddItem(PremiumItemModel item)
         {
             return item;
+        }
+
+        protected override bool DeleteItem(PremiumItemModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<PremiumItemModel> FillItems(object filter)
@@ -414,16 +475,22 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override PremiumItemModel UpdateItem(PremiumItemModel item, bool IsDelete)
+        protected override PremiumItemModel UpdateItem(PremiumItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
     public class PremiumDisplayItemDataProvider : DataProviderBase<PremiumDisplayItemModel>
     {
         protected override PremiumDisplayItemModel AddItem(PremiumDisplayItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(PremiumDisplayItemModel item)
         {
             throw new NotImplementedException();
         }
@@ -485,16 +552,22 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override PremiumDisplayItemModel UpdateItem(PremiumDisplayItemModel item, bool IsDelete)
+        protected override PremiumDisplayItemModel UpdateItem(PremiumDisplayItemModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
     public class CompanyDisplayDataProvider : DataProviderBase<CompanyDisplayModel>
     {
         protected override CompanyDisplayModel AddItem(CompanyDisplayModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(CompanyDisplayModel item)
         {
             throw new NotImplementedException();
         }
@@ -535,10 +608,11 @@ namespace ReportSystem.Common.Data.Demo
             });
         }
 
-        protected override CompanyDisplayModel UpdateItem(CompanyDisplayModel item, bool IsDelete)
+        protected override CompanyDisplayModel UpdateItem(CompanyDisplayModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
@@ -548,6 +622,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(CompanyManagersModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<CompanyManagersModel> FillItems(object filter)
@@ -565,10 +644,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override CompanyManagersModel UpdateItem(CompanyManagersModel item, bool IsDelete)
+        protected override CompanyManagersModel UpdateItem(CompanyManagersModel item)
         {
             throw new NotImplementedException();
         }
+
     }
     public class CompanyStockholderDataprovider : DataProviderBase<CompanyStockholderModel>
     {
@@ -576,6 +656,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(CompanyStockholderModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<CompanyStockholderModel> FillItems(object filter)
@@ -593,10 +678,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override CompanyStockholderModel UpdateItem(CompanyStockholderModel item, bool IsDelete)
+        protected override CompanyStockholderModel UpdateItem(CompanyStockholderModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
     public class CompanyBranchDataprovider : DataProviderBase<CompanyBranchModel>
     {
@@ -604,6 +690,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(CompanyBranchModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<CompanyBranchModel> FillItems(object filter)
@@ -621,10 +712,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override CompanyBranchModel UpdateItem(CompanyBranchModel item, bool IsDelete)
+        protected override CompanyBranchModel UpdateItem(CompanyBranchModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
     public class CompanyAccountDataprovider : DataProviderBase<CompanyAccountModel>
     {
@@ -632,6 +724,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             item.ID = Guid.NewGuid();
             return item;
+        }
+
+        protected override bool DeleteItem(CompanyAccountModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<CompanyAccountModel> FillItems(object filter)
@@ -649,10 +746,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override CompanyAccountModel UpdateItem(CompanyAccountModel item, bool IsDelete)
+        protected override CompanyAccountModel UpdateItem(CompanyAccountModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     //报表列表 需要根据filter值获取相应的数据列表FillItems
@@ -660,6 +758,11 @@ namespace ReportSystem.Common.Data.Demo
     public class ReportDataProvider : DataProviderBase<ReportModel>
     {
         protected override ReportModel AddItem(ReportModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(ReportModel item)
         {
             throw new NotImplementedException();
         }
@@ -723,10 +826,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override ReportModel UpdateItem(ReportModel item, bool IsDelete)
+        protected override ReportModel UpdateItem(ReportModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
@@ -738,6 +842,11 @@ namespace ReportSystem.Common.Data.Demo
         {
             return item;
             //throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(ReportMonthModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<ReportMonthModel> FillItems(object filter)
@@ -762,10 +871,11 @@ namespace ReportSystem.Common.Data.Demo
             return result;
         }
 
-        protected override ReportMonthModel UpdateItem(ReportMonthModel item, bool IsDelete)
+        protected override ReportMonthModel UpdateItem(ReportMonthModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class ReportQuarterDataProvider : DataProviderBase<ReportQuarterModel>
@@ -773,6 +883,11 @@ namespace ReportSystem.Common.Data.Demo
         protected override ReportQuarterModel AddItem(ReportQuarterModel item)
         {
             return item;
+        }
+
+        protected override bool DeleteItem(ReportQuarterModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<ReportQuarterModel> FillItems(object filter)
@@ -790,10 +905,11 @@ namespace ReportSystem.Common.Data.Demo
             return new ReportQuarterModel();
         }
 
-        protected override ReportQuarterModel UpdateItem(ReportQuarterModel item, bool IsDelete)
+        protected override ReportQuarterModel UpdateItem(ReportQuarterModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class ReportHalfYearDataProvider : DataProviderBase<ReportHalfYearModel>
@@ -801,6 +917,11 @@ namespace ReportSystem.Common.Data.Demo
         protected override ReportHalfYearModel AddItem(ReportHalfYearModel item)
         {
             return item;
+        }
+
+        protected override bool DeleteItem(ReportHalfYearModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<ReportHalfYearModel> FillItems(object filter)
@@ -818,10 +939,11 @@ namespace ReportSystem.Common.Data.Demo
             return new ReportHalfYearModel();
         }
 
-        protected override ReportHalfYearModel UpdateItem(ReportHalfYearModel item, bool IsDelete)
+        protected override ReportHalfYearModel UpdateItem(ReportHalfYearModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
     public class ReportYearDataProvider : DataProviderBase<ReportYearModel>
@@ -834,6 +956,11 @@ namespace ReportSystem.Common.Data.Demo
         protected override ReportYearModel AddItem(ReportYearModel item)
         {
             return item;
+        }
+
+        protected override bool DeleteItem(ReportYearModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<ReportYearModel> FillItems(object filter)
@@ -896,10 +1023,11 @@ namespace ReportSystem.Common.Data.Demo
             return result;
         }
 
-        protected override ReportYearModel UpdateItem(ReportYearModel item, bool IsDelete)
+        protected override ReportYearModel UpdateItem(ReportYearModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
@@ -908,6 +1036,11 @@ namespace ReportSystem.Common.Data.Demo
     public class SupervisionDataProvider : DataProviderBase<SupervisionModel>
     {
         protected override SupervisionModel AddItem(SupervisionModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(SupervisionModel item)
         {
             throw new NotImplementedException();
         }
@@ -930,16 +1063,22 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override SupervisionModel UpdateItem(SupervisionModel item, bool IsDelete)
+        protected override SupervisionModel UpdateItem(SupervisionModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
     public class SupervisionDetailDataProvider : DataProviderBase<SupervisionDetailModel>
     {
         protected override SupervisionDetailModel AddItem(SupervisionDetailModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteItem(SupervisionDetailModel item)
         {
             throw new NotImplementedException();
         }
@@ -1042,10 +1181,11 @@ namespace ReportSystem.Common.Data.Demo
             return result;
         }
 
-        protected override SupervisionDetailModel UpdateItem(SupervisionDetailModel item, bool IsDelete)
+        protected override SupervisionDetailModel UpdateItem(SupervisionDetailModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
 
 
@@ -1054,6 +1194,11 @@ namespace ReportSystem.Common.Data.Demo
         protected override SupervisionRecoveryModel AddItem(SupervisionRecoveryModel item)
         {
             return item;
+        }
+
+        protected override bool DeleteItem(SupervisionRecoveryModel item)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IList<SupervisionRecoveryModel> FillItems(object filter)
@@ -1071,10 +1216,11 @@ namespace ReportSystem.Common.Data.Demo
             throw new NotImplementedException();
         }
 
-        protected override SupervisionRecoveryModel UpdateItem(SupervisionRecoveryModel item, bool IsDelete)
+        protected override SupervisionRecoveryModel UpdateItem(SupervisionRecoveryModel item)
         {
             throw new NotImplementedException();
         }
+        
     }
     public static class DemoHelper
     {

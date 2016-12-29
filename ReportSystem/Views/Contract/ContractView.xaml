@@ -42,9 +42,8 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
-                <!--<dxb:BarButtonItem x:Name="editTask" Content="撤销"  LargeGlyph="{dx:DXImage Image=DeleteList2_32x32.png}"/>-->
-                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="newTask" Content="提交" IsEnabled="{Binding AllowEdit}" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
+                <dxb:BarButtonItem x:Name="deleteTask" Content="删除" IsEnabled="{Binding AllowEdit}" Command="{Binding DeleceCommand}" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
 
                 <dxb:BarButtonItem x:Name="WarranteeBar" Content="添加被担保人" Command="{Binding AddItemCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
                 <dxb:BarButtonItem x:Name="ReGuarantorBar" Content="反担保人列表"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>

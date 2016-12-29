@@ -26,13 +26,13 @@ namespace ReportSystem.ViewModels
             IsEdited = !IsRead;
         }
 
-        public virtual bool IsEdited { get; set; }
+        public virtual bool IsEdited { get; set; } = true;
 
         public virtual WarranteeItemModel Content { get; set; } = WarranteeItemModel.Create();
 
         public bool IsChange { get; set; } = false;
-        
 
+        public virtual bool IsMain { get; set; }
 
 
         protected override void OnParameterChanged(object parameter)
@@ -57,6 +57,7 @@ namespace ReportSystem.ViewModels
                     this.Content = query;
                     DevExpress.Xpf.Core.DXMessageBox.Show("添加成功！");
                     Common.Core.LOGGER.Info($"添加{query.GetType()}成功,ID:{query.ID}");
+                    base.DocumentOwner.Close(this,false);
                 }
                 else
                 {
@@ -73,6 +74,7 @@ namespace ReportSystem.ViewModels
                     this.Content = query;
                     DevExpress.Xpf.Core.DXMessageBox.Show("修改成功！");
                     Common.Core.LOGGER.Info(string.Format("修改WarranteeItemModel成功,ID:{0}", query.ID));
+                    base.DocumentOwner.Close(this, false);
                 }
                 else
                 {

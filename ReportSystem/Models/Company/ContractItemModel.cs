@@ -30,6 +30,12 @@ namespace ReportSystem.Models
         /// </summary>
         [Display(Name = "担保合同号码")]
         public virtual string ContractrNo { get; set; }
+
+        /// <summary>
+        /// 主被担保人
+        /// </summary>
+        [Display(Name = "主被担保人")]
+        public virtual string MainWarranteeName { get; set; }
         /// <summary>
         /// 担保业务种类		
         /// </summary>
@@ -86,6 +92,12 @@ namespace ReportSystem.Models
         [Display(Name = "被担保人信息")]
         public virtual IList<WarranteeItemModel> WarranteeItems { get; set; }
 
+        /// <summary>
+        /// 是否可以修改标记
+        /// </summary>
+        [Display(Name ="是否可以修改标记",AutoGenerateField = false)]
+        public bool AllowEdit { get; set; }
+
         #endregion
 
 
@@ -116,6 +128,7 @@ namespace ReportSystem.Models
             this.ID = contact.ID;
             this.ProjectNo = contact.ProjectNo;
             this.ContractrNo = contact.ContractrNo;
+            this.MainWarranteeName = contact.MainWarranteeName;
             this.BusinessType = contact.BusinessType;
             this.GuaranteeType = contact.GuaranteeType;
             this.Amount = contact.Amount;
@@ -138,6 +151,7 @@ namespace ReportSystem.Models
                 x.ID = this.ID;
                 x.ProjectNo = this.ProjectNo;
                 x.ContractrNo = this.ContractrNo;
+                x.MainWarranteeName = this.MainWarranteeName;
                 x.BusinessType = this.BusinessType;
                 x.GuaranteeType = this.GuaranteeType;
                 x.Amount = this.Amount;

@@ -50,17 +50,16 @@ namespace ReportSystem.Common.ViewModel
         public virtual ObservableCollection<TModel> ItemSource { get; set; }
 
         public virtual TModel SelectedItem { get; set; }
+        
 
-        protected Type FilterType { get; set; }
-
-        object baseId = null;
+        protected object baseId = null;
 
         protected CollectionViewModel()
         {
             Init();
         }
 
-        private void Init(object filter = null)
+        protected void Init(object filter = null)
         {
             if (DataProvider == null)
             {
@@ -76,28 +75,14 @@ namespace ReportSystem.Common.ViewModel
             Init(id);
         }
 
-        private void Init(object id, object filter = null)
+        protected void Init(object id, object filter = null)
         {
             baseId = id;
             Items = DataProvider.GetCollection(id,filter).ToList();
             ItemSource = new ObservableCollection<TModel>(Items);
         }
 
-        protected void Refresh()
-        {
-            if (baseId == null)
-                Init();
-            else
-                Init(baseId);
-        }
-
-        protected void FilterItems(object filter)
-        {
-            if (baseId == null)
-                Init(filter);
-            else
-                Init(baseId, filter);
-        }
+   
         
 
 
@@ -136,9 +121,15 @@ namespace ReportSystem.Common.ViewModel
             return DataProvider.UpdateItem(item);
         }
 
-        protected TModel DeleteItem(TModel item)
+        /// <summary>
+        /// 删除后返回null
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        protected bool DeleteItem(TModel item)
         {
-            return DataProvider.UpdateItem(item,true);
+            // return DataProvider.UpdateItem(item,true);
+            return DataProvider.DeleteItem(item);
         }
 
         protected override void OnParameterChanged(object parameter)
@@ -164,45 +155,28 @@ namespace ReportSystem.Common.ViewModel
         }
     }
 
-    public abstract class CollectionQueryViewModel<TModel,TQuery> : ViewModelBase<TModel> where TModel : class where TQuery : class
+    public abstract class CollectionQueryViewModel<TModel,TQuery> : CollectionViewModel<TModel> 
+        where TModel : class 
+        where TQuery : class,new()
     {
-        protected IList<TModel> Items { get; set; }
-        public virtual ObservableCollection<TModel> ItemSource { get; set; }
 
-        public virtual TModel SelectedItem { get; set; }
-        
+        public virtual TQuery QueryElement { get; set; } = new TQuery();
 
-        object baseId = null;
-
-        protected CollectionQueryViewModel()
+        public void QueryItems()
         {
-            Init();
+            if (baseId == null)
+                Init(QueryElement);
+            else
+                Init(baseId, QueryElement);
         }
 
-        private void Init(TQuery filter = null)
+        public void QueryClear()
         {
-            if (DataProvider == null)
-            {
-                Core.LOGGER.Error($"{typeof(TModel)}模块的DataProvider异常");
-                return;
-            }
-            Items = DataProvider.GetCollection(filter).ToList();
-            ItemSource = new ObservableCollection<TModel>(Items);
+            QueryElement = new TQuery();
+            Refresh();
         }
 
-        protected CollectionQueryViewModel(object id)
-        {
-            Init(id);
-        }
-
-        private void Init(object id, TQuery filter = null)
-        {
-            baseId = id;
-            Items = DataProvider.GetCollection(id, filter).ToList();
-            ItemSource = new ObservableCollection<TModel>(Items);
-        }
-
-        protected void Refresh()
+        public void Refresh()
         {
             if (baseId == null)
                 Init();
@@ -210,13 +184,13 @@ namespace ReportSystem.Common.ViewModel
                 Init(baseId);
         }
 
-        protected void FilterItems(TQuery filter)
-        {
-            if (baseId == null)
-                Init(filter);
-            else
-                Init(baseId, filter);
-        }
+        //protected void FilterItems(object filter)
+        //{
+        //    if (baseId == null)
+        //        Init(filter);
+        //    else
+        //        Init(baseId, filter);
+        //}
 
 
 

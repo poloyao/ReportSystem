@@ -13,11 +13,15 @@ namespace ReportSystem.ViewModels
     {
 
         private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
+        
+        public virtual ContractItemModel SelectItem { get; set; }
 
-        //查询用
+        public virtual bool IsDataPaneVisible { get; set; } = true;
+        public void lala()
+        {
+            IsDataPaneVisible = !IsDataPaneVisible;
+        }
 
-        public virtual string QProjectNo { get; set; }
-        public virtual string QWaranteeMan { get; set; }
 
         public void Nav(object obj)
         {
@@ -29,16 +33,17 @@ namespace ReportSystem.ViewModels
         {
             NavigationService.Navigate("ContractView", null, this);
         }
-        
-        public void QueryItems()
+
+        public void OnShowPanel()
         {
-            base.FilterItems(new QueryContractModel());
+            IsDataPaneVisible = true;
         }
 
-        public void QueryClear()
+        public void OnClosePanel()
         {
-            this.QProjectNo = string.Empty;
-            this.QWaranteeMan = string.Empty;
+            IsDataPaneVisible = false;
         }
+
+
     }
 }
