@@ -70,20 +70,23 @@ namespace ReportSystem.ViewModels
             doc.Title = SelectItem.Name;
             var docVM = (WarranteeViewModel)doc.Content;
             if (AllowEdit)
+            {
                 docVM.IsRead = false;
+                if (SelectItem.IsMain)
+                    docVM.IsMain = true;
+                else
+                {
+                    var Main = Content.WarranteeItems.SingleOrDefault(x => x.IsMain == true);
+                    if (Main != null)
+                        docVM.IsMain = false;
+                    else
+                        docVM.IsMain = true;
+                }
+            }
             else
                 docVM.IsRead = true;
 
-            if (SelectItem.IsMain)
-                docVM.IsMain = true;
-            else
-            {
-                var Main = Content.WarranteeItems.SingleOrDefault(x => x.IsMain == true);
-                if (Main != null)
-                    docVM.IsMain = false;
-                else
-                    docVM.IsMain = true;
-            }
+           
             
             
 

@@ -45,9 +45,9 @@
                 <dxb:BarButtonItem x:Name="newTask" Content="提交" IsEnabled="{Binding AllowEdit}" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
                 <dxb:BarButtonItem x:Name="deleteTask" Content="删除" IsEnabled="{Binding AllowEdit}" Command="{Binding DeleceCommand}" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
 
-                <dxb:BarButtonItem x:Name="WarranteeBar" Content="添加被担保人" Command="{Binding AddItemCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="ReGuarantorBar" Content="反担保人列表"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="CreditorBar" Content="债权人列表"  LargeGlyph="{dx:DXImage Image=Currency_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="WarranteeBar" Content="添加被担保人" IsEnabled="{Binding AllowEdit}" Command="{Binding AddItemCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="ReGuarantorBar" Content="反担保人列表" IsEnabled="{Binding AllowEdit}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="CreditorBar" Content="债权人列表" IsEnabled="{Binding AllowEdit}"  LargeGlyph="{dx:DXImage Image=Currency_32x32.png}"/>
 
                 <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
              
@@ -163,7 +163,7 @@
 
                                             <dxlc:LayoutGroup Style="{StaticResource InnerLayoutGroup}">
                                                 <dxlc:LayoutItem HorizontalAlignment="Right">
-                                                    <dx:SimpleButton Content="增加" Command="{Binding AddItemCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=Add_16x16.png}">
+                                                    <dx:SimpleButton Content="增加" IsEnabled="{Binding AllowEdit}" Command="{Binding AddItemCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=Add_16x16.png}">
                                                        
                                                     </dx:SimpleButton>
                                                 </dxlc:LayoutItem>
