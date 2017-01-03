@@ -106,7 +106,7 @@
                                         </dxg:GridControl.Columns>
                                         <dxg:GridControl.View>
                                             <dxg:TableView x:Name="tableView" AutoWidth="True" UseEvenRowBackground="True" ShowGroupPanel="False"
-                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
+                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never" >
                                                 <dxmvvm:Interaction.Behaviors>
                                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
                                                 </dxmvvm:Interaction.Behaviors>
@@ -132,7 +132,7 @@
                                         </dxlc:LayoutItem>
 
                                         <dxlc:LayoutItem Label="担保金额">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Amount}"  />
+                                            <dxe:SpinEdit EditValue="{Binding Amount}" IsReadOnly="True"  Mask="c" MaskUseAsDisplayFormat="True"/>
                                         </dxlc:LayoutItem>
 
                                         <dxlc:LayoutItem Label="担保业务种类">
@@ -159,13 +159,13 @@
                                                               SelectedItem="{Binding CounterGuarantee, Converter={StaticResource ctc}}"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="约定再担保比例">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding ReRatio}"  />
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding ReRatio}"  Mask="P2"   MaskUseAsDisplayFormat="True"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="费率">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Rates}"  />
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding Rates}"  Mask="P"  MaskUseAsDisplayFormat="True"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="年化费率">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding YearRates}"  />
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding YearRates}"  Mask="P" MaskUseAsDisplayFormat="True"/>
                                         </dxlc:LayoutItem>
 
                                     </dxlc:LayoutGroup>

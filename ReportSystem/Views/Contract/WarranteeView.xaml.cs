@@ -23,5 +23,10 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void TextEdit_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+
+        }
     }
 }

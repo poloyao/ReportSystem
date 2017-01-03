@@ -6,13 +6,14 @@ using ReportSystem.Models;
 using DevExpress.Mvvm.POCO;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ReportSystem.ViewModels
 {
     [POCOViewModel]
     public class ContractViewModel: SingleViewModel<ContractItemModel>
     {
-        public virtual ContractItemModel Content { get; set; } = ContractItemModel.Create();
+        public virtual RegisterNewContractItemModelWithDataErrorInfo Content { get; set; } = new RegisterNewContractItemModelWithDataErrorInfo();//ContractItemModel.Create();
 
         public virtual WarranteeItemModel MainWarrantee { get; set; } = WarranteeItemModel.Create();
 
@@ -43,7 +44,9 @@ namespace ReportSystem.ViewModels
             base.OnParameterChanged(parameter);
             if (parameter != null)
             {
-                this.Content = base.ContentBase;                
+                //this.Content = base.ContentBase;                
+                //this.Content.Assign(base.ContentBase);
+                this.Content = new RegisterNewContractItemModelWithDataErrorInfo(base.ContentBase);
                 this.IsReadOnly = true;
                 //根据传回来的值判断是否可以删除
                 AllowEdit = Content.AllowEdit;
@@ -136,9 +139,10 @@ namespace ReportSystem.ViewModels
 
         public void Save()
         {
+
             if (Content.ID == null || Content.ID == Guid.Empty)
             {
-                base.AddItem(Content);Content.BusinessType.RaisePropertiesChanged();
+                base.AddItem(Content);//Content.BusinessType.RaisePropertiesChanged();
             }
             else
             {
@@ -172,6 +176,115 @@ namespace ReportSystem.ViewModels
                 }
             }
         }
+
+
+    }
+
+    public class RegisterNewContractItemModelWithDataErrorInfo : ContractItemModel, System.ComponentModel.IDataErrorInfo
+    {
+        public RegisterNewContractItemModelWithDataErrorInfo() { }
+
+        public RegisterNewContractItemModelWithDataErrorInfo(ContractItemModel contract)
+        {
+            this.Assign(contract);
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "Amount":
+                        return ValidateAmount(Amount) ? string.Empty : Error;
+                    case "BusinessType":
+                        return ValidateBusinessType(BusinessType) ? string.Empty : Error;
+                    case "GuaranteeType":
+                        return ValidateBusinessType(GuaranteeType) ? string.Empty : Error;
+                    case "CounterGuarantee":
+                        return ValidateBusinessType(CounterGuarantee) ? string.Empty : Error;
+
+                    case "StartDate":
+                        return ValidateStartDate(StartDate) ? string.Empty : Error;
+                    case "EndDate":
+                        return ValidateEndDate(EndDate) ? string.Empty : Error;
+                    case "DepositRatio":
+                        return ValidateRatio(DepositRatio) ? string.Empty : Error;
+                    case "ReRatio":
+                        return ValidateRatio(ReRatio) ? string.Empty : Error;
+                    case "Rates":
+                        return ValidateRatio(Rates) ? string.Empty : Error;
+                    case "YearRates":
+                        return ValidateRatio(YearRates) ? string.Empty : Error;
+
+                }
+                return string.Empty;
+            }
+        }
+
+        string IDataErrorInfo.Error { get { return Error; } }
+
+        string Error { get; set; }
+
+        public bool ValidateAmount(decimal amount)
+        {
+            bool isValid = amount > 0;
+            if (isValid)
+                Error = string.Empty;
+            else
+                Error = "金额必须大于0";
+            return isValid;
+        }
+
+        public bool ValidateBusinessType(Guid id)
+        {
+            if (id == null || id == Guid.Empty)
+            {
+                Error = "不能为空";
+                return false;
+            }
+            return true;
+        }
+        
+
+        public bool ValidateStartDate(DateTime? dt)
+        {
+            if (dt == null || dt > StartDate)
+            {
+                Error = "起始日期不能为空，且不能大于结束日期";
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidateEndDate(DateTime? dt)
+        {
+            if (dt == null || dt < StartDate)
+            {
+                Error = "结束日期不能为空，且不能小于起始日期";
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidateRatio(decimal dec)
+        {
+            bool isValid = false;
+            if (dec == null || dec < 0)
+            {
+                Error = "不能为空，且不能为负数";
+                return false;
+            }
+            return true;
+        }
+        
+
+        //public bool Validate()
+        //{
+        //    bool isValid = false;
+
+        //    return isValid;
+        //}
 
 
     }

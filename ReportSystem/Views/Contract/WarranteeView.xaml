@@ -26,13 +26,13 @@
     </UserControl.Resources>
     <Grid>
 
-        <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical" x:Name="validationContainer" dxe:ValidationService.IsValidationContainer="True">
             <dxlc:LayoutGroup Orientation="Vertical" Height="150">
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem  Label="被担保人类型" >
                         <dxe:ListBoxEdit ShowBorder="False"  IsReadOnly="{Binding IsRead}"
                                          ItemsSource="{DynamicResource AllWarranteeType}" 
-                                         SelectedItem="{Binding Content.WarranteeType, Converter={StaticResource ctc}}"
+                                         SelectedItem="{Binding Content.WarranteeType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                          DisplayMember="Name" ValueMember="ID" 
                                          Background="{x:Null}" SelectedIndex="0"  Margin="0,0,0,5">
                             <dxe:ListBoxEdit.StyleSettings>
@@ -48,22 +48,24 @@
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem IsRequired="True" Label="被担保人名称" LabelPosition="Top">
-                        <dxe:TextEdit   IsReadOnly="{Binding IsRead}" MinWidth="200" EditValue="{Binding Content.Name}"/>
+                        <dxe:TextEdit   IsReadOnly="{Binding IsRead}" MinWidth="200" EditValue="{Binding Content.Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="证 件   类  型" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit  IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" SelectedItem="{Binding Content.CardType, Converter={StaticResource ctc}}" ValueMember="ID" DisplayMember="Name"  MinWidth="100" />
+                        <dxe:ComboBoxEdit  IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllCodeType}" 
+                                           SelectedItem="{Binding Content.CardType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ValueMember="ID" DisplayMember="Name"  MinWidth="100" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutGroup ItemLabelsAlignment="Local">
                         <dxlc:LayoutItem Label="证件号码" >
-                            <dxe:TextEdit  IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.CardID}"  />
+                            <dxe:TextEdit  IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.CardID,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
+                                           Keyboard.GotKeyboardFocus="TextEdit_GotKeyboardFocus"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="是否为主被担保人">
-                        <dxe:CheckEdit  IsReadOnly="{Binding IsRead}" IsEnabled="{Binding IsMain}" EditValue="{Binding Content.IsMain}"/>
+                        <dxe:CheckEdit  IsReadOnly="{Binding IsRead}" IsEnabled="{Binding IsMain,UpdateSourceTrigger=PropertyChanged}" EditValue="{Binding Content.IsMain}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="占位" Visibility="Hidden">
                         <dxe:CheckEdit />
@@ -72,7 +74,7 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                    <dx:SimpleButton Visibility="{Binding IsEdited,Converter={dxmvvm:BooleanToVisibilityConverter}}" IsEnabled="{Binding Path=(dxe:ValidationService.HasValidationError),ElementName=validationContainer,Converter={dx:NegationConverter}}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.POCO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReportSystem.Models
 {
-    public class ContractItemModel : ICloneable
+    public class ContractItemModel : ICloneable //, IDataErrorInfo
     {
 
         #region 属性       
@@ -50,17 +51,18 @@ namespace ReportSystem.Models
         /// 担保金额		
         /// </summary>
         [Display(Name = "担保金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal Amount { get; set; }
         /// <summary>
         /// 起始时间		
         /// </summary>
         [Display(Name = "起始时间")]
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
         /// <summary>
         /// 结束时间		
         /// </summary>
         [Display(Name = "结束时间")]
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
         /// <summary>
         /// 存出保证金比例		
         /// </summary>
@@ -97,6 +99,24 @@ namespace ReportSystem.Models
         /// </summary>
         [Display(Name ="是否可以修改标记",AutoGenerateField = false)]
         public bool AllowEdit { get; set; }
+
+        //string Error { get; set; } = string.Empty;
+        //string IDataErrorInfo.Error { get { return Error; } }
+
+        //string IDataErrorInfo.this[string columnName]
+        //{
+        //    get
+        //    {
+        //        switch (columnName)
+        //        {
+        //            case "Amount":
+        //                return ValidateAmount(Amount) ? string.Empty : Error;
+        //        }
+        //        return string.Empty;
+        //    }
+        //}
+
+        
 
         #endregion
 
@@ -168,7 +188,15 @@ namespace ReportSystem.Models
         }
 
 
-
+        //public bool ValidateAmount(decimal amount)
+        //{
+        //    bool isValid = amount > 0;
+        //    if (isValid)
+        //        Error = string.Empty;
+        //    else
+        //        Error = "金额必须大于0";
+        //    return isValid;
+        //}
 
     }
 }
