@@ -100,6 +100,10 @@ namespace ReportSystem.ViewModels
                 var querySource = ItemSource.Single(x => x.ID == docVM.Content.ID);
                 ItemSource.Remove(querySource);
                 ItemSource.Add(docVM.Content);
+                if (docVM.Content.IsMain)
+                {
+                    MainWarrantee = docVM.Content;
+                }
             }
         }
 
@@ -121,6 +125,10 @@ namespace ReportSystem.ViewModels
             {
                 Content.WarranteeItems.Add(docVM.Content);
                 ItemSource.Add(docVM.Content);
+                if (docVM.Content.IsMain)
+                {
+                    MainWarrantee = docVM.Content;
+                }
             }
 
         }

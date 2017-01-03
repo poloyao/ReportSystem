@@ -110,7 +110,7 @@
 
                                         <dxlc:LayoutGroup  Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}" >
                                             <dxlc:LayoutItem  Label="担保合同号码" >
-                                                <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}" Text="{Binding Content.ProjectNo}"/>
+                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ProjectNo}"/>
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Label="被担保人类型" >
                                                 <dxe:ListBoxEdit ShowBorder="False" IsReadOnly="True"
