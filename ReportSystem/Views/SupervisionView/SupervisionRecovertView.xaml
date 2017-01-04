@@ -15,41 +15,41 @@
         <cvs:GoMarkConverter x:Key="GoMarkConverter" />
     </UserControl.Resources>
     <Grid>
-        <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical" x:Name="validationContainer" dxe:ValidationService.IsValidationContainer="True">
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="待追偿总金额">
-                        <dxe:TextEdit  IsReadOnly="True" MaskType="Numeric"/>
+                        <dxe:SpinEdit  IsReadOnly="True" MaskType="Numeric"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="追偿日期">
-                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.RecoveryDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:DateEdit  EditValue="{Binding Content.RecoveryDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="追偿金额">
-                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.RecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:SpinEdit  EditValue="{Binding Content.RecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="占位" Visibility="Hidden">
-                        <dxe:TextEdit IsReadOnly="{Binding IsRead}"  />
+                        <dxe:TextEdit   />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="本机构追偿金额">
-                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.OwnRecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:SpinEdit  EditValue="{Binding Content.OwnRecoveryAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="是否确认损失">
-                        <dxe:CheckEdit x:Name="isLoss" IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.IsLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit x:Name="isLoss"  EditValue="{Binding Content.IsLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="损失金额">
-                        <dxe:TextEdit IsReadOnly="{Binding IsRead}" IsEnabled="{Binding ElementName=isLoss,Path=EditValue}" EditValue="{Binding EditItem.LossAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:SpinEdit  IsEnabled="{Binding ElementName=isLoss,Path=EditValue}" EditValue="{Binding Content.LossAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="是否继续追偿" >
-                        <dxe:CheckEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding EditItem.GoMark,Converter={StaticResource GoMarkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit  EditValue="{Binding Content.GoMark,Converter={StaticResource GoMarkConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="占位" Visibility="Hidden">
                         <dxe:CheckEdit/>
@@ -58,7 +58,7 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <dx:SimpleButton IsEnabled="{Binding IsEdit}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Save_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                    <dx:SimpleButton Visibility="{Binding IsEdit,Converter={dxmvvm:BooleanNegationConverter}}"   IsEnabled="{Binding Path=(dxe:ValidationService.HasValidationError),ElementName=validationContainer,Converter={dx:NegationConverter}}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Save_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

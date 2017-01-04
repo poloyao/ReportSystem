@@ -13,12 +13,11 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:ReportSystem.ViewModels"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:SupervisionCollectionViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="700">
     <UserControl.Resources>
         <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
             <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
-            <Setter Property="AutoGenerateColumns" Value="AddNew" />
-            <Setter Property="SelectedItem" Value="{Binding SelectedItem, Mode=TwoWay}"/>
+            <Setter Property="AutoGenerateColumns" Value="KeepOld" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -41,11 +40,19 @@
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-                <dxdo:DockLayoutManager Grid.Row="1">
+                <!--<dxdo:DockLayoutManager Grid.Row="1">
                     <dxdo:LayoutGroup Margin="1">
                         <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                             <Grid>
                                 <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn FieldName="ProjectNo" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="MainWarantee" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="Amount" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="TotalRepaymentAmount" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="AccountingDate" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="GoMark" IsSmart="True"/>
+                                    </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
                                         <dxg:TableView x:Name="tableView" AutoWidth="True" IndicatorWidth="40" UseEvenRowBackground="True" ShowGroupPanel="False"
                                                        AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
@@ -58,7 +65,120 @@
                             </Grid>
                         </dxdo:LayoutPanel>
                     </dxdo:LayoutGroup>
+                </dxdo:DockLayoutManager>-->
+
+
+                <dxdo:DockLayoutManager Grid.Row="1">
+                    <dxdo:DockLayoutManager.LayoutRoot>
+                        <dxdo:LayoutGroup>
+                            <dxdo:LayoutPanel AllowSizing="True" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                        AllowClose="False" AllowDrag="False" AllowFloat="False" AllowHide="False" ShowCaption="False"
+                                        ItemWidth="*" ItemHeight="*">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <dxlc:LayoutControl Orientation="Vertical">
+                                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                                <dxlc:LayoutItem Label="项目编号">
+                                                    <dxe:TextEdit  EditValue="{Binding QueryElement.QProjectNo}"/>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem Label="被担保人">
+                                                    <dxe:TextEdit  EditValue="{Binding QueryElement.QWaranteeMan}"/>
+                                                </dxlc:LayoutItem>
+                                            </dxlc:LayoutGroup>
+                                            <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
+                                                <dxlc:LayoutGroup>
+                                                    <dx:SimpleButton Command="{Binding QueryClearCommand}" Content="清除" HorizontalAlignment="Right"  VerticalAlignment="Top" Glyph="{dx:DXImage Image=ClearFilter_16x16.png}" />
+                                                    <dx:SimpleButton Command="{Binding QueryItemsCommand}" Content="查询" HorizontalAlignment="Right"  VerticalAlignment="Top" Glyph="{dx:DXImage Image=Zoom_16x16.png}" />
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutGroup>
+                                        </dxlc:LayoutControl>
+                                    </Grid>
+                                    <dxg:GridControl Grid.Row="1" x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
+                                        <dxg:GridControl.Columns>
+                                            <dxg:GridColumn FieldName="ProjectNo" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="MainWarantee" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="Amount" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="TotalRepaymentAmount" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="AccountingDate" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="GoMark" IsSmart="True"/>
+                                            <!--<dxg:GridColumn FieldName="LastRepaymentDate" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="TotalRepaymentAmount" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="OwnRepaymentAmount" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="LastRecoveryDate" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="RepaymentBalance" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="OwnRepaymentBalance" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="TotalRecoveryAmount" IsSmart="True"/>
+                                            <dxg:GridColumn FieldName="TotalLossAmount" IsSmart="True"/>-->
+                                        </dxg:GridControl.Columns>
+
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView x:Name="tableView" AutoWidth="True" IndicatorWidth="40" UseEvenRowBackground="True" ShowGroupPanel="False"
+                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
+                                                <dxmvvm:Interaction.Behaviors>
+                                                    <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
+                                                </dxmvvm:Interaction.Behaviors>
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </Grid>
+                            </dxdo:LayoutPanel>
+                            <dxdo:LayoutPanel AllowSizing="True" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                        AllowClose="False" AllowDrag="False" AllowFloat="False" AllowHide="False" ShowCaption="False"
+                                        Visibility="{Binding IsDataPaneVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                                        ItemWidth="250" ShowBorder="False">
+                                <dxlc:LayoutControl>
+                                    <dxlc:LayoutGroup Orientation="Vertical"  DataContext="{Binding ElementName=grid,Path=SelectedItem}">
+                                        <dxlc:LayoutItem  Label="项目编号" >
+                                            <dxe:TextEdit IsReadOnly="True" Text="{Binding ProjectNo}"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="主被担保人">
+                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding MainWarantee}"  />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="担保金额">
+                                            <dxe:SpinEdit EditValue="{Binding Amount}" IsReadOnly="True"  Mask="c" MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="记账日期">
+                                            <dxe:DateEdit IsReadOnly="True" EditValue="{Binding AccountingDate}" MaskUseAsDisplayFormat="True"  Mask="D"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="继续追偿标记">
+                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding GoMark}"  />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="最近一次代偿日期">
+                                            <dxe:DateEdit IsReadOnly="True" EditValue="{Binding LastRepaymentDate}"  Mask="D"   MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="累计代偿金额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding TotalRepaymentAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="本机构承担代偿金额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding OwnRepaymentAmount}"  Mask="c" MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="最近一次追偿日期">
+                                            <dxe:DateEdit IsReadOnly="True" EditValue="{Binding LastRecoveryDate}"  MaskUseAsDisplayFormat="True"  Mask="D" />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="代偿余额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding RepaymentBalance}"   Mask="c"  MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="本机构承担代偿余额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding OwnRepaymentBalance}"   Mask="c"  MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="累计追偿金额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding TotalRecoveryAmount}"   Mask="c"  MaskUseAsDisplayFormat="True"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="累计损失金额">
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding TotalLossAmount}"  Mask="c"  MaskUseAsDisplayFormat="True" />
+                                        </dxlc:LayoutItem>
+
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutControl>
+                            </dxdo:LayoutPanel>
+                        </dxdo:LayoutGroup>
+                    </dxdo:DockLayoutManager.LayoutRoot>
                 </dxdo:DockLayoutManager>
+
 
                 <dxr:RibbonStatusBarControl/>
             </Grid>

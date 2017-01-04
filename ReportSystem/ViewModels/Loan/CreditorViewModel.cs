@@ -15,7 +15,7 @@ namespace ReportSystem.ViewModels
 
         //public object Title { get; }
 
-        public virtual LoanCreditorItemModel Content { get; set; } = LoanCreditorItemModel.Create();
+        public virtual RegisterNewLoanCreditorItemModelWithDataErrorInfo Content { get; set; } = new RegisterNewLoanCreditorItemModelWithDataErrorInfo();//LoanCreditorItemModel.Create();
         [BindableProperty(OnPropertyChangedMethodName = "OnIsEditChanged")]
         public virtual bool IsEnabled { get; set; } = true;
         protected void OnIsEditChanged()
@@ -84,4 +84,67 @@ namespace ReportSystem.ViewModels
 
         //public void OnDestroy() { }
     }
+
+
+    public class RegisterNewLoanCreditorItemModelWithDataErrorInfo : LoanCreditorItemModel, IDataErrorInfo
+    {
+   
+        string Error { get; set; }
+        string IDataErrorInfo.Error { get { return Error; } }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "CreditorName":
+                        return ValidateCreditorName(this.Creditor.CreditorName) ? string.Empty : Error;
+                }
+
+                return string.Empty;
+            }
+        }
+
+
+        public RegisterNewLoanCreditorItemModelWithDataErrorInfo() { }
+        public RegisterNewLoanCreditorItemModelWithDataErrorInfo(LoanCreditorItemModel lc)
+        {
+            this.Assign(lc);
+        }
+
+
+        public bool ValidateCreditorName(string creditorName)
+        {
+            Error = "you can xxx";
+            return false;
+        }
+
+
+    }
+
+
+    public class RegisterNewCreditorItemModelWithDataErrorInfo : CreditorItemModel, IDataErrorInfo
+    {
+        string Error { get; set; }
+        string IDataErrorInfo.Error { get { return Error; } }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                //switch (columnName)
+                //{
+                //    case "CreditorName":
+                //        return ValidateCreditorName(this.Creditor.CreditorName) ? string.Empty : Error;
+                //}
+
+                return string.Empty;
+            }
+        }
+
+
+
+    }
+
 }

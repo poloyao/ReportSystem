@@ -51,11 +51,13 @@ namespace ReportSystem.Models
         /// 担保金额		
         /// </summary>
         [Display(Name = "担保金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal Amount { get; set; }
         /// <summary>
         /// 总放款金额		
         /// </summary>
         [Display(Name = "总放款金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal LoanSumAmount { get; set; }
         /// <summary>
         /// 债权人信息列表		

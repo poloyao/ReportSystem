@@ -32,6 +32,7 @@ namespace ReportSystem.Models
         /// 应缴金额		
         /// </summary>
         [Display(Name = "应缴金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal PayableAmount { get; set; }
         /// <summary>
         /// 应缴日期		
@@ -49,6 +50,7 @@ namespace ReportSystem.Models
         /// 欠缴金额		
         /// </summary>
         [Display(Name = "欠缴金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal ArrearsAmount { get; set; }
         /// <summary>
         /// 本期状态		

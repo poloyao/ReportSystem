@@ -15,7 +15,7 @@ namespace ReportSystem.ViewModels
 
         protected IDocumentManagerService documentManagerService { get { return this.GetService<IDocumentManagerService>(); } }
 
-        public virtual LoanSingleItemlModel Content { get; set; }
+        public virtual LoanSingleItemlModel Content { get; set; } = LoanSingleItemlModel.Create();
 
         public virtual ObservableCollection<LoanCreditorItemModel> DetailList { get; set; } = new ObservableCollection<LoanCreditorItemModel>();
 

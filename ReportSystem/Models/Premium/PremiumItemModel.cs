@@ -40,6 +40,7 @@ namespace ReportSystem.Models
         /// 缴费金额		
         /// </summary>
         [Display(Name = "缴费金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal PayAmount { get; set; }
         /// <summary>
         /// 缴纳方式		
@@ -67,11 +68,13 @@ namespace ReportSystem.Models
         /// 余额		
         /// </summary>
         [Display(Name = "余额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal Balance { get; set; }
         /// <summary>
         /// 累计欠缴金额		
         /// </summary>
         [Display(Name = "累计欠缴金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal TotalArrears { get; set; }
         /// <summary>
         /// 缴纳状态		

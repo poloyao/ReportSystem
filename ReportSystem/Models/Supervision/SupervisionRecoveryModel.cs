@@ -27,17 +27,19 @@ namespace ReportSystem.Models
         /// 追偿日期		
         /// </summary>
         [Display(Name = "追偿日期")]
-        public virtual DateTime RecoveryDate { get; set; }
+        public virtual DateTime? RecoveryDate { get; set; }
         /// <summary>
         /// 追偿金额		
         /// </summary>
         [Display(Name = "追偿金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal RecoveryAmount { get; set; }
 
         /// <summary>
         /// 本机构追偿金额		
         /// </summary>
         [Display(Name = "本机构追偿金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal OwnRecoveryAmount { get; set; }
         /// <summary>
         /// 是否确认损失		
@@ -48,6 +50,7 @@ namespace ReportSystem.Models
         /// 损失金额		
         /// </summary>
         [Display(Name = "损失金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal LossAmount { get; set; }
         /// <summary>
         /// 是否继续追偿		

@@ -33,11 +33,12 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
-                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <!--<dxb:BarButtonItem x:Name="newTask" Content="提交" 
+                                   Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
+                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>-->
                 <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
                
-                <dxb:BarButtonItem x:Name="AddCreditor" Content="添加债权人" Command="{Binding AddCreditorCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="AddCreditor" Content="添加债权人" Command="{Binding AddCreditorCommand}" LargeGlyph="{dx:DXImage Image=Add_32x32.png}"/>
 
             </dxb:BarManager.Items>
             <Grid>
@@ -51,10 +52,10 @@
                             <dxr:RibbonPageGroup Caption="导航">
                                 <dxb:BarButtonItemLink BarItemName="GoBack" />
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other">
+                            <!--<dxr:RibbonPageGroup Caption="other">
                                 <dxb:BarButtonItemLink BarItemName="newTask" />
                                 <dxb:BarButtonItemLink BarItemName="deleteTask" />
-                            </dxr:RibbonPageGroup>
+                            </dxr:RibbonPageGroup>-->
                             <dxr:RibbonPageGroup Caption="添加">
                                 <dxb:BarButtonItemLink BarItemName="AddCreditor" />
                             </dxr:RibbonPageGroup>
@@ -67,7 +68,7 @@
                 </dxr:RibbonControl>
 
                 <dxdo:DockLayoutManager Grid.Row="1">
-                    <dxdo:LayoutGroup Orientation="Vertical">
+                    <dxdo:LayoutGroup Orientation="Vertical"  x:Name="validationContainer" dxe:ValidationService.IsValidationContainer="True">
                         <dxdo:LayoutGroup>
                             <dxdo:LayoutPanel ShowBorder="False" ShowCaption="False">
                                 <dxlc:LayoutControl Orientation="Vertical">
@@ -128,10 +129,10 @@
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup>
                                             <dxlc:LayoutItem Label="担保金额">
-                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Amount}"/>
+                                                <dxe:SpinEdit IsReadOnly="True" Text="{Binding Content.Amount}" Mask="c"  MaskUseAsDisplayFormat="True"/>
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Label="放款总金额">
-                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.LoanSumAmount}"/>
+                                                <dxe:SpinEdit IsReadOnly="True" Text="{Binding Content.LoanSumAmount}" Mask="c"  MaskUseAsDisplayFormat="True"/>
                                             </dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                     </dxlc:LayoutGroup>

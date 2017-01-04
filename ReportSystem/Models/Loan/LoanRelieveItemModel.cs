@@ -33,18 +33,21 @@ namespace ReportSystem.Models
         /// 解除金额	最大金额取决与之前批次解除余额	
         /// </summary>
         [Display(Name = "解除金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal RelieveAmount { get; set; }
 
         /// <summary>
         /// 代偿金额
         /// </summary>
         [Display(Name = "代偿金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal RepaymentAmount { get; set; }
 
         /// <summary>
         /// 本机构代偿金额
         /// </summary>
         [Display(Name = "本机构代偿金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal OwnRepaymentAmount { get; set; }
         /// <summary>
         /// 解除日期	最小日期取决入上笔或放款时间	

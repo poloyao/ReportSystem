@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.POCO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace ReportSystem.Models
 {
    
-    public class CreditorContractItemModel : ICloneable
+    public class CreditorContractItemModel : ICloneable,IDataErrorInfo
     {
 
         #region 属性       
@@ -91,6 +92,33 @@ namespace ReportSystem.Models
             });
         }
 
+        string Error { get; set; }
+        string IDataErrorInfo.Error { get { return Error; } }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "ContractID":
+                        return ValidateStringEmpty(ContractID) ? string.Empty : Error;
+                }
+
+                return string.Empty;
+            }
+        }
+
+
+        public bool ValidateStringEmpty(string se)
+        {
+            if (se == null || se == string.Empty)
+            {
+                Error = "不能位空";
+                return false;
+            }
+            return true;
+        }
 
 
 

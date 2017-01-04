@@ -46,6 +46,7 @@ namespace ReportSystem.Models
         /// 累计金额		
         /// </summary>
         [Display(Name = "累计金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal TotalAmount { get; set; }
 
         #endregion

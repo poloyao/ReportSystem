@@ -48,9 +48,8 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
-                <!--<dxb:BarButtonItem x:Name="editTask" Content="撤销"  LargeGlyph="{dx:DXImage Image=DeleteList2_32x32.png}"/>-->
-                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <!--<dxb:BarButtonItem x:Name="newTask" Content="提交" Command="{Binding SaveCommand}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}" />
+                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>-->
 
                 <dxb:BarButtonItem x:Name="NewLoan" Content="添加新放款" Command="{Binding NewLoanCommand}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
 
@@ -68,10 +67,10 @@
                             <dxr:RibbonPageGroup Caption="导航">
                                 <dxb:BarButtonItemLink BarItemName="GoBack" />
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other">
+                            <!--<dxr:RibbonPageGroup Caption="other">
                                 <dxb:BarButtonItemLink BarItemName="newTask" />
                                 <dxb:BarButtonItemLink BarItemName="deleteTask" />
-                            </dxr:RibbonPageGroup>
+                            </dxr:RibbonPageGroup>-->
                             <dxr:RibbonPageGroup Caption="新放款">
                                 <dxb:BarButtonItemLink BarItemName="NewLoan" />
                             </dxr:RibbonPageGroup>
@@ -126,10 +125,10 @@
                                                 </dxlc:LayoutGroup>
                                                 <dxlc:LayoutGroup>
                                                     <dxlc:LayoutItem Label="授信金额">
-                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.TotalCredit}"/>
+                                                        <dxe:SpinEdit IsReadOnly="True" Text="{Binding Content.TotalCredit}" Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                     </dxlc:LayoutItem>
                                                     <dxlc:LayoutItem Label="在保总额">
-                                                        <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.TotalLoanAmount}"/>
+                                                        <dxe:SpinEdit IsReadOnly="True" Text="{Binding Content.TotalLoanAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                     </dxlc:LayoutItem>
                                                     <dxlc:LayoutItem Label="主合同编号" ToolTip="指被担保人与债权人签订的纸质担保合同号码">
                                                         <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.Contract.ContractNo}"/>

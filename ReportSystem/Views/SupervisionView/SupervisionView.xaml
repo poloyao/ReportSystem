@@ -92,7 +92,7 @@
                                                                 <dxe:TextEdit IsReadOnly="True" EditValue="{Binding Content.SupervisionItem.MainWarantee}"  />
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutItem Label="担保金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.Amount}"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.Amount}" Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                             </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
@@ -101,10 +101,10 @@
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutGroup Orientation="Vertical">
                                                                 <dxlc:LayoutItem Label="累计代偿金额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRepaymentAmount}"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRepaymentAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                                 </dxlc:LayoutItem>
                                                                 <dxlc:LayoutItem Label="本机构承担代偿金额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentAmount}"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                                 </dxlc:LayoutItem>
                                                             </dxlc:LayoutGroup>
                                                         </dxlc:LayoutGroup>
@@ -114,19 +114,19 @@
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutGroup Orientation="Vertical">
                                                                 <dxlc:LayoutItem Label="代偿余额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.RepaymentBalance}"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.RepaymentBalance}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                                 </dxlc:LayoutItem>
                                                                 <dxlc:LayoutItem Label="本机构承担代偿余额">
-                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentBalance}"/>
+                                                                    <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.OwnRepaymentBalance}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                                 </dxlc:LayoutItem>
                                                             </dxlc:LayoutGroup>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>
                                                             <dxlc:LayoutItem Label="累计追偿金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRecoveryAmount}"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalRecoveryAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                             </dxlc:LayoutItem>
                                                             <dxlc:LayoutItem Label="累计损失金额">
-                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalLossAmount}"/>
+                                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.SupervisionItem.TotalLossAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                                             </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
                                                         <dxlc:LayoutGroup>

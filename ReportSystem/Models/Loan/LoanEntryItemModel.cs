@@ -26,12 +26,14 @@ namespace ReportSystem.Models
         /// 放款金额		
         /// </summary>
         [Display(Name = "放款金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal Amount { get; set; }
 
         /// <summary>
         /// 解除金额
         /// </summary>
         [Display(Name = "解除金额", AutoGenerateField = false)]
+        [DataType(DataType.Currency)]
         public virtual decimal RelieveAmount { get; set; } = 0;
 
         /// <summary>

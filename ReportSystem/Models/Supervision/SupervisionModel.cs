@@ -39,6 +39,7 @@ namespace ReportSystem.Models
         /// </summary>
         [NumericMask(Mask = PredefinedMasks.Numeric.Number)]
         [Display(Name = "担保金额")]
+        [DataType(DataType.Currency)]
         public virtual decimal Amount { get; set; }
 
         /// <summary>
@@ -65,11 +66,13 @@ namespace ReportSystem.Models
         /// 累计代偿金额		
         /// </summary>
         [Display(Name = "累计代偿金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal TotalRepaymentAmount { get; set; }
         /// <summary>
         /// 本机构承担代偿金额		
         /// </summary>
         [Display(Name = "本机构承担代偿金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal OwnRepaymentAmount { get; set; }
         /// <summary>
         /// 最近一次追偿日期 	DateTime?
@@ -81,21 +84,25 @@ namespace ReportSystem.Models
         /// 代偿余额		
         /// </summary>
         [Display(Name = "代偿余额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal RepaymentBalance { get; set; }
         /// <summary>
         /// 本机构承担代偿余额		
         /// </summary>
         [Display(Name = "本机构承担代偿余额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal OwnRepaymentBalance { get; set; }
         /// <summary>
         /// 累计追偿金额		
         /// </summary>
         [Display(Name = "累计追偿金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal TotalRecoveryAmount { get; set; }
         /// <summary>
         /// 累计损失金额		
         /// </summary>
         [Display(Name = "累计损失金额")]
+        [DataType(DataType.Currency)]
         public virtual Decimal TotalLossAmount { get; set; }
 
         #endregion

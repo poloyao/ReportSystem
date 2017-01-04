@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.POCO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReportSystem.Models
 {
-    public class CreditorItemModel : ICloneable
+    public class CreditorItemModel : ICloneable, IDataErrorInfo
     {
 
         #region 属性       
@@ -89,6 +90,79 @@ namespace ReportSystem.Models
 
             });
         }
+
+
+        string Error { get; set; }
+        string IDataErrorInfo.Error { get { return Error; } }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "CreditorType":
+                        return ValidateCreditorType(CreditorType) ? string.Empty : Error;
+                    case "CreditorName":
+                        return ValidateCreditorName(CreditorName) ? string.Empty : Error;
+                    case "CardType":
+                        return ValidateCardType(CardType) ? string.Empty : Error;
+                    case "CardID":
+                        return ValidateCardID(CardID) ? string.Empty : Error;
+                }
+
+                return string.Empty;
+            }
+        }
+
+
+        public bool ValidateCreditorType(Guid id)
+        {
+            if (id == null || id == Guid.Empty)
+            {
+                Error = "不能为空";
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidateCreditorName(string creditorName)
+        {
+            if (creditorName == null || creditorName == string.Empty)
+            {
+                Error = "不能为空";
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidateCardType(Guid id)
+        {
+            //!++ 需要根据类型判断相应的类型
+            //UNDONE 需要根据类型判断相应的类型
+            if (id == null || id == Guid.Empty)
+            {
+                Error = "不能为空";
+                return false;
+            }
+            return true;
+        }
+
+
+        public bool ValidateCardID(string Card)
+        {
+            if (Card == null || Card == string.Empty || Card.Length > 18)
+            {
+                Error = "不能为空，且长度不能超过18位";
+                return false;
+            }
+            return true;
+        }
+
+
+
+
+
 
 
 

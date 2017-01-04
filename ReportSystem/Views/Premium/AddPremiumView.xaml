@@ -26,50 +26,50 @@
     </UserControl.Resources>
     <Grid>
 
-        <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical"  x:Name="validationContainer" dxe:ValidationService.IsValidationContainer="True">
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="缴费类型">
                         <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayType}" 
-                                                           SelectedItem="{Binding Content.PayCategory, Converter={StaticResource ctc}}" 
+                                                           SelectedItem="{Binding Content.PayCategory, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                                            DisplayMember="Name" ValueMember="ID" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="缴费金额">
-                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.PayAmount}" MinValue="0" Increment="10000"/>
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.PayAmount,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" MinValue="0" Increment="10000"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="缴纳方式">
                         <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayOption}" 
-                                                           SelectedItem="{Binding Content.PayMethod, Converter={StaticResource ctc}}" 
+                                                           SelectedItem="{Binding Content.PayMethod, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                                            DisplayMember="Name" ValueMember="ID" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="缴纳频率">
                         <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayFre}" 
-                                                           SelectedItem="{Binding Content.PayFre, Converter={StaticResource ctc}}" 
+                                                           SelectedItem="{Binding Content.PayFre, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                                            DisplayMember="Name" ValueMember="ID" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="计费起始日期">
-                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.StartDate}"/>
+                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.StartDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="缴纳结束日期">
-                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.EndDate}"/>
+                        <dxe:DateEdit IsReadOnly="{Binding IsRead}" EditValue="{Binding Content.EndDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="余额">
-                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.Balance}"  MinValue="0" Increment="10000"/>
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.Balance,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"  MinValue="0" Increment="10000"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="累计欠缴金额">
-                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.TotalArrears}"  MinValue="0" Increment="10000"/>
+                        <dxe:SpinEdit IsReadOnly="{Binding IsRead}" Text="{Binding Content.TotalArrears,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"  MinValue="0" Increment="10000"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="缴纳状态">
-                        <dxe:ComboBoxEdit IsReadOnly="True" IsTextEditable="False" ItemsSource="{DynamicResource AllPayStatus}" 
-                                                           SelectedItem="{Binding Content.PayStatus,Converter={StaticResource ctc}}" 
+                        <dxe:ComboBoxEdit IsReadOnly="{Binding IsRead}" IsTextEditable="False" ItemsSource="{DynamicResource AllPayStatus}" 
+                                                           SelectedItem="{Binding Content.PayStatus,Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                                            DisplayMember="Name" ValueMember="ID" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Visibility="Hidden" Label="占位">
@@ -80,7 +80,9 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem  HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <dx:SimpleButton IsEnabled="{Binding IsEdited}"  ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
+                    <dx:SimpleButton Visibility="{Binding IsEdited,Converter={dxmvvm:BooleanNegationConverter}}" 
+                                     IsEnabled="{Binding Path=(dxe:ValidationService.HasValidationError),ElementName=validationContainer,Converter={dx:NegationConverter}}"
+                                     ButtonKind="Simple"  Glyph="{dx:DXImage Image=Apply_32x32.png}" Content="提交" Command="{Binding SaveCommand}"  />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

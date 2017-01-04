@@ -36,11 +36,11 @@ namespace ReportSystem
             //else
             //    rsult = $"{(bytes / Math.Pow(unit, exp)).ToString("F1")} {"KMGTPE"[exp - 1]}";
 
-            var win = new Views.LoginWindow();
-            win.Show();
-
             DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
 
+            var win = new Views.LoginWindow();
+            win.Show();
+                       
             var singleCommon = Common.Data.SingleTypeCode.GetInstance();
             //证件类型
             System.Windows.Application.Current.Resources.Add("AllCodeType", singleCommon.GetList(CommonSer.CommonStatusDataObject.CodeType));

@@ -24,16 +24,16 @@ namespace ReportSystem.ViewModels
 
         public void AddItem()
         {
-            var vm = AddPremiumViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
-
-            if (doc == null)
-            {
-                doc = documentManagerService.CreateDocument("AddPremiumView", null, vm);
-                doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增保费信息";
-            }
+            IDocument doc = documentManagerService.CreateDocument("AddPremiumView", null, this);
+            doc.Id = documentManagerService.Documents.Count();
+            doc.Title = "新增被担保人信息";
+            var docVM = (AddPremiumViewModel)doc.Content;
             doc.Show();
+            if (docVM.IsChange)
+            {
+                Content.PremiumItems.Add(docVM.Content);
+            }
+
         }
 
 

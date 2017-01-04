@@ -134,10 +134,10 @@
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup>
                                             <dxlc:LayoutItem Label="担保金额">
-                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.Amount}"/>
+                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.Amount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Label="放款总金额">
-                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.LoanSumAmount}"/>
+                                                <dxe:SpinEdit IsReadOnly="True"  MinValue="0" Increment="10000" EditValue="{Binding Content.DisplayLoanBriefContent.LoanSumAmount}"  Mask="c"  MaskUseAsDisplayFormat="True"/>
                                             </dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                     </dxlc:LayoutGroup>

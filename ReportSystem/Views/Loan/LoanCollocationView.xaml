@@ -53,6 +53,12 @@
                         <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                             <Grid>
                                 <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn FieldName="ProjectNo" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="MianWarrantee" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="Amount" IsSmart="True"/>
+                                        <dxg:GridColumn FieldName="LoanAmount" IsSmart="True"/>
+                                    </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
                                         <dxg:TableView x:Name="tableView" AutoWidth="True" IndicatorWidth="40" UseEvenRowBackground="True" ShowGroupPanel="False"
                                                        AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">

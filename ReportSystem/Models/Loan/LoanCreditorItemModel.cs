@@ -48,6 +48,7 @@ namespace ReportSystem.Models
         /// 授信总额		
         /// </summary>
         [Display(Name = "授信总额")]
+        [DataType(DataType.Currency)]
         public virtual decimal TotalCredit { get; set; }
         /// <summary>
         /// 在保总额		

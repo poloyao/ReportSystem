@@ -14,5 +14,7 @@ namespace ReportSystem.ViewModels
         }
 
         protected AddLoanViewModel() { }
+
+        //UNDONE 新放款待完成
     }
 }
