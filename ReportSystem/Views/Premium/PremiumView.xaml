@@ -152,6 +152,7 @@
                                         <dxg:GridControl x:Name="grid" Grid.Row="1"
                                                      ItemsSource="{Binding Content.PremiumItems}"
                                                      AutoGenerateColumns="AddNew"
+                                                         CustomColumnDisplayText="grid_CustomColumnDisplayText"
                                                  SelectedItem="{Binding SelectItem}"   
                                                  EnableSmartColumnsGeneration="True">
                                             <dxmvvm:Interaction.Behaviors>
@@ -159,6 +160,7 @@
                                             </dxmvvm:Interaction.Behaviors>
                                             <dxg:GridControl.View>
                                                 <dxg:TableView AllowFilterEditor="False" 
+                                                               AlternateRowBackground="{DynamicResource gridviewRowBackground}"
                                                        AllowEditing="False"
                                                        ShowGroupPanel="False" 
                                                        AutoWidth="False">
@@ -167,6 +169,7 @@
                                             <dxg:GridControl.DetailDescriptor>
                                                 <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding PremiumRecordItems}">
                                                     <dxg:GridControl EnableSmartColumnsGeneration="True"
+                                                                     CustomColumnDisplayText="grid_CustomColumnDisplayText"
                                                               AutoGenerateColumns="AddNew" >
                                                         <dxg:GridControl.View>
                                                             <dxg:TableView AutoWidth="True"

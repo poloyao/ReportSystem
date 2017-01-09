@@ -32,5 +32,15 @@ namespace ReportSystem.Views
             //ProjectSingleView view = new ProjectSingleView();
             //frame.Navigate(view);
         }
+
+        private void Preview_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ToExcel_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

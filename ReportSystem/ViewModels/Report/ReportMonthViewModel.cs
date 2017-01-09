@@ -35,47 +35,74 @@ namespace ReportSystem.ViewModels
         public ObservableCollection<ReportMonthSheet3> Sheet3 { get; set; } = new ObservableCollection<ReportMonthSheet3>();
 
         public ObservableCollection<ReportMonthSheet4> Sheet4 { get; set; } = new ObservableCollection<ReportMonthSheet4>();
-
-
+        
 
         public void AddMonth()
         {
 
-            var vm = AddMonthViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
+            //var vm = AddMonthViewModel.Create();
+            //IDocument doc = documentManagerService.FindDocument(vm);
 
-            if (doc == null)
-            {
-                doc = documentManagerService.CreateDocument("AddMonthView", null, vm);
-                doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增月报信息";
-            }
+            //if (doc == null)
+            //{
+            //    doc = documentManagerService.CreateDocument("AddMonthView", null, vm);
+            //    doc.Id = documentManagerService.Documents.Count();
+            //    doc.Title = "新增月报信息";
+            //}
+            //doc.Show();
+            //var docVM = (AddMonthViewModel)doc.Content;
+            //if (docVM.IsSaved)
+            //{
+            //    //Items.Add(docVM.Content);
+            //    //ItemSource.Add(docVM.Content);
+            //    //Sheet1.Add(docVM.Content.Sheet1);
+            //    //Sheet2.Add(docVM.Content.Sheet2);
+            //    //Sheet3.Add(docVM.Content.Sheet3);
+            //    //Sheet4.Add(docVM.Content.Sheet4);
+            //}
+
+            IDocument doc = documentManagerService.CreateDocument("AddMonthView", null, this);
+            doc.Id = documentManagerService.Documents.Count();
+            doc.Title = "新增月报信息";
+            var docVM = (AddMonthViewModel)doc.Content;           
             doc.Show();
-            var docVM = (AddMonthViewModel)doc.Content;
             if (docVM.IsSaved)
             {
-                //Items.Add(docVM.Content);
-                //ItemSource.Add(docVM.Content);
-                //Sheet1.Add(docVM.Content.Sheet1);
-                //Sheet2.Add(docVM.Content.Sheet2);
-                //Sheet3.Add(docVM.Content.Sheet3);
-                //Sheet4.Add(docVM.Content.Sheet4);
             }
+
         }
 
         public void ShowReport(object id)
         {
 
-            var vm = AddMonthViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
+            //var vm = AddMonthViewModel.Create();
+            //IDocument doc = documentManagerService.FindDocument(vm);
 
-            if (doc == null)
+            //if (doc == null)
+            //{
+            //    doc = documentManagerService.CreateDocument("AddMonthView", id, vm);
+            //    doc.Id = documentManagerService.Documents.Count();
+            //    doc.Title = "新增月报信息";
+            //}
+            //doc.Show();
+            try
             {
-                doc = documentManagerService.CreateDocument("AddMonthView", id, vm);
+                if (id == null || (Guid)id == Guid.Empty)
+                    return;
+
+                IDocument doc = documentManagerService.CreateDocument("AddMonthView", id, this);
                 doc.Id = documentManagerService.Documents.Count();
                 doc.Title = "新增月报信息";
+                var docVM = (AddMonthViewModel)doc.Content;
+                doc.Show();
             }
-            doc.Show();
+            catch (Exception ex)
+            {
+                DevExpress.Xpf.Core.DXMessageBox.Show(ex.Message);
+                
+            }
+           
+
         }
 
     }

@@ -23,5 +23,23 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void grid_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "PremiumStatus")
+            {
+                e.DisplayText = Common.Data.SingleTypeCode.GetInstance().GetCommonCode(e.Value.ToString()).Name;
+            }
+        }
+
+        private void Preview_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ToExcel_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

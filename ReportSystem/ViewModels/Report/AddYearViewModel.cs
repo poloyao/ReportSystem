@@ -260,7 +260,7 @@ namespace ReportSystem.ViewModels
             }
             catch (Exception)
             {
-
+                DocumentOwner.Close(this,false);
                 throw new Exception("年报表数据不完整。请联系管理员。");
             }
            

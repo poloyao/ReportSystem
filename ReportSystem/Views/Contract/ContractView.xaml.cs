@@ -23,5 +23,13 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void grid_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "WarranteeType" || e.Column.FieldName == "CardType")
+            {
+                e.DisplayText = Common.Data.SingleTypeCode.GetInstance().GetCommonCode(e.Value.ToString()).Name;
+            }
+        }
     }
 }

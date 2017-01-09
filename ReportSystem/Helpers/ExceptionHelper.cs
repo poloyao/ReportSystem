@@ -38,7 +38,7 @@ namespace ReportSystem.Helpers
         {
             string message = GetMessage();
             WriteLog(message);
-            var window = new Window() { Width = 600, Height = 400, WindowStyle = WindowStyle.ToolWindow, ShowActivated = true, Title = "异常情况" };
+            var window = new Window() { WindowStartupLocation = WindowStartupLocation.CenterScreen, Width = 600, Height = 400, WindowStyle = WindowStyle.ToolWindow, ShowActivated = true, Title = "异常情况" };
             var grid = new Grid() { Margin = new Thickness(5) };
             var closeButton = new Button() { Content = "关闭", Margin = new Thickness(3) };
             closeButton.Click += button_Click;

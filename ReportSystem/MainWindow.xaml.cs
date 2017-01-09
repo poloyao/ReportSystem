@@ -65,5 +65,10 @@ namespace ReportSystem
         {
             MessageBox.Show("由辽宁省融资担保业协会开发并维护", "关于本软件");
         }
+
+        private void CloseButton_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

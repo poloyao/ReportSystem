@@ -51,7 +51,7 @@
                 <dxb:BarButtonItem x:Name="ReGuarantorBar" Content="反担保人列表" IsEnabled="{Binding AllowEdit}"  LargeGlyph="{dx:DXImage Image=BOCustomer_32x32.png}"/>
                 <dxb:BarButtonItem x:Name="CreditorBar" Content="债权人列表" IsEnabled="{Binding AllowEdit}"  LargeGlyph="{dx:DXImage Image=Currency_32x32.png}"/>
 
-                <dxb:BarButtonItem x:Name="GoBack" Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="GoBack"  Content="返回" Command="{Binding GoBackCommand}" LargeGlyph="{dx:DXImage Image=Backward_32x32.png}"/>
              
             </dxb:BarManager.Items>
             <Grid>
@@ -152,10 +152,11 @@
                                         <dxlc:LayoutGroup dxlc:LayoutControl.AllowVerticalSizing="True" Height="200"  Orientation="Vertical" View="GroupBox" Header="被担保人列表" IsCollapsed="False" IsCollapsible="True">
 
                                             <dxg:GridControl  x:Name="grid" 
+                                                              CustomColumnDisplayText="grid_CustomColumnDisplayText"
                                                              AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" 
                                                              SelectedItem="{Binding SelectItem}" ItemsSource="{Binding ItemSource}">
                                                 <dxg:GridControl.View>
-                                                    <dxg:TableView AllowFilterEditor="False"  AllowEditing="False" ShowGroupPanel="False" AutoWidth="True">
+                                                    <dxg:TableView AllowFilterEditor="False"  AllowEditing="False" ShowGroupPanel="False" AutoWidth="True" AlternateRowBackground="{DynamicResource gridviewRowBackground}">
                                                         <dxmvvm:Interaction.Behaviors>
                                                             <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding SelectRowCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}"/>
                                                         </dxmvvm:Interaction.Behaviors>

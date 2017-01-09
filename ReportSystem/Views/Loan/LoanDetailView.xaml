@@ -161,6 +161,7 @@
                                                 <dxg:GridControl.View>
                                                     <dxg:TableView AutoWidth="True" 
 											            ShowGroupPanel="False"
+                                                                   AlternateRowBackground="{DynamicResource gridviewRowBackground}"
 											            UseEvenRowBackground="True" 
 											            AllowPerPixelScrolling="True"
 											            AllowEditing="False"                                                       
@@ -235,6 +236,7 @@
                                                             <dxg:GridControl.View>
                                                                 <dxg:TableView AutoWidth="True"
                                                                    UseEvenRowBackground="True"
+                                                                               AlternateRowBackground="{DynamicResource gridviewRowBackground}"
                                                                    AllowPerPixelScrolling="True"
                                                                    AllowEditing="False"
                                                                    AllowCascadeUpdate="True"/>

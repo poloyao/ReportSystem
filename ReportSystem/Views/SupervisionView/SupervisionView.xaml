@@ -206,6 +206,7 @@
                                                  EnableSmartColumnsGeneration="True">
                                             <dxg:GridControl.View>
                                                 <dxg:TableView AllowFilterEditor="False" 
+                                                               AlternateRowBackground="{DynamicResource gridviewRowBackground}"
                                                        AllowEditing="False"
                                                        ShowGroupPanel="False"
                                                        AutoWidth="True">

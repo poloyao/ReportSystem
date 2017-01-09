@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:ReportSystem"
               Startup="OnAppStartup_UpdateThemeName">
     <Application.Resources>
-         
+
+        <!--隔行颜色-->
+        <SolidColorBrush x:Key="gridviewRowBackground"/>
+
     </Application.Resources>
 </Application>

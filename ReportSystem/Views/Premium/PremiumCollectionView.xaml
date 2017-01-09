@@ -44,9 +44,18 @@
                                 <dxb:BarButtonItemLink BarItemName="editTask" />
                                 <dxb:BarButtonItemLink BarItemName="deleteTask" />
                             </dxr:RibbonPageGroup>-->
-                            <dxr:RibbonPageGroup Caption="other3">
-                                <dxb:BarButtonItem Content="导出" />
-                                <dxb:BarButtonItem Content="打印" />
+                            <dxr:RibbonPageGroup Caption="打印/导出">
+                                <dxb:BarButtonItem Content="打印" ItemClick="Preview_ItemClick" LargeGlyph="{dx:DXImage Image=PrintDialog_32x32.png}" Glyph="{dx:DXImage Image=PrintDialog_16x16.png}" />
+                                <dxb:BarButtonItem Content="打印预览" LargeGlyph="{dx:DXImage Image=Preview_32x32.png}" Glyph="{dx:DXImage Image=Preview_16x16.png}" />
+                                <dxb:BarSplitButtonItem Content="另存为" LargeGlyph="{dx:DXImage Image=SaveDialog_32x32.png}" Glyph="{dx:DXImage Image=SaveDialog_16x16.png}">
+                                    <dxb:BarSplitButtonItem.PopupControl>
+                                        <dxb:PopupMenu>
+                                            <dxb:BarButtonItem Content="Excel 工作表" ItemClick="ToExcel_ItemClick" LargeGlyph="{dx:DXImage Image=ExportToXLS_32x32.png}" Glyph="{dx:DXImage Image=ExportToXLS_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="Word 文档" IsEnabled="False"  LargeGlyph="{dx:DXImage Image=ExportToDOC_32x32.png}" Glyph="{dx:DXImage Image=ExportToDOC_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="PDF 文档" IsEnabled="False"  LargeGlyph="{dx:DXImage Image=ExportToPDF_32x32.png}" Glyph="{dx:DXImage Image=ExportToPDF_32x32.png}" RibbonStyle="SmallWithText" />
+                                        </dxb:PopupMenu>
+                                    </dxb:BarSplitButtonItem.PopupControl>
+                                </dxb:BarSplitButtonItem>
                             </dxr:RibbonPageGroup>
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
@@ -55,7 +64,7 @@
                     <dxdo:LayoutGroup Margin="1">
                         <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                             <Grid>
-                                <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
+                                <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}" CustomColumnDisplayText="grid_CustomColumnDisplayText">
                                     <dxg:GridControl.Columns>
                                         <dxg:GridColumn FieldName="ProjectNo" IsSmart="True"/>
                                         <dxg:GridColumn FieldName="PreviousBookedDate" IsSmart="True"/>
@@ -64,6 +73,7 @@
                                     </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
                                         <dxg:TableView x:Name="tableView" AutoWidth="True" IndicatorWidth="40" UseEvenRowBackground="True" ShowGroupPanel="False"
+                                                       AlternateRowBackground="{DynamicResource gridviewRowBackground}"
                                                        AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
                                             <dxmvvm:Interaction.Behaviors>
                                                 <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />

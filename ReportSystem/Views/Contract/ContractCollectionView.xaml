@@ -19,14 +19,19 @@
         <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
             <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
             <Setter Property="AutoGenerateColumns" Value="KeepOld" />
-        </Style>        
+        </Style>
     </UserControl.Resources>
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
                 <dxb:BarButtonItem x:Name="newTask" Command="{Binding AddItemCommand}" Content="新增" LargeGlyph="{dx:DXImage Image=NewTask_32x32.png}" />
                 <dxb:BarButtonItem x:Name="editTask" Content="修改"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
-                <dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <!--<dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>-->
+
+                <dxb:BarButtonItem x:Name="Sort1" Content="按项目"  LargeGlyph="{dx:DXImage Image=BOReport_32x32.png}" Glyph="{dx:DXImage Image=BOReport_16x16.png}"/>
+                <dxb:BarButtonItem x:Name="Sort2" Content="按金额"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="sort3" Content="按日期"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+                <dxb:BarButtonItem x:Name="sort4" Content="按状态"  LargeGlyph="{dx:DXImage Image=NewTask_32x32.png}"/>
             </dxb:BarManager.Items>
             <Grid>
                 <Grid.RowDefinitions>
@@ -36,36 +41,33 @@
                 <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2010">
                     <dxr:RibbonDefaultPageCategory Caption="Default Category">
                         <dxr:RibbonPage Caption="功能">
-                            <dxr:RibbonPageGroup Caption="other">
+                            <dxr:RibbonPageGroup Caption="操作">
                                 <dxb:BarButtonItemLink BarItemName="newTask" />
                                 <dxb:BarButtonItemLink BarItemName="editTask" />
-                                <dxb:BarButtonItemLink BarItemName="deleteTask" />
+                                <!--<dxb:BarButtonItemLink BarItemName="deleteTask" />-->
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="排序">
-                                <dxb:BarButtonItem Content="隐藏详单" Command="{Binding lalaCommand}" Glyph="pack://application:,,,/ReportSystem;component/Images/LAFA_Logo.png"></dxb:BarButtonItem>                              
+                            <dxr:RibbonPageGroup Caption="排序规则">
+                                <dxb:BarButtonItem Content="按项目" LargeGlyph="{dx:DXImage Image=BOReport_32x32.png}" Glyph="{dx:DXImage Image=BOReport_16x16.png}" RibbonStyle="Large" />
+                                <dxb:BarButtonItem Content="按金额" LargeGlyph="{dx:DXImage Image=Currency2_32x32.png}" Glyph="{dx:DXImage Image=Currency2_16x16.png}" RibbonStyle="SmallWithText" />
+                                <dxb:BarButtonItem Content="按日期" LargeGlyph="{dx:DXImage Image=GroupByDate_32x32.png}" Glyph="{dx:DXImage Image=GroupByDate_16x16.png}" RibbonStyle="SmallWithText" />
+                                <dxb:BarButtonItem Content="按状态" LargeGlyph="{dx:DXImage Image=Status_32x32.png}" Glyph="{dx:DXImage Image=Status_16x16.png}" RibbonStyle="SmallWithText" />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="打印/导出">
+                                <dxb:BarButtonItem Content="打印" ItemClick="Preview_ItemClick" LargeGlyph="{dx:DXImage Image=PrintDialog_32x32.png}" Glyph="{dx:DXImage Image=PrintDialog_16x16.png}" />
+                                <dxb:BarButtonItem Content="打印预览" LargeGlyph="{dx:DXImage Image=Preview_32x32.png}" Glyph="{dx:DXImage Image=Preview_16x16.png}" />
+                                <dxb:BarSplitButtonItem Content="另存为" LargeGlyph="{dx:DXImage Image=SaveDialog_32x32.png}" Glyph="{dx:DXImage Image=SaveDialog_16x16.png}">
+                                    <dxb:BarSplitButtonItem.PopupControl>
+                                        <dxb:PopupMenu>
+                                            <dxb:BarButtonItem Content="Excel 工作表" ItemClick="ToExcel_ItemClick" LargeGlyph="{dx:DXImage Image=ExportToXLS_32x32.png}" Glyph="{dx:DXImage Image=ExportToXLS_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="Word 文档" IsEnabled="False" ItemClick="ToWord_ItemClick" LargeGlyph="{dx:DXImage Image=ExportToDOC_32x32.png}" Glyph="{dx:DXImage Image=ExportToDOC_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="PDF 文档" IsEnabled="False"  LargeGlyph="{dx:DXImage Image=ExportToPDF_32x32.png}" Glyph="{dx:DXImage Image=ExportToPDF_32x32.png}" RibbonStyle="SmallWithText" />
+                                        </dxb:PopupMenu>
+                                    </dxb:BarSplitButtonItem.PopupControl>
+                                </dxb:BarSplitButtonItem>
                             </dxr:RibbonPageGroup>
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-                <!--<dxdo:DockLayoutManager Grid.Row="1">
-                    <dxdo:LayoutGroup Margin="1" Orientation="Vertical">
-                        <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
-                            <Grid>
-                                <dxg:GridControl x:Name="grid" Style="{StaticResource gridControlMVVMStyle}">
-                                    <dxg:GridControl.View>
-                                        <dxg:TableView x:Name="tableView" AutoWidth="True" UseEvenRowBackground="True" ShowGroupPanel="False"
-                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never">
-                                            <dxmvvm:Interaction.Behaviors>
-                                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
-                                            </dxmvvm:Interaction.Behaviors>
-                                        </dxg:TableView>
-                                    </dxg:GridControl.View>
-                                </dxg:GridControl>
-                            </Grid>
-                        </dxdo:LayoutPanel>
-                    </dxdo:LayoutGroup>
-                </dxdo:DockLayoutManager>-->
-
                 <dxdo:DockLayoutManager Grid.Row="1">
                     <dxdo:DockLayoutManager.LayoutRoot>
                         <dxdo:LayoutGroup>
@@ -106,7 +108,7 @@
                                         </dxg:GridControl.Columns>
                                         <dxg:GridControl.View>
                                             <dxg:TableView x:Name="tableView" AutoWidth="True" UseEvenRowBackground="True" ShowGroupPanel="False"
-                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never" >
+                                                       AllowPerPixelScrolling="True" AllowEditing="False" AllowFilterEditor="False" ShowFilterPanelMode="Never" AlternateRowBackground="{DynamicResource gridviewRowBackground}"  >
                                                 <dxmvvm:Interaction.Behaviors>
                                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding NavCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}" />
                                                 </dxmvvm:Interaction.Behaviors>

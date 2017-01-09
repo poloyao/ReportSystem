@@ -33,5 +33,14 @@ namespace ReportSystem.Views
                 grid.ExpandMasterRow(rowHandle);
             this.grid.ItemsSourceChanged -= Grid_ItemsSourceChanged;
         }
+
+        private void grid_CustomColumnDisplayText(object sender, DevExpress.Xpf.Grid.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "PayCategory" || e.Column.FieldName == "PayMethod" || e.Column.FieldName == "PayFre"
+                || e.Column.FieldName == "PayStatus" || e.Column.FieldName == "CurrentStatus")
+            {
+                e.DisplayText = Common.Data.SingleTypeCode.GetInstance().GetCommonCode(e.Value.ToString()).Name;
+            }
+        }
     }
 }

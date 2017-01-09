@@ -38,21 +38,27 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon" AllowCustomization="False" ToolbarShowMode="Hide" >
-                <dxr:RibbonControl.ApplicationMenu>
-                    <dxr:BackstageViewControl SelectedTabIndex="{Binding DefaultBackstatgeIndex, Mode=TwoWay}" IsOpen="{Binding IsBackstageOpen, Mode=TwoWay}" IsFullScreen="True">
+                <!--<dxr:RibbonControl.ApplicationMenu>
+                    <dxr:BackstageViewControl SelectedTabIndex="{Binding DefaultBackstatgeIndex, Mode=TwoWay}" IsOpen="{Binding IsBackstageOpen, Mode=TwoWay}" IsFullScreen="False">
                         <dxr:BackstageTabItem  Content="导出" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
                         <dxr:BackstageTabItem  Content="打印" IsEnabled="{Binding HasPrinting, Mode=OneWay}"/>
-                        <!--<dxr:BackstageButtonItem Glyph="{dx:DXImage Image=Close_16x16.png}" Content="Exit" Command="{Binding ExitCommand}" />-->
                     </dxr:BackstageViewControl>
+                </dxr:RibbonControl.ApplicationMenu>-->
+                <dxr:RibbonControl.ApplicationMenu>
+                    <dxr:ApplicationMenu>
+                        <dxb:BarButtonItem Content="关于" LargeGlyph="{dx:DXImage Image=Info_32x32.png}" Glyph="{dx:DXImage Image=Info_16x16.png}" ItemClick="BarButtonItem_ItemClick" />
+                        <dxb:BarButtonItem Content="重置密码" LargeGlyph="{dx:DXImage Image=BOUser_32x32.png}" Glyph="{dx:DXImage Image=BOUser_16x16.png}" />
+                        <dxb:BarButtonItem Content="退出" LargeGlyph="{dx:DXImage Image=Close_32x32.png}" Glyph="{dx:DXImage Image=Close_16x16.png}" ItemClick="CloseButton_ItemClick" />
+                    </dxr:ApplicationMenu>
                 </dxr:RibbonControl.ApplicationMenu>
                 <dxr:RibbonControl.PageHeaderItems>
                     <dxb:BarEditItem  Content="使用人："  Content2="{Binding LoginMan}" />
                     <dxb:BarButtonItem Content="关于" LargeGlyph="{dx:DXImage Image=Info_32x32.png}" Glyph="{dx:DXImage Image=Info_16x16.png}" ItemClick="BarButtonItem_ItemClick" />
                 </dxr:RibbonControl.PageHeaderItems>
                 <dxr:RibbonDefaultPageCategory>
-                    <dxr:RibbonPage Caption="主题" MergeOrder="99">
-                        <dxr:RibbonPageGroup>
-                            <dxr:RibbonGalleryBarItemLink BarItemName="ribbonGalleryBarItem1">
+                    <dxr:RibbonPage Caption="设置" MergeOrder="99">
+                        <dxr:RibbonPageGroup Caption="主题皮肤">
+                            <dxr:RibbonGalleryBarItemLink BarItemName="ribbonGalleryBarItem1" >
                                 <dxr:RibbonGalleryBarItemLink.CustomResources>
                                     <ResourceDictionary>
                                         <Style TargetType="{x:Type dxb:GalleryItemControl}">
@@ -62,9 +68,11 @@
                                 </dxr:RibbonGalleryBarItemLink.CustomResources>
                             </dxr:RibbonGalleryBarItemLink>
                         </dxr:RibbonPageGroup>
-                    </dxr:RibbonPage>
-                    <dxr:RibbonPage Caption="设置" MergeOrder="99">
-                        <dxr:RibbonPageGroup Caption="设置">
+                        <dxr:RibbonPageGroup Caption="帮助">
+                            <dxb:BarButtonItem Content="帮助文档" LargeGlyph="{dx:DXImage Image=Suggestion_32x32.png}" Glyph="{dx:DXImage Image=Suggestion_16x16.png}" />
+                        </dxr:RibbonPageGroup>
+                        <dxr:RibbonPageGroup Caption="个人设置">
+                            <dxb:BarButtonItem Content="重置密码" LargeGlyph="{dx:DXImage Image=BOUser_32x32.png}" Glyph="{dx:DXImage Image=BOUser_32x32.png}" />
                         </dxr:RibbonPageGroup>
                     </dxr:RibbonPage>
                 </dxr:RibbonDefaultPageCategory>

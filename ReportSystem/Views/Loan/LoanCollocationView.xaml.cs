@@ -23,5 +23,15 @@ namespace ReportSystem.Views
         {
             InitializeComponent();
         }
+
+        private void Preview_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ToExcel_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

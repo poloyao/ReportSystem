@@ -154,6 +154,7 @@
 
                                             <dxg:GridControl.View>
                                                 <dxg:TableView UseEvenRowBackground="True" AutoWidth="True"  DetailHeaderContent="LoanCreditor"
+                                                               AlternateRowBackground="{DynamicResource gridviewRowBackground}"
                                                ShowGroupPanel="False"                            
                                                AllowPerPixelScrolling="True" 
                                                AllowEditing="False" 
