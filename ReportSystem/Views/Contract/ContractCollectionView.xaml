@@ -24,7 +24,7 @@
     <Grid>
         <dxb:BarManager CreateStandardLayout="False">
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="newTask" Command="{Binding AddItemCommand}" Content="新增" LargeGlyph="{dx:DXImage Image=NewTask_32x32.png}" />
+                <dxb:BarButtonItem x:Name="newTask"  Command="{Binding AddItemCommand}" Content="新增" LargeGlyph="{dx:DXImage Image=NewTask_32x32.png}" />
                 <dxb:BarButtonItem x:Name="editTask" Content="修改"  LargeGlyph="{dx:DXImage Image=EditTask_32x32.png}"/>
                 <!--<dxb:BarButtonItem x:Name="deleteTask" Content="删除"  LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>-->
 
@@ -53,7 +53,7 @@
                                 <dxb:BarButtonItem Content="按状态" LargeGlyph="{dx:DXImage Image=Status_32x32.png}" Glyph="{dx:DXImage Image=Status_16x16.png}" RibbonStyle="SmallWithText" />
                             </dxr:RibbonPageGroup>
                             <dxr:RibbonPageGroup Caption="打印/导出">
-                                <dxb:BarButtonItem Content="打印" ItemClick="Preview_ItemClick" LargeGlyph="{dx:DXImage Image=PrintDialog_32x32.png}" Glyph="{dx:DXImage Image=PrintDialog_16x16.png}" />
+                                <dxb:BarButtonItem Content="打印"  ItemClick="Preview_ItemClick" LargeGlyph="{dx:DXImage Image=PrintDialog_32x32.png}" Glyph="{dx:DXImage Image=PrintDialog_16x16.png}" />
                                 <dxb:BarButtonItem Content="打印预览" LargeGlyph="{dx:DXImage Image=Preview_32x32.png}" Glyph="{dx:DXImage Image=Preview_16x16.png}" />
                                 <dxb:BarSplitButtonItem Content="另存为" LargeGlyph="{dx:DXImage Image=SaveDialog_32x32.png}" Glyph="{dx:DXImage Image=SaveDialog_16x16.png}">
                                     <dxb:BarSplitButtonItem.PopupControl>
@@ -81,11 +81,11 @@
                                     </Grid.RowDefinitions>
                                     <Grid>
                                         <dxlc:LayoutControl Orientation="Vertical">
-                                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                                <dxlc:LayoutItem Label="项目编号">
+                                            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
+                                                <dxlc:LayoutItem Label="项目编号" MinWidth="200" MaxWidth="200">
                                                     <dxe:TextEdit  EditValue="{Binding QueryElement.QProjectNo}"/>
                                                 </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="被担保人">
+                                                <dxlc:LayoutItem Label="被担保人" MinWidth="200"  MaxWidth="200">
                                                     <dxe:TextEdit  EditValue="{Binding QueryElement.QWaranteeMan}"/>
                                                 </dxlc:LayoutItem>
                                             </dxlc:LayoutGroup>
@@ -154,7 +154,7 @@
                                         </dxlc:LayoutItem>
 
                                         <dxlc:LayoutItem Label="存出保证金比例">
-                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding DepositRatio}"  />
+                                            <dxe:SpinEdit IsReadOnly="True" EditValue="{Binding DepositRatio}"  Mask="P"  MaskUseAsDisplayFormat="True" />
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="反担保方式">
                                             <dxe:ComboBoxEdit IsReadOnly="True" IsTextEditable="False" ItemsSource="{DynamicResource AllCGType}"  DisplayMember="Name" ValueMember="ID" 

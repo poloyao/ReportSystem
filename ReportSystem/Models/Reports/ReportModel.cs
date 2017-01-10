@@ -69,6 +69,9 @@ namespace ReportSystem.Models
         /// </summary>
         [Display(Name = "状态")]
         public ReportStatus Status { get; set; }
+
+        [Display(AutoGenerateField = false)]
+        public string DisplayName { get { return $"{this.Year}年第{this.Period}期"; } }
         
     }
 }

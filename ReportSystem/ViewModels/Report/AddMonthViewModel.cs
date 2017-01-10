@@ -118,7 +118,8 @@ namespace ReportSystem.ViewModels
             catch (Exception)
             {
                 DocumentOwner.Close(this, false);
-                throw new Exception("月报表数据不完整。请联系管理员。");
+                //throw new Exception("月报表数据不完整。请联系管理员。");
+                throw new Helpers.ReportException("月报表数据不完整。请联系管理员。");
             }
         }
 

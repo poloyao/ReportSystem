@@ -123,12 +123,20 @@ namespace ReportSystem.ViewModels
         }
 
 
+        protected override void OnParameterChanged(object parameter)
+        {
+            base.OnParameterChanged(parameter);
+            if (parameter != null)
+                this.Content = base.ContentBase;
+        }
+
         public void DocLoaded(object obj)
         {
-            if (this.Content == null)
-                return;
             try
             {
+                if (this.Content == null)
+                    return;
+            
                 var sp = (DevExpress.Xpf.Spreadsheet.SpreadsheetControl)obj;
                 sp.BeginUpdate();
                 var workbook = (sp).Document;
@@ -148,8 +156,9 @@ namespace ReportSystem.ViewModels
             }
             catch (Exception)
             {
-
-                throw new Exception("季报表数据不完整。请联系管理员。");
+                base.DocumentOwner.Close(this, false);
+                //throw new Exception("季报表数据不完整。请联系管理员。");
+                throw new Helpers.ReportException("季报表数据不完整。请联系管理员。");
             }
         }
 

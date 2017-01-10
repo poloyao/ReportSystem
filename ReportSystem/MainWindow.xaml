@@ -16,7 +16,7 @@
     DataContext="{dxmvvm:ViewModelSource Type={x:Type viewmodel:MainWindowViewModel}}"
     x:Class="ReportSystem.MainWindow"
         mc:Ignorable="d"
-        Title="信息监管系统" Height="705.283" Width="880.958" WindowStartupLocation="CenterScreen" Icon="Images/LAFA_Logo.png">
+        Title="信息监管系统" Height="705.283" Width="1000" MinWidth="900" MinHeight="600" WindowStartupLocation="CenterScreen" Icon="Images/LAFA_Logo.png">
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService />
     </dxmvvm:Interaction.Behaviors>
@@ -73,6 +73,9 @@
                         </dxr:RibbonPageGroup>
                         <dxr:RibbonPageGroup Caption="个人设置">
                             <dxb:BarButtonItem Content="重置密码" LargeGlyph="{dx:DXImage Image=BOUser_32x32.png}" Glyph="{dx:DXImage Image=BOUser_32x32.png}" />
+                            <dxb:BarButtonItem Content="系统设置" Command="{Binding SystemSettingCommand}" LargeGlyph="{dx:DXImage Image=Properties_32x32.png}" Glyph="{dx:DXImage Image=Properties_16x16.png}" />
+                           
+
                         </dxr:RibbonPageGroup>
                     </dxr:RibbonPage>
                 </dxr:RibbonDefaultPageCategory>
@@ -119,7 +122,7 @@
                         </dxn:NavBarControl>
                     </dxdo:LayoutPanel>
                     <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
-                        <dxwui:NavigationFrame x:Name="documentFrame" Navigating="OnDocumentFrameNavigating" Navigated="OnDocumentFrameNavigated">
+                        <dxwui:NavigationFrame  x:Name="documentFrame" Navigating="OnDocumentFrameNavigating" Navigated="OnDocumentFrameNavigated">
                             <dxwui:NavigationFrame.Resources>
                                 <Style TargetType="{x:Type dxwui:PageAdornerControl}">
                                     <Setter Property="Template">

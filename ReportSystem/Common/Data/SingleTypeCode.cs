@@ -62,7 +62,7 @@ namespace ReportSystem.Common.Data
         /// <returns></returns>
         public CommonCodeDataObject GetCommonCode(string ID)
         {
-            return CommonList.Single(t => t.ID == ID.ToUpper());
+            return CommonList.Single(t => t.ID.ToUpper() == ID.ToUpper());
         }
     }
 

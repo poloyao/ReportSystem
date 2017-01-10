@@ -42,40 +42,50 @@ namespace ReportSystem.ViewModels
 
         public void AddQuarter()
         {
-            var vm = AddQuarterViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
-
-            if (doc == null)
-            {
-                doc = documentManagerService.CreateDocument("AddQuarterView", null, vm);
-                doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增季报信息";
-            }
-            doc.Show();
+            IDocument doc = documentManagerService.CreateDocument("AddQuarterView", null, this);
+            doc.Id = documentManagerService.Documents.Count();
+            doc.Title = "新增季报信息";
             var docVM = (AddQuarterViewModel)doc.Content;
+            doc.Show();
             if (docVM.IsSaved)
             {
-                //Items.Add(docVM.Content);
-                //ItemSource.Add(docVM.Content);
-                //sheet1.Add(docVM.Content.sheet1);
-                //sheet2.Add(docVM.Content.sheet2);
-                //sheet3.AddRange(docVM.Content.sheet3);
+                //重新获取数据 临时借用filer 
+                base.Init(ReportType.QUARTER, 123);
             }
 
         }
 
-        public void ShowReport(object id)
+        public void ShowReport(object item)
         {
-            var vm = AddQuarterViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
-
-            if (doc == null)
+            var _item = (ReportModel)item;
+            try
             {
-                doc = documentManagerService.CreateDocument("AddQuarterView", id, vm);
+                //if (_item.ID == null || (Guid)_item.ID == Guid.Empty)
+                //    return;
+
+                IDocument doc = documentManagerService.CreateDocument("AddQuarterView", _item.ID, this);
                 doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增季报信息";
+                doc.Title = _item.DisplayName + "季报信息";
+                var docVM = (AddQuarterViewModel)doc.Content;
+                doc.Show();
             }
-            doc.Show();
+            catch (Helpers.ReportException re)//因UI阻断未能捕获到此异常
+            {
+                Common.Core.LOGGER.Error($"{_item.DisplayName}季报信息存在问题无法打开。");
+                DevExpress.Xpf.Core.DXMessageBox.Show(re.Message);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    Common.Core.LOGGER.Error($"{_item.DisplayName}季报信息存在问题无法打开。");
+                    DevExpress.Xpf.Core.DXMessageBox.Show(ex.InnerException.Message);
+                }
+                else
+                {
+                    throw ex;
+                }      
+            }
 
         }
     }

@@ -56,10 +56,10 @@ namespace ReportSystem.Common.ViewModel
 
         protected CollectionViewModel()
         {
-            Init();
+            Init(null);
         }
 
-        protected void Init(object filter = null)
+        protected void Init(object filter)
         {
             if (DataProvider == null)
             {
@@ -72,13 +72,17 @@ namespace ReportSystem.Common.ViewModel
 
         protected CollectionViewModel(object id)
         {
-            Init(id);
+            Init(id,null);
         }
 
-        protected void Init(object id, object filter = null)
+        protected void Init(object id, object filter)
         {
             baseId = id;
-            Items = DataProvider.GetCollection(id,filter).ToList();
+            //Items = DataProvider.GetCollection(id,filter).ToList();
+            var query = DataProvider.GetCollection(id, filter);
+            if (query == null)
+                return;
+            Items = query.ToList();
             ItemSource = new ObservableCollection<TModel>(Items);
         }
 
@@ -179,9 +183,9 @@ namespace ReportSystem.Common.ViewModel
         public void Refresh()
         {
             if (baseId == null)
-                Init();
+                Init(null);
             else
-                Init(baseId);
+                Init(baseId,null);
         }
 
         //protected void FilterItems(object filter)

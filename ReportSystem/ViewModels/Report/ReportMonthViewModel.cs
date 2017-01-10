@@ -40,27 +40,6 @@ namespace ReportSystem.ViewModels
         public void AddMonth()
         {
 
-            //var vm = AddMonthViewModel.Create();
-            //IDocument doc = documentManagerService.FindDocument(vm);
-
-            //if (doc == null)
-            //{
-            //    doc = documentManagerService.CreateDocument("AddMonthView", null, vm);
-            //    doc.Id = documentManagerService.Documents.Count();
-            //    doc.Title = "新增月报信息";
-            //}
-            //doc.Show();
-            //var docVM = (AddMonthViewModel)doc.Content;
-            //if (docVM.IsSaved)
-            //{
-            //    //Items.Add(docVM.Content);
-            //    //ItemSource.Add(docVM.Content);
-            //    //Sheet1.Add(docVM.Content.Sheet1);
-            //    //Sheet2.Add(docVM.Content.Sheet2);
-            //    //Sheet3.Add(docVM.Content.Sheet3);
-            //    //Sheet4.Add(docVM.Content.Sheet4);
-            //}
-
             IDocument doc = documentManagerService.CreateDocument("AddMonthView", null, this);
             doc.Id = documentManagerService.Documents.Count();
             doc.Title = "新增月报信息";
@@ -68,38 +47,38 @@ namespace ReportSystem.ViewModels
             doc.Show();
             if (docVM.IsSaved)
             {
+                //重新获取数据 临时借用filer 
+                base.Init(ReportType.MONTH, 123);
             }
 
         }
 
-        public void ShowReport(object id)
+        public void ShowReport(object item)
         {
-
-            //var vm = AddMonthViewModel.Create();
-            //IDocument doc = documentManagerService.FindDocument(vm);
-
-            //if (doc == null)
-            //{
-            //    doc = documentManagerService.CreateDocument("AddMonthView", id, vm);
-            //    doc.Id = documentManagerService.Documents.Count();
-            //    doc.Title = "新增月报信息";
-            //}
-            //doc.Show();
+            var _item = (ReportModel)item;
             try
-            {
-                if (id == null || (Guid)id == Guid.Empty)
+            {                
+                if (_item.ID == null || (Guid)_item.ID == Guid.Empty)
                     return;
 
-                IDocument doc = documentManagerService.CreateDocument("AddMonthView", id, this);
+                IDocument doc = documentManagerService.CreateDocument("AddMonthView", _item.ID, this);
                 doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增月报信息";
+                doc.Title = _item.DisplayName + "月报信息";
                 var docVM = (AddMonthViewModel)doc.Content;
                 doc.Show();
             }
             catch (Exception ex)
             {
-                DevExpress.Xpf.Core.DXMessageBox.Show(ex.Message);
-                
+                if (ex.InnerException != null)
+                {
+                    Common.Core.LOGGER.Error($"{_item.DisplayName}月报信息存在问题无法打开。");
+                    DevExpress.Xpf.Core.DXMessageBox.Show(ex.InnerException.Message);
+                }
+                else
+                {
+                    throw ex;
+                }
+
             }
            
 

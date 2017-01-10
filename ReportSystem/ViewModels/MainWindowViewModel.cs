@@ -27,7 +27,7 @@ namespace ReportSystem.ViewModels
                  ViewModelSource.Create(()=>new ModuleInfo("SupervisionCollectionView",this,"不良项目")).SetIcon("GridContacts"),
                  ViewModelSource.Create(()=>new ModuleInfo("PremiumCollectionView",this,"保费信息")).SetIcon("GridContacts"),
                  ViewModelSource.Create(()=>new ModuleInfo("ReportCollectionView",this,"报表信息")).SetIcon("GridContacts"),
-                 ViewModelSource.Create(()=>new ModuleInfo("CompanySettingView",this,"设置")).SetIcon("GridContacts")
+                 ViewModelSource.Create(()=>new ModuleInfo("CompanySettingView",this,"机构设置")).SetIcon("GridContacts")
 
             };
             ModuleGroups = new ModuleGroup[] {
@@ -74,6 +74,12 @@ namespace ReportSystem.ViewModels
             // HasPrinting = PrintingService.HasPrinting;
             if (!HasPrinting && DefaultBackstatgeIndex == 1)
                 DefaultBackstatgeIndex = 0;
+        }
+
+        public void SystemSetting()
+        {
+            INavigationService navigationService = this.GetService<INavigationService>();
+            navigationService.Navigate("SystemSettingView", null, this);
         }
     }
 }

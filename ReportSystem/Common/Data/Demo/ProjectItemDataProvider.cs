@@ -818,7 +818,18 @@ namespace ReportSystem.Common.Data.Demo
 
         protected override IList<ReportModel> FillItems(object id, object filter)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                var result = new List<ReportModel>()
+                {
+                    new ReportModel() { Year = "2016",RType = ReportType.MONTH,Period = 1,UDP = DateTime.Now,Status = ReportStatus.MODIFIED }
+                };
+                return result;
+            }
+            else
+            {
+                return new List<ReportModel>();
+            }
         }
 
         protected override ReportModel GetItem(object id)

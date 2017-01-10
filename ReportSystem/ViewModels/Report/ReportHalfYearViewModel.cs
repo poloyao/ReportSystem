@@ -26,35 +26,26 @@ namespace ReportSystem.ViewModels
 
         public void AddHalfYear()
         {
-            var vm = AddHalfYearViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
-
-            if (doc == null)
-            {
-                doc = documentManagerService.CreateDocument("AddHalfYearView", null, vm);
-                doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增半年报信息";
-            }
-            doc.Show();
+            IDocument doc = documentManagerService.CreateDocument("AddHalfYearView", null, this);
+            doc.Id = documentManagerService.Documents.Count();
+            doc.Title = "新增半年报信息";
             var docVM = (AddHalfYearViewModel)doc.Content;
+            doc.Show();
             if (docVM.IsSaved)
             {
-                //Items.Add(docVM.Content);
-                //ItemSource.Add(docVM.Content);
+                //重新获取数据 临时借用filer 
+                base.Init(ReportType.HALFYEAR, 123);
             }
+
         }
 
-        public void ShowReport(object id)
+        public void ShowReport(object item)
         {
-            var vm = AddHalfYearViewModel.Create();
-            IDocument doc = documentManagerService.FindDocument(vm);
-
-            if (doc == null)
-            {
-                doc = documentManagerService.CreateDocument("AddHalfYearView", id, vm);
-                doc.Id = documentManagerService.Documents.Count();
-                doc.Title = "新增半年报信息";
-            }
+            var _item = (ReportModel)item;
+            IDocument doc = documentManagerService.CreateDocument("AddHalfYearView", _item.ID, this);
+            doc.Id = documentManagerService.Documents.Count();
+            doc.Title = _item.DisplayName + "半年报信息";
+            var docVM = (AddHalfYearViewModel)doc.Content;
             doc.Show();
         }
 

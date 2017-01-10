@@ -47,54 +47,13 @@
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-
-                <!--<dx:DXTabControl Grid.Row="1" x:Name="dxTab" SelectedIndex="{Binding TabSelectIndex}" >
-                    <dx:DXTabItem Header="融资性担保业务汇总情况">
-                        <Grid>
-                            <dxg:GridControl ItemsSource="{Binding Sheet1}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-                 
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="False"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </dx:DXTabItem>
-                    <dx:DXTabItem Header="企业担保业务">
-                        <Grid>
-                            <dxg:GridControl ItemsSource="{Binding Sheet2}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </dx:DXTabItem>
-                    <dx:DXTabItem Header="个人担保业务">
-                        <Grid>
-                            <dxg:GridControl ItemsSource="{Binding Sheet3}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </dx:DXTabItem>
-                    <dx:DXTabItem Header="非融资性担保业务情况">
-                        <Grid>
-                            <dxg:GridControl  ItemsSource="{Binding Sheet4}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </dx:DXTabItem>
-
-                </dx:DXTabControl>-->
-
+              
                 <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding ItemSource}" 
                                  AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" SelectionMode="Row">
                     <dxg:GridControl.View>
                         <dxg:TableView  ShowGroupPanel="False" AllowEditing="False" AutoWidth="True" AlternateRowBackground="{DynamicResource gridviewRowBackground}">
                             <dxmvvm:Interaction.Behaviors>
-                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding ShowReportCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem.ID}"/>
+                                <dxmvvm:EventToCommand EventName="RowDoubleClick" Command="{Binding ShowReportCommand}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem}"/>
                             </dxmvvm:Interaction.Behaviors>
                         </dxg:TableView>
                     </dxg:GridControl.View>
