@@ -125,6 +125,7 @@
     <Compile Include="Models\Loan\LoanEntryItemModel.cs" />
     <Compile Include="Models\Loan\LoanItemModel.cs" />
     <Compile Include="Models\Loan\LoanRelieveItemModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ModuleInfo.cs" />
     <Compile Include="Models\Premium\PremiumCollectionItemModel.cs" />
     <Compile Include="Models\Premium\PremiumDisplayItemModel.cs" />

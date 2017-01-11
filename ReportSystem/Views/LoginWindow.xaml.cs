@@ -25,6 +25,8 @@ namespace ReportSystem.Views
             InitializeComponent();
             //this.DataContext = new ViewModels.LoginWindowViewModel();
             (this.DataContext as ViewModels.LoginWindowViewModel).LoginSucess += LoginWindowViewModel_LoginSucess;
+            //this.Topmost = true;
+            //this.Topmost = false;
         }
         
         private void LoginWindowViewModel_LoginSucess(object sender, EventArgs e)

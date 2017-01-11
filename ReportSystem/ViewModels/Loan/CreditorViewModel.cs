@@ -27,7 +27,9 @@ namespace ReportSystem.ViewModels
         /// <summary>
         /// 编辑完后置为true
         /// </summary>
-        public bool IsEdited { get; private set; } = false;
+        public bool IsEdited { get; private set; } = true;
+
+        public Guid LoanID { get; set; }
 
         public static CreditorViewModel Create()
         {
@@ -39,12 +41,12 @@ namespace ReportSystem.ViewModels
         protected override void OnParameterChanged(object parameter)
         {
             base.OnParameterChanged(parameter);
-            if (parameter != null)
-            {
-                IsEnabled = (bool)parameter;
-            }                
-            else
-                IsEnabled = true;
+            //if (parameter != null)
+            //{
+            //    IsEnabled = (bool)parameter;
+            //}                
+            //else
+            //    IsEnabled = true;
         }
 
 
@@ -53,10 +55,12 @@ namespace ReportSystem.ViewModels
             if (Content == null)
                 return;
             LoanCreditorItemModel query;
-            if (Content.ID == Guid.Empty)
-                query = base.AddItem(Content);
-            else
-                query = base.UpdateItem(Content);
+            //if (Content.ID == Guid.Empty)
+            //    query = base.AddItem(Content);
+            //else
+            //    query = base.UpdateItem(Content);
+            Content.ID = LoanID;
+            query = base.AddItem(Content);
             if (query != null)
             {
                 this.IsEnabled = false;

@@ -12,11 +12,12 @@
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"       
              x:Class="ReportSystem.Views.ContractView"
              xmlns:cvs="clr-namespace:ReportSystem.ViewResources"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:ContractViewModel}}"
-             d:DesignHeight="800" d:DesignWidth="500">
+             d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
         <Style x:Key="gridControlMVVMStyle" TargetType="{x:Type dxg:GridControl}">
             <Setter Property="ItemsSource" Value="{Binding ItemSource}"/>
@@ -61,24 +62,46 @@
                 </Grid.RowDefinitions>
                 <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2010">
                     <dxr:RibbonDefaultPageCategory Caption="Default Category">
-                        <dxr:RibbonPage Caption="功能">
+                        <dxr:RibbonPage Caption="功能" MergeType="Replace" >
                             <dxr:RibbonPageGroup Caption="导航">
                                 <dxb:BarButtonItemLink BarItemName="GoBack" />
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other">
-                                <dxb:BarButtonItemLink BarItemName="newTask" />
+                            <dxr:RibbonPageGroup Caption="操作">
+                                <dxb:BarButtonItemLink BarItemName="newTask">
+                                    <dxb:BarButtonItemLink.CustomResources>
+                                        <ResourceDictionary>
+                                            <ControlTemplate x:Key="{dxbt:BarItemBorderThemeKey ResourceKey=Normal}" TargetType="dxb:ItemBorderControl">
+                                                <Border BorderThickness="2" BorderBrush="Red" Width="300" >
+                                                    <ContentControl />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </ResourceDictionary>
+                                    </dxb:BarButtonItemLink.CustomResources>
+                                </dxb:BarButtonItemLink>
                                 <dxb:BarButtonItemLink BarItemName="deleteTask" />
-                            </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="被担保人">
                                 <dxb:BarButtonItemLink BarItemName="WarranteeBar" />
-                            </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other2">                                
                                 <dxb:BarButtonItemLink BarItemName="ReGuarantorBar" />
                                 <dxb:BarButtonItemLink BarItemName="CreditorBar" />
                             </dxr:RibbonPageGroup>
-                            <dxr:RibbonPageGroup Caption="other3">
-                                <dxb:BarButtonItem Content="导出" />
-                                <dxb:BarButtonItem Content="打印" />
+                            <!--<dxr:RibbonPageGroup Caption="被担保人">
+                                <dxb:BarButtonItemLink BarItemName="WarranteeBar" />
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Caption="other2">
+                                <dxb:BarButtonItemLink BarItemName="ReGuarantorBar" />
+                                <dxb:BarButtonItemLink BarItemName="CreditorBar" />
+                            </dxr:RibbonPageGroup>-->
+                            <dxr:RibbonPageGroup Caption="打印/导出">
+                                <dxb:BarButtonItem Content="打印"  ItemClick="Preview_ItemClick" LargeGlyph="{dx:DXImage Image=PrintDialog_32x32.png}" Glyph="{dx:DXImage Image=PrintDialog_16x16.png}" />
+                                <dxb:BarButtonItem Content="打印预览" LargeGlyph="{dx:DXImage Image=Preview_32x32.png}" Glyph="{dx:DXImage Image=Preview_16x16.png}" />
+                                <dxb:BarSplitButtonItem Content="另存为" LargeGlyph="{dx:DXImage Image=SaveDialog_32x32.png}" Glyph="{dx:DXImage Image=SaveDialog_16x16.png}">
+                                    <dxb:BarSplitButtonItem.PopupControl>
+                                        <dxb:PopupMenu>
+                                            <dxb:BarButtonItem Content="Excel 工作表" ItemClick="ToExcel_ItemClick" LargeGlyph="{dx:DXImage Image=ExportToXLS_32x32.png}" Glyph="{dx:DXImage Image=ExportToXLS_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="Word 文档" IsEnabled="False"  LargeGlyph="{dx:DXImage Image=ExportToDOC_32x32.png}" Glyph="{dx:DXImage Image=ExportToDOC_32x32.png}" RibbonStyle="SmallWithText" />
+                                            <dxb:BarButtonItem Content="PDF 文档" IsEnabled="False"  LargeGlyph="{dx:DXImage Image=ExportToPDF_32x32.png}" Glyph="{dx:DXImage Image=ExportToPDF_32x32.png}" RibbonStyle="SmallWithText" />
+                                        </dxb:PopupMenu>
+                                    </dxb:BarSplitButtonItem.PopupControl>
+                                </dxb:BarSplitButtonItem>
                             </dxr:RibbonPageGroup>
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
@@ -91,66 +114,119 @@
                             <dxdo:LayoutPanel ShowBorder="False" ShowCaption="False">
                                 <dxlc:LayoutControl>
                                     <dxlc:LayoutControl.Resources>
-                                        <Style TargetType="{x:Type dxlc:LayoutItem}">
-                                            <Setter Property="ElementSpace" Value="10" />
+                                        <Style TargetType="dxlc:LayoutItem">
+                                            <Setter Property="ElementSpace" Value="40" />
                                         </Style>
-                                        <Style x:Key="VerticalLayoutItem" TargetType="{x:Type dxlc:LayoutItem}" />
-                                        <Style x:Key="InnerLayoutGroup" TargetType="{x:Type dxlc:LayoutGroup}" />
-                                        <Style TargetType="{x:Type dxlc:LayoutGroup}">
-                                            <Setter Property="ItemSpace" Value="20" />
+                                        <Style x:Key="VerticalLayoutItem" TargetType="dxlc:LayoutItem" />
+                                        <Style x:Key="InnerLayoutGroup" TargetType="dxlc:LayoutGroup" />
+                                        <Style TargetType="dxlc:LayoutGroup">
+                                            <Setter Property="ItemSpace" Value="22" />
                                         </Style>
-                                        <Style x:Key="PairLayoutGroup" TargetType="{x:Type dxlc:LayoutGroup}">
-                                            <Setter Property="ItemSpace" Value="5" />
+                                        <Style x:Key="PairLayoutGroup" TargetType="dxlc:LayoutGroup">
+                                            <Setter Property="ItemSpace" Value="10" />
                                         </Style>
-                                        <Style x:Key="SecondItemInPair" TargetType="{x:Type dxlc:LayoutItem}">
+                                        <Style x:Key="SecondItemInPair" TargetType="dxlc:LayoutItem">
                                             <Setter Property="ElementSpace" Value="5" />
                                         </Style>
                                         <cvs:CommonTypeConverter x:Key="ctc" />
                                         
                                     </dxlc:LayoutControl.Resources>
-                                    <dxlc:LayoutGroup Orientation="Vertical" x:Name="validationContainer" dxe:ValidationService.IsValidationContainer="True">
-
-                                        <dxlc:LayoutGroup  Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}" >
-                                            <dxlc:LayoutItem  Label="担保合同号码" >
-                                                <dxe:TextEdit IsReadOnly="True" Text="{Binding Content.ProjectNo,UpdateSourceTrigger=PropertyChanged}"/>
-                                            </dxlc:LayoutItem>
-                                            <dxlc:LayoutItem Label="被担保人类型" >
-                                                <dxe:ListBoxEdit ShowBorder="False" IsReadOnly="True"
+                                    <dxlc:LayoutGroup Orientation="Vertical">
+                                        <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top">
+                                            <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Left">
+                                                <dxlc:LayoutGroup>
+                                                    <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}">
+                                                        <dxlc:LayoutItem  Label="项目编号(系统生成)" >
+                                                            <dxe:TextEdit IsReadOnly="True" />
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem  Label="担保合同号码" >
+                                                            <dxe:TextEdit IsReadOnly="{Binding IsReadOnly}"  Text="{Binding Content.ProjectNo,UpdateSourceTrigger=PropertyChanged}"/>
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="被担保人类型" >
+                                                            <dxe:ListBoxEdit ShowBorder="False" IsReadOnly="True"
                                                                  ItemsSource="{DynamicResource AllWarranteeType}" 
                                                          DisplayMember="Name" ValueMember="ID"
                                                          Background="{x:Null}" SelectedIndex="0" x:Name="lbButtonIndex" Margin="0,0,0,5" SelectedItem="{Binding MainWarrantee.WarranteeType, Converter={StaticResource ctc},UpdateSourceTrigger=PropertyChanged}">
-                                                    <dxe:ListBoxEdit.StyleSettings>
-                                                        <dxe:RadioListBoxEditStyleSettings />
-                                                    </dxe:ListBoxEdit.StyleSettings>
-                                                    <dxe:ListBoxEdit.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <StackPanel Orientation="Horizontal" />
-                                                        </ItemsPanelTemplate>
-                                                    </dxe:ListBoxEdit.ItemsPanel>
-                                                    <dxe:ListBoxEditItem Content="企业或其他组织"  />
-                                                    <dxe:ListBoxEditItem Content="自然人" Margin="6,0,0,0" />
-                                                </dxe:ListBoxEdit>
-                                            </dxlc:LayoutItem>
-                                            <dxlc:LayoutItem Label="被担保人名称">
-                                                <dxe:TextEdit IsReadOnly="True" EditValue="{Binding MainWarrantee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                                            </dxlc:LayoutItem>
-                                            <dxlc:LayoutGroup Style="{StaticResource PairLayoutGroup}">
-                                                <dxlc:LayoutItem Label="被担保人证件类型" HorizontalAlignment="Left">
-                                                    <dxe:ComboBoxEdit IsReadOnly="True" x:Name="warrCombobox" IsTextEditable="False"  
+                                                                <dxe:ListBoxEdit.StyleSettings>
+                                                                    <dxe:RadioListBoxEditStyleSettings />
+                                                                </dxe:ListBoxEdit.StyleSettings>
+                                                                <dxe:ListBoxEdit.ItemsPanel>
+                                                                    <ItemsPanelTemplate>
+                                                                        <StackPanel Orientation="Horizontal" />
+                                                                    </ItemsPanelTemplate>
+                                                                </dxe:ListBoxEdit.ItemsPanel>
+                                                                <dxe:ListBoxEditItem Content="企业或其他组织"  />
+                                                                <dxe:ListBoxEditItem Content="自然人" Margin="6,0,0,0" />
+                                                            </dxe:ListBoxEdit>
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="被担保人名称">
+                                                            <dxe:TextEdit IsReadOnly="True" EditValue="{Binding MainWarrantee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="被担保人证件类型">
+                                                            <dxe:ComboBoxEdit IsReadOnly="True" x:Name="warrCombobox" IsTextEditable="False"  
                                                                       ItemsSource="{DynamicResource AllCodeType}" 
-                                                                      DisplayMember="Name" ValueMember="ID"  MinWidth="100" 
+                                                                      DisplayMember="Name" ValueMember="ID"  
                                                                       SelectedItem="{Binding MainWarrantee.CardType, Converter={StaticResource ctc},UpdateSourceTrigger=PropertyChanged}" />
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutGroup ItemLabelsAlignment="Local">
-                                                    <dxlc:LayoutItem Label="证件号码" Style="{StaticResource SecondItemInPair}">
-                                                        <dxe:TextEdit IsReadOnly="True" MinWidth="220" EditValue="{Binding MainWarrantee.CardID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="证件号码" >
+                                                            <dxe:TextEdit IsReadOnly="True"  EditValue="{Binding MainWarrantee.CardID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        </dxlc:LayoutItem>
+
+                                                    </dxlc:LayoutGroup>
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutGroup>
+                                            <dxlc:LayoutGroup Orientation="Vertical">
+                                                <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}">
+                                                    <dxlc:LayoutGroup >
+                                                        <dxlc:LayoutItem Label="担保业务种类">
+                                                            <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" ItemsSource="{DynamicResource AllBusinessType}" 
+                                                                      IsTextEditable="False"  DisplayMember="Name" ValueMember="ID" 
+                                                                      SelectedItem="{Binding Content.BusinessType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="担保方式">
+                                                            <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" ItemsSource="{DynamicResource AllGuaranteeType}" 
+                                                                      IsTextEditable="False" DisplayMember="Name" ValueMember="ID" 
+                                                                      SelectedItem="{Binding Content.GuaranteeType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
+                                                        </dxlc:LayoutItem>
+                                                    </dxlc:LayoutGroup>
+                                                    
+                                                    <dxlc:LayoutItem Label="担保金额">
+                                                        <dxe:SpinEdit MaskUseAsDisplayFormat="True" EditValue="{Binding Content.Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
+                                                              IsReadOnly="{Binding IsReadOnly}" Mask="c2"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutGroup>
+                                                        <dxlc:LayoutItem Label="起始时间">
+                                                            <dxe:DateEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" MaskUseAsDisplayFormat="True"  Mask="D"/>
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="结束时间">
+                                                            <dxe:DateEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" MaskUseAsDisplayFormat="True"  Mask="D"/>
+                                                        </dxlc:LayoutItem>
+                                                    </dxlc:LayoutGroup>
+                                                    <dxlc:LayoutGroup>
+                                                        <dxlc:LayoutItem Label="反担保方式">
+                                                            <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" IsTextEditable="False" ItemsSource="{DynamicResource AllCGType}"  DisplayMember="Name" ValueMember="ID" 
+                                                                      SelectedItem="{Binding Content.CounterGuarantee, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="存出保证金比例">
+                                                            <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.DepositRatio,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" MaskUseAsDisplayFormat="True" Mask="P"/>
+                                                        </dxlc:LayoutItem>
+                                                    </dxlc:LayoutGroup>                                                    
+                                                    <dxlc:LayoutItem Label="约定再担保比例">
+                                                        <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.ReRatio,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Mask="P"  MaskUseAsDisplayFormat="True"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="费率">
+                                                        <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Rates,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Mask="P" MaskUseAsDisplayFormat="True" />
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="年化费率">
+                                                        <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.YearRates,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"  Mask="P" MaskUseAsDisplayFormat="True"/>
                                                     </dxlc:LayoutItem>
                                                 </dxlc:LayoutGroup>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutGroup>
-
-                                        <dxlc:LayoutGroup dxlc:LayoutControl.AllowVerticalSizing="True" Height="200"  Orientation="Vertical" View="GroupBox" Header="被担保人列表" IsCollapsed="False" IsCollapsible="True">
-
+                                        <dxlc:LayoutGroup Orientation="Vertical" Margin="0,15,0,0">
+                                            <!--<dxlc:LayoutItem HorizontalAlignment="Right">
+                                                <dx:SimpleButton Content="增加" IsEnabled="{Binding AllowEdit}" Command="{Binding AddItemCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=Add_16x16.png}" />
+                                            </dxlc:LayoutItem>-->
                                             <dxg:GridControl  x:Name="grid" 
                                                               CustomColumnDisplayText="grid_CustomColumnDisplayText"
                                                              AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" 
@@ -163,72 +239,9 @@
                                                     </dxg:TableView>
                                                 </dxg:GridControl.View>
                                             </dxg:GridControl>
-
-                                            <dxlc:LayoutGroup Style="{StaticResource InnerLayoutGroup}">
-                                                <dxlc:LayoutItem HorizontalAlignment="Right">
-                                                    <dx:SimpleButton Content="增加" IsEnabled="{Binding AllowEdit}" Command="{Binding AddItemCommand}"  ButtonKind="Simple" Glyph="{dx:DXImage Image=Add_16x16.png}">
-                                                       
-                                                    </dx:SimpleButton>
-                                                </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
                                         </dxlc:LayoutGroup>
-
-                                        <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}">
-
-                                            <dxlc:LayoutGroup Style="{StaticResource InnerLayoutGroup}">
-                                                <dxlc:LayoutItem Label="担保业务种类">
-                                                    <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" ItemsSource="{DynamicResource AllBusinessType}" 
-                                                                      IsTextEditable="False"  DisplayMember="Name" ValueMember="ID" 
-                                                                      SelectedItem="{Binding Content.BusinessType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="担保方式">
-                                                    <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" ItemsSource="{DynamicResource AllGuaranteeType}" 
-                                                                      IsTextEditable="False" DisplayMember="Name" ValueMember="ID" 
-                                                                      SelectedItem="{Binding Content.GuaranteeType, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
-                                                </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
-
-
-                                            <dxlc:LayoutItem Label="担保金额">
-                                                <dxe:SpinEdit MaskUseAsDisplayFormat="True" EditValue="{Binding Content.Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
-                                                              IsReadOnly="{Binding IsReadOnly}" Mask="c2"/>
-                                            </dxlc:LayoutItem>
-
-                                            <dxlc:LayoutGroup Style="{StaticResource InnerLayoutGroup}">
-                                                <dxlc:LayoutItem Label="起始时间">
-                                                    <dxe:DateEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" MaskUseAsDisplayFormat="True"  Mask="D"/>
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="结束时间">
-                                                    <dxe:DateEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" MaskUseAsDisplayFormat="True"  Mask="D"/>
-                                                </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
-
-                                        </dxlc:LayoutGroup>
-                                        <dxlc:LayoutGroup  Style="{StaticResource InnerLayoutGroup}">
-                                            <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}">
-                                                <dxlc:LayoutItem Label="存出保证金比例">
-                                                    <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.DepositRatio,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" MaskUseAsDisplayFormat="True" Mask="P"/>
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="反担保方式">
-                                                    <dxe:ComboBoxEdit IsReadOnly="{Binding IsReadOnly}" IsTextEditable="False" ItemsSource="{DynamicResource AllCGType}"  DisplayMember="Name" ValueMember="ID" 
-                                                                      SelectedItem="{Binding Content.CounterGuarantee, Converter={StaticResource ctc},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                                                </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
-                                            <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource InnerLayoutGroup}">
-                                                <dxlc:LayoutItem Label="约定再担保比例">
-                                                    <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.ReRatio,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Mask="P"  MaskUseAsDisplayFormat="True"/>
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="费率">
-                                                    <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.Rates,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Mask="P" MaskUseAsDisplayFormat="True" />
-                                                </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem Label="年化费率">
-                                                    <dxe:SpinEdit IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding Content.YearRates,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"  Mask="P" MaskUseAsDisplayFormat="True"/>
-                                                </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
-                                        </dxlc:LayoutGroup>
-
                                     </dxlc:LayoutGroup>
-                                </dxlc:LayoutControl>
+                                 </dxlc:LayoutControl>
                             </dxdo:LayoutPanel>
                         </dxdo:LayoutGroup>
 

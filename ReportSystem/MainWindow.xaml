@@ -56,7 +56,7 @@
                     <dxb:BarButtonItem Content="关于" LargeGlyph="{dx:DXImage Image=Info_32x32.png}" Glyph="{dx:DXImage Image=Info_16x16.png}" ItemClick="BarButtonItem_ItemClick" />
                 </dxr:RibbonControl.PageHeaderItems>
                 <dxr:RibbonDefaultPageCategory>
-                    <dxr:RibbonPage Caption="设置" MergeOrder="99">
+                    <dxr:RibbonPage Caption="设置" MergeOrder="99" MergeType="Replace">
                         <dxr:RibbonPageGroup Caption="主题皮肤">
                             <dxr:RibbonGalleryBarItemLink BarItemName="ribbonGalleryBarItem1" >
                                 <dxr:RibbonGalleryBarItemLink.CustomResources>
@@ -102,7 +102,7 @@
                                                 <Setter Property="CommandParameter" Value="Module" />
                                                 <Setter Property="ImageSettings">
                                                     <Setter.Value>
-                                                        <dxn:ImageSettings Width="32" Height="32" Stretch="Uniform" StretchDirection="Both" />
+                                                        <dxn:ImageSettings Width="40" Height="40" Stretch="Uniform" StretchDirection="Both" />
                                                     </Setter.Value>
                                                 </Setter>
                                                 <Setter Property="LayoutSettings">

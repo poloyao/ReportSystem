@@ -19,6 +19,7 @@ namespace ReportSystem.ViewModels
 
         public void Login()
         {
+            //成功后操作此动作
             LoginSucess(this, EventArgs.Empty);
         }
 

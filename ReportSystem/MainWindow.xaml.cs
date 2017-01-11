@@ -28,6 +28,8 @@ namespace ReportSystem
             if (Height > SystemParameters.VirtualScreenHeight || Width > SystemParameters.VirtualScreenWidth)
                 WindowState = WindowState.Maximized;
             DevExpress.Utils.About.UAlgo.Default.DoEventObject(DevExpress.Utils.About.UAlgo.kDemo, DevExpress.Utils.About.UAlgo.pWPF, this);
+            //this.Topmost = true;
+            //this.Topmost = false;
         }
 
         private void navPanelView_NavPaneExpandedChanged(object sender, DevExpress.Xpf.NavBar.NavPaneExpandedChangedEventArgs e)

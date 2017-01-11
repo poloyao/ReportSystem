@@ -45,12 +45,16 @@ namespace ReportSystem.ViewModels
             IDocument doc = documentManagerService.FindDocument(vm);
             if (doc == null)
             {
-                doc = documentManagerService.CreateDocument("CreditorView", true, this);//.CreateDocument("CreditorView", vm);
+                doc = documentManagerService.CreateDocument("CreditorView", null, this);//.CreateDocument("CreditorView", vm);
                 doc.Id = documentManagerService.Documents.Count();
                 doc.Title = "新增债权人";
+                
             }
-            doc.Show();
             var docContent = doc.Content as CreditorViewModel;
+            //docContent.IsEnabled = true;
+            docContent.LoanID = this.Content.ID;
+            doc.Show();
+            
             if (docContent.IsEdited)
             {
                 DetailList.Add(docContent.Content);
